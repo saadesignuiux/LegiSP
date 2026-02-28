@@ -20,50 +20,48 @@
     <!-- Material Design 3 System -->
     <link rel="stylesheet" href="assets/css/md3.css">
     <script src="assets/js/md3-tailwind-config.js"></script>
-    .ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple-anim 600ms linear;
-    background-color: rgba(0, 0, 0, 0.12);
-    pointer-events: none;
-    }
+    <style>
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-anim 600ms linear;
+            background-color: rgba(0, 0, 0, 0.12);
+            pointer-events: none;
+        }
 
-    @keyframes ripple-anim {
-    to {
-    transform: scale(4);
-    opacity: 0;
-    }
-    }
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
     </style>
+    <script src="assets/js/header-scroll.js" defer></script>
 </head>
 
 <body class="md3-bg font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen">
 
     <!-- Header MD3 -->
-    <header class="sticky top-0 z-50 w-full md3-header">
+    <header id="main-header" class="sticky top-0 z-50 w-full md3-header transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
                 <img src="assets/img/brasao-sp.svg" alt="Brasão do Estado de São Paulo"
                     class="w-10 h-10 object-contain mr-1" />
                 <div class="flex flex-col">
-                    <span class="text-base font-extrabold tracking-tighter uppercase leading-none">Normas SP</span>
+                    <span
+                        class="header-brand-name text-base font-extrabold tracking-tighter uppercase leading-none transition-colors duration-300">Normas
+                        SP</span>
                     <span class="text-[9px] font-bold text-accent-red tracking-widest uppercase mt-0.5">Estado de São
                         Paulo</span>
                 </div>
             </a>
             <nav class="hidden flex-wrap md:flex items-center gap-8">
-                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                <a class="header-nav-link text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
                     href="sobre.html">Sobre o LegiSP</a>
-                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                <a class="header-nav-link text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
                     href="busca-avancada.html">Busca Avançada</a>
             </nav>
-            <div class="flex items-center gap-3">
-                <button
-                    class="p-2 hover:bg-neutral-soft dark:hover:bg-white/10 rounded-full transition-colors duration-200 ripple-container">
-                    <span class="material-symbols-outlined text-xl">account_circle</span>
-                </button>
-            </div>
         </div>
     </header>
 

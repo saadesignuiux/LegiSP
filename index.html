@@ -120,7 +120,68 @@
         .theme-card:hover img {
             transform: scale(1.06);
         }
+
+        /* Search bar — rotating glow */
+        @keyframes search-glow-rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #search-glow-container {
+            position: relative;
+        }
+
+        /* Search bar — animated stroke */
+        @property --search-stroke-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @keyframes search-stroke-rotate {
+            to {
+                --search-stroke-angle: 360deg;
+            }
+        }
+
+        #search-glow-container::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            /* levemente além da borda para acomodar o blur */
+            border-radius: 34px;
+            background: conic-gradient(from var(--search-stroke-angle),
+                    transparent 0deg,
+                    transparent 60deg,
+                    rgba(227, 6, 19, 0.9) 120deg,
+                    rgba(255, 80, 80, 0.7) 150deg,
+                    rgba(10, 10, 10, 0.8) 210deg,
+                    rgba(10, 10, 10, 0.6) 250deg,
+                    transparent 300deg,
+                    transparent 360deg);
+            /* Mask composite isola somente o padding da borda preservando interior */
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            padding: 2px;
+            pointer-events: none;
+            z-index: -1;
+            /* Blur muito discreto encostado na própria borda */
+            filter: blur(4px) drop-shadow(0 0 4px rgba(227, 6, 19, 0.2));
+            animation: search-stroke-rotate 6s linear infinite;
+        }
     </style>
+    <script src="assets/js/header-scroll.js" defer></script>
 </head>
 
 <body class="md3-bg font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen">
@@ -154,7 +215,7 @@
     <main class="w-full">
         <!-- Hero Minimalist Section -->
         <section
-            class="relative pt-24 pb-0 px-6 bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center justify-between">
+            class="relative pt-24 pb-12 px-6 bg-background-light dark:bg-background-dark flex flex-col items-center">
             <div class="max-w-4xl w-full mx-auto text-center">
 
                 <h1
@@ -170,7 +231,7 @@
                 </p>
 
                 <!-- Search Container Inspired by Image -->
-                <div
+                <div id="search-glow-container"
                     class="relative w-full max-w-4xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[32px] border border-slate-200/50 dark:border-slate-700/50 shadow-md3 hover:border-slate-300 dark:hover:border-slate-600 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-300 flex flex-col mb-8 group overflow-visible">
 
                     <!-- Top Row: Search Input -->
@@ -502,7 +563,7 @@
         </section>
 
         <!-- Normas + Sidebar -->
-        <section class="max-w-7xl mx-auto px-6 py-16">
+        <section class="max-w-7xl mx-auto px-6 py-12">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <!-- Most Accessed Norms -->
                 <div class="lg:col-span-2 space-y-6">
@@ -639,7 +700,7 @@
         </section>
 
         <!-- Curated Discovery Section (Tabs: Tipo, Órgão, Categoria) -->
-        <section class="bg-neutral-50 dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-24">
+        <section class="bg-neutral-50 dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-12">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
                     <div>
@@ -950,37 +1011,6 @@
                 el.appendChild(circle);
             });
         });
-
-        // Header scroll-to-black behavior
-        const header = document.getElementById('main-header');
-        const brandName = document.getElementById('header-brand-name');
-        const brandSub = document.getElementById('header-brand-sub');
-        const navSobre = document.getElementById('header-nav-sobre');
-        const navBusca = document.getElementById('header-nav-busca');
-
-        function updateHeader() {
-            const scrolled = window.scrollY > 60;
-            if (scrolled) {
-                header.style.backgroundColor = '#0a0a0a';
-                header.style.borderBottom = '1px solid rgba(255,255,255,0.08)';
-                header.style.backdropFilter = 'none';
-                if (brandName) { brandName.style.color = '#ffffff'; }
-                if (brandSub) { brandSub.style.color = '#ff3b3b'; }
-                if (navSobre) { navSobre.style.color = '#e2e8f0'; }
-                if (navBusca) { navBusca.style.color = '#e2e8f0'; }
-            } else {
-                header.style.backgroundColor = '';
-                header.style.borderBottom = '';
-                header.style.backdropFilter = '';
-                if (brandName) { brandName.style.color = ''; }
-                if (brandSub) { brandSub.style.color = ''; }
-                if (navSobre) { navSobre.style.color = ''; }
-                if (navBusca) { navBusca.style.color = ''; }
-            }
-        }
-
-        window.addEventListener('scroll', updateHeader, { passive: true });
-        updateHeader(); // run on load
     </script>
 </body>
 
