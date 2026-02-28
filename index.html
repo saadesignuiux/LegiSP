@@ -411,7 +411,7 @@
                         </div>
 
                         <!-- Right Actions: Search Button MD3 -->
-                        <button
+                        <button id="main-search-button"
                             class="flex items-center gap-2 px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold hover:bg-slate-700 dark:hover:bg-slate-100 active:scale-95 transition-all duration-200 shadow-sm select-none"
                             title="Buscar">
                             <span class="material-symbols-outlined text-[18px]">search</span>
@@ -1180,6 +1180,16 @@
         const autocompleteDropdown = document.getElementById('search-autocomplete-dropdown');
         const searchContainer = document.getElementById('search-glow-container');
         const searchFiltersRow = document.getElementById('search-filters-row');
+        const searchButton = document.getElementById('main-search-button');
+
+        const performSearch = (queryOverride) => {
+            const query = queryOverride || searchInput.value.trim();
+            if (query) {
+                window.location.href = `busca-avancada.html?q=${encodeURIComponent(query)}`;
+            } else {
+                window.location.href = `busca-avancada.html`;
+            }
+        };
 
         if (searchInput && autocompleteDropdown && searchContainer && searchFiltersRow) {
             // Show dropdown on focus
@@ -1211,6 +1221,28 @@
                     // Simulate filtering/fetching new results...
                     // In a real app, you would fetch data here
                 }
+            });
+
+            // Handle Search Submit (Enter key)
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearch();
+                }
+            });
+
+            // Handle Search Submit (Button click)
+            if (searchButton) {
+                searchButton.addEventListener('click', () => performSearch());
+            }
+
+            // Handle clicks on autocomplete suggestions
+            const autocompleteListItems = autocompleteDropdown.querySelectorAll('#autocomplete-list li');
+            autocompleteListItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const textContent = item.querySelector('.font-medium').innerText.replace(/recentes|buscas recentes/g, '').trim();
+                    performSearch(textContent);
+                });
             });
         }
     </script>
