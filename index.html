@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="Catálogo Inteligente de Normas do Estado de São Paulo. Pesquise, consulte e entenda a legislação estadual com facilidade." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Material Design 3 System -->
+    <link rel="stylesheet" href="assets/css/md3.css">
+    <script src="assets/js/md3-tailwind-config.js"></script>
+    <title>Catálogo Inteligente de Normas - SP</title>
+    <style>
+        /* Ripple effect */
+        .ripple-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-anim 600ms linear;
+            background-color: rgba(0, 0, 0, 0.12);
+            pointer-events: none;
+        }
+
+        .dark .ripple {
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Search bar focus & transitions */
+        #search-bar-wrapper:focus-within #search-icon {
+            color: #E30613;
+        }
+
+        .md3-recent-item {
+            background: #fcfcfc;
+            border-radius: 12px;
+            transition: background 180ms ease, box-shadow 300ms cubic-bezier(0.2, 0, 0, 1), transform 300ms cubic-bezier(0.2, 0, 0, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+
+        .dark .md3-recent-item {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .md3-recent-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #000;
+            opacity: 0;
+            transition: opacity 180ms linear;
+            pointer-events: none;
+        }
+
+        .dark .md3-recent-item::after {
+            background: #fff;
+        }
+
+        .md3-recent-item:hover {
+            background: #fafafa;
+            border-color: #E30613;
+            box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 4px 8px 3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .dark .md3-recent-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #E30613;
+        }
+
+        .md3-recent-item:hover::after {
+            opacity: 0.04;
+        }
+
+        .dark .md3-recent-item:hover::after {
+            opacity: 0.08;
+        }
+
+        /* Theme Card scaled image */
+        .theme-card img {
+            transition: transform 700ms cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .theme-card:hover img {
+            transform: scale(1.06);
+        }
+    </style>
+</head>
+
+<body class="md3-bg font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen">
+
+    <!-- Top Navigation Bar (MD3 Top App Bar) -->
+    <header class="sticky top-0 z-50 w-full md3-header">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <img src="assets/img/brasao-sp.svg" alt="Brasão do Estado de São Paulo"
+                    class="w-10 h-10 object-contain mr-1" />
+                <div class="flex flex-col">
+                    <span class="text-base font-extrabold tracking-tighter uppercase leading-none">Normas SP</span>
+                    <span class="text-[9px] font-bold text-accent-red tracking-widest uppercase mt-0.5">Estado de São
+                        Paulo</span>
+                </div>
+            </a>
+            <nav class="hidden flex-wrap md:flex items-center gap-8">
+                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    href="sobre.html">Sobre o LegiSP</a>
+                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    href="busca-avancada.html">Busca Avançada</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button
+                    class="p-2 hover:bg-neutral-soft dark:hover:bg-white/10 rounded-full transition-colors duration-200 ripple-container">
+                    <span class="material-symbols-outlined text-xl">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full">
+        <!-- Hero Minimalist Section -->
+        <section
+            class="relative pt-24 pb-20 px-6 bg-background-light dark:bg-background-dark min-h-[500px] flex flex-col items-center justify-center">
+            <div class="max-w-4xl w-full mx-auto text-center">
+
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
+                    Catálogo Inteligente de <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-red">Normas</span>
+                    do Estado de São Paulo
+                </h1>
+                <p
+                    class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
+                    Pesquise, consulte e entenda a legislação estadual com facilidade. Explore leis, decretos e
+                    resoluções com a ajuda de inteligência artificial construída para você.
+                </p>
+
+                <!-- Search Container Inspired by Image -->
+                <div
+                    class="relative w-full max-w-3xl mx-auto bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-700 shadow-md3 hover:border-slate-300 dark:hover:border-slate-600 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-300 flex flex-col overflow-hidden mb-8 group">
+
+                    <!-- Search Input Row -->
+                    <div class="flex items-center w-full px-4 pt-4 pb-2">
+                        <input
+                            class="w-full h-12 bg-transparent border-none text-base md:text-lg font-medium focus:ring-0 px-2 text-slate-900 dark:text-white placeholder:text-slate-400"
+                            placeholder="O que posso procurar para você?" type="text" />
+                        <span
+                            class="material-symbols-outlined text-slate-300 dark:text-slate-600 ml-2 select-none">magic_button</span>
+                    </div>
+
+                    <!-- Tools and Actions Row -->
+                    <div class="flex items-center justify-between px-6 pb-4 pt-2">
+                        <!-- Left Actions -->
+                        <div class="flex items-center gap-3">
+                            <button
+                                class="size-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                <span class="material-symbols-outlined">add</span>
+                            </button>
+
+                            <!-- Chips / Menus -->
+                            <button
+                                class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                <span class="material-symbols-outlined text-sm">tune</span> Filtros
+                            </button>
+
+                            <button
+                                class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                <span class="material-symbols-outlined text-sm">category</span> Categorias <span
+                                    class="material-symbols-outlined ml-1 text-xs">expand_more</span>
+                            </button>
+                        </div>
+
+                        <!-- Right Actions -->
+                        <button
+                            class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors p-2">
+                            <span class="material-symbols-outlined text-2xl">mic</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Suggested Actions 2x2 Grid -->
+                <div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                    <!-- Card 1 -->
+                    <a href="busca-avancada.html"
+                        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group cursor-pointer">
+                        <div
+                            class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-slate-500 dark:text-slate-400">gavel</span>
+                        </div>
+                        <div class="flex-1 mt-0.5">
+                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight"><span
+                                    class="font-extrabold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Buscar
+                                    ementa</span> de leis ordinárias recentes</p>
+                        </div>
+                    </a>
+
+                    <!-- Card 2 -->
+                    <a href="busca-avancada.html"
+                        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group cursor-pointer">
+                        <div
+                            class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-slate-500 dark:text-slate-400">history</span>
+                        </div>
+                        <div class="flex-1 mt-0.5">
+                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight"><span
+                                    class="font-extrabold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Verificar
+                                    histórico</span> do Estatuto do Servidor</p>
+                        </div>
+                    </a>
+
+                    <!-- Card 3 -->
+                    <a href="busca-avancada.html"
+                        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group cursor-pointer">
+                        <div
+                            class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
+                            <span
+                                class="material-symbols-outlined text-slate-500 dark:text-slate-400">travel_explore</span>
+                        </div>
+                        <div class="flex-1 mt-0.5">
+                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight"><span
+                                    class="font-extrabold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Analisar
+                                    impacto</span> de uma norma na Saúde Pública</p>
+                        </div>
+                    </a>
+
+                    <!-- Card 4 -->
+                    <a href="busca-avancada.html"
+                        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group cursor-pointer">
+                        <div
+                            class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-slate-500 dark:text-slate-400">lightbulb</span>
+                        </div>
+                        <div class="flex-1 mt-0.5">
+                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight"><span
+                                    class="font-extrabold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Ter
+                                    ideias</span> sobre regras de Licitações 2024</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Normas + Sidebar -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Most Accessed Norms -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div
+                        class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-2">
+                        <h2 class="text-lg font-black uppercase tracking-widest">Normas mais acessadas</h2>
+                        <a class="text-sm font-bold text-accent-red flex items-center gap-1 hover:underline transition-all duration-200"
+                            href="busca-avancada.html">
+                            Ver todas <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <!-- Norm Card MD3 -->
+                        <a href="norma.html" class="md3-card-interactive group p-6 block">
+                            <div class="flex justify-between items-start mb-4">
+                                <span
+                                    class="text-[10px] font-black bg-primary text-white px-2 py-1 uppercase tracking-widest rounded">Constitucional</span>
+                                <span
+                                    class="material-symbols-outlined text-slate-300 group-hover:text-accent-red transition-colors duration-200">bookmark</span>
+                            </div>
+                            <h3
+                                class="font-bold text-base leading-tight mb-2 group-hover:text-accent-red transition-colors duration-200">
+                                Constituição do Estado de São Paulo</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Estabelece as normas
+                                fundamentais de organização do Estado de São Paulo.</p>
+                            <div
+                                class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-400">Acessado 12.4k vezes</span>
+                                <span
+                                    class="material-symbols-outlined text-primary dark:text-white group-hover:translate-x-1 transition-transform duration-200">open_in_new</span>
+                            </div>
+                        </a>
+                        <a href="norma.html" class="md3-card-interactive group p-6 block">
+                            <div class="flex justify-between items-start mb-4">
+                                <span
+                                    class="text-[10px] font-black bg-primary text-white px-2 py-1 uppercase tracking-widest rounded">Administrativo</span>
+                                <span
+                                    class="material-symbols-outlined text-slate-300 group-hover:text-accent-red transition-colors duration-200">bookmark</span>
+                            </div>
+                            <h3
+                                class="font-bold text-base leading-tight mb-2 group-hover:text-accent-red transition-colors duration-200">
+                                Decreto Nº 64.065/2019</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Dispõe sobre o
+                                atendimento ao cidadão e a simplificação de serviços públicos.</p>
+                            <div
+                                class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-400">Acessado 8.2k vezes</span>
+                                <span
+                                    class="material-symbols-outlined text-primary dark:text-white group-hover:translate-x-1 transition-transform duration-200">open_in_new</span>
+                            </div>
+                        </a>
+                        <a href="norma.html" class="md3-card-interactive group p-6 block">
+                            <div class="flex justify-between items-start mb-4">
+                                <span
+                                    class="text-[10px] font-black bg-primary text-white px-2 py-1 uppercase tracking-widest rounded">Tributário</span>
+                                <span
+                                    class="material-symbols-outlined text-slate-300 group-hover:text-accent-red transition-colors duration-200">bookmark</span>
+                            </div>
+                            <h3
+                                class="font-bold text-base leading-tight mb-2 group-hover:text-accent-red transition-colors duration-200">
+                                Lei Nº 13.296/2008</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Estabelece o tratamento
+                                tributário do Imposto sobre a Propriedade de Veículos Automotores — IPVA.</p>
+                            <div
+                                class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-400">Acessado 5.1k vezes</span>
+                                <span
+                                    class="material-symbols-outlined text-primary dark:text-white group-hover:translate-x-1 transition-transform duration-200">open_in_new</span>
+                            </div>
+                        </a>
+                        <a href="norma.html" class="md3-card-interactive group p-6 block">
+                            <div class="flex justify-between items-start mb-4">
+                                <span
+                                    class="text-[10px] font-black bg-primary text-white px-2 py-1 uppercase tracking-widest rounded">Saúde</span>
+                                <span
+                                    class="material-symbols-outlined text-slate-300 group-hover:text-accent-red transition-colors duration-200">bookmark</span>
+                            </div>
+                            <h3
+                                class="font-bold text-base leading-tight mb-2 group-hover:text-accent-red transition-colors duration-200">
+                                Código Sanitário do Estado</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Dispõe sobre a proteção,
+                                promoção e preservação da saúde no Estado de SP.</p>
+                            <div
+                                class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-400">Acessado 4.9k vezes</span>
+                                <span
+                                    class="material-symbols-outlined text-primary dark:text-white group-hover:translate-x-1 transition-transform duration-200">open_in_new</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recently Changed Norms Sidebar -->
+                <aside class="space-y-6">
+                    <div
+                        class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-2">
+                        <h2 class="text-lg font-black uppercase tracking-widest">Alterações recentes</h2>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="md3-recent-item p-4 cursor-pointer">
+                            <p class="text-[10px] font-black text-accent-red mb-1 tracking-widest uppercase">Atualizado
+                                Hoje</p>
+                            <h4 class="font-bold text-sm leading-tight mb-1">Resolução Seduc-23/2024</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Alterações nos critérios de atribuição
+                                de aulas na rede estadual.</p>
+                        </div>
+                        <div class="md3-recent-item p-4 cursor-pointer">
+                            <p class="text-[10px] font-bold text-slate-400 mb-1 tracking-widest uppercase">Ontem</p>
+                            <h4 class="font-bold text-sm leading-tight mb-1">Decreto Nº 68.324/2024</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Nova regulamentação sobre licitações e
+                                contratos administrativos.</p>
+                        </div>
+                        <div class="md3-recent-item p-4 cursor-pointer">
+                            <p class="text-[10px] font-bold text-slate-400 mb-1 tracking-widest uppercase">2 dias atrás
+                            </p>
+                            <h4 class="font-bold text-sm leading-tight mb-1">Portaria Detran-SP 12/24</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Modificações no processo de renovação
+                                de CNH para PCD.</p>
+                        </div>
+                        <div class="md3-recent-item p-4 cursor-pointer">
+                            <p class="text-[10px] font-bold text-slate-400 mb-1 tracking-widest uppercase">3 dias atrás
+                            </p>
+                            <h4 class="font-bold text-sm leading-tight mb-1">Lei Complementar 1.398/24</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Dispõe sobre a carreira dos oficiais
+                                de justiça do Estado.</p>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full py-3 border-2 border-primary dark:border-white rounded-lg font-bold uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 ripple-container">
+                        Ver histórico completo
+                    </button>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Curated Discovery Section (Tabs: Tipo, Órgão, Categoria) -->
+        <section class="bg-neutral-50 dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-24">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
+                    <div>
+                        <h2 class="text-3xl font-extrabold uppercase tracking-tighter mb-3"
+                            style="letter-spacing: -0.02em;">Navegação Especializada</h2>
+                        <p class="text-slate-500 max-w-xl font-medium">Explore o acervo navegando pelos principais eixos
+                            estruturais do Estado de São Paulo.</p>
+                    </div>
+                </div>
+
+                <!-- MD3 Tabs -->
+                <div
+                    class="border-b border-slate-200 dark:border-slate-800 mb-10 flex gap-8 overflow-x-auto no-scrollbar relative w-full pt-2">
+                    <button
+                        class="md3-curation-tab relative pb-4 text-sm font-bold text-primary dark:text-white uppercase tracking-widest whitespace-nowrap transition-colors"
+                        data-target="tab-tipos">
+                        Tipos de Norma
+                        <div
+                            class="tab-indicator absolute bottom-0 left-0 w-full h-[3px] bg-primary dark:bg-white rounded-t-md transition-opacity duration-300">
+                        </div>
+                    </button>
+                    <button
+                        class="md3-curation-tab relative pb-4 text-sm font-bold text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 uppercase tracking-widest whitespace-nowrap transition-colors"
+                        data-target="tab-orgaos">
+                        Órgãos Emissores
+                        <div
+                            class="tab-indicator absolute bottom-0 left-0 w-full h-[3px] bg-primary dark:bg-white rounded-t-md opacity-0 transition-opacity duration-300">
+                        </div>
+                    </button>
+                    <button
+                        class="md3-curation-tab relative pb-4 text-sm font-bold text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 uppercase tracking-widest whitespace-nowrap transition-colors"
+                        data-target="tab-categorias">
+                        Categorias Temáticas
+                        <div
+                            class="tab-indicator absolute bottom-0 left-0 w-full h-[3px] bg-primary dark:bg-white rounded-t-md opacity-0 transition-opacity duration-300">
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Tab Contents Container -->
+                <div class="relative w-full min-h-[400px]">
+
+                    <!-- Tab Content: Tipos de Norma (Active) -->
+                    <div class="curation-tab-content grid grid-cols-2 lg:grid-cols-4 gap-5 transition-opacity duration-500"
+                        id="tab-tipos">
+                        <a href="busca-avancada.html"
+                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
+                            <span class="material-symbols-outlined text-4xl text-accent-red">gavel</span>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Leis</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Ordinárias e
+                                    Complementares</p>
+                            </div>
+                        </a>
+                        <a href="busca-avancada.html"
+                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
+                            <span class="material-symbols-outlined text-4xl text-blue-600">description</span>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Decretos</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Regulamentações
+                                    do Executivo</p>
+                            </div>
+                        </a>
+                        <a href="busca-avancada.html"
+                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
+                            <span class="material-symbols-outlined text-4xl text-green-600">article</span>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Resoluções</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Normativas de
+                                    Secretarias</p>
+                            </div>
+                        </a>
+                        <a href="busca-avancada.html"
+                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
+                            <span class="material-symbols-outlined text-4xl text-orange-500">assignment</span>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Portarias</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Atos
+                                    administrativos internos</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Tab Content: Órgãos Emissores (Hidden) -->
+                    <div class="curation-tab-content hidden grid-cols-2 lg:grid-cols-4 gap-5 transition-opacity duration-500"
+                        id="tab-orgaos">
+                        <a href="busca-avancada.html"
+                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
+                            <span
+                                class="material-symbols-outlined text-4xl text-slate-600 dark:text-slate-300">account_balance</span>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Governador</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Poder Executivo
+                                </p>
+                            </div>
+                        </a>
+                        <a href="busca-avancada.html"
+                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
+                            <span
+                                class="material-symbols-outlined text-4xl text-slate-600 dark:text-slate-300">gavel</span>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">ALESP</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Poder Legislativo
+                                </p>
+                            </div>
+                        </a>
+                        <a href="busca-avancada.html"
+                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
+                            <span
+                                class="material-symbols-outlined text-4xl text-slate-600 dark:text-slate-300">account_balance_wallet</span>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Sec. da Fazenda</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Sefaz SP</p>
+                            </div>
+                        </a>
+                        <a href="busca-avancada.html"
+                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
+                            <span
+                                class="material-symbols-outlined text-4xl text-slate-600 dark:text-slate-300">health_and_safety</span>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Sec. da Saúde</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Secretaria de
+                                    Estado</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Tab Content: Categorias Temáticas (Hidden) -->
+                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-3 gap-8 transition-opacity duration-500"
+                        id="tab-categorias">
+                        <!-- Tema Card 1 -->
+                        <div
+                            class="theme-card group relative overflow-hidden aspect-[4/5] bg-slate-900 rounded-2xl shadow-md3-2 hover:shadow-md3-4 transition-shadow duration-300 cursor-pointer">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10">
+                            </div>
+                            <img class="absolute inset-0 w-full h-full object-cover opacity-60"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuApwsv55EtPhB1h-vj_fIvmWbJWjgip4H9eTjpC31Na3gncl0324cULt_UtTR4L9ojMAYnlSHHex7riRKqrHlzV-FsCyzRpRY57Qn12436nr-zeNzD0Yf1nWZNGRh-Bvtbd3tlEpAsm3flefw9bjTzXsOXGF4LiZt9pGfjXSWidgbcSxQfzAL9slUpjxCqi3TODhZtchwbXzjWxiuG2hUzvU-HpPsI5mf7lPw8XQ7l6xAtMHm_IXWZDYHbdqkJyCbGwZwRDNXcDxP7T"
+                                alt="Saúde" />
+                            <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end text-white">
+                                <span class="text-accent-red font-black tracking-widest uppercase text-xs mb-2">Saúde
+                                    Pública</span>
+                                <h3 class="text-2xl font-extrabold tracking-tight mb-3">O Guia da Saúde em SP</h3>
+                                <p
+                                    class="text-sm text-slate-300 mb-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                    Todas as normas do SUS e Vigilância Sanitária estadual em um só lugar.</p>
+                                <a href="tema.html"
+                                    class="flex items-center gap-2 font-bold text-sm hover:text-accent-red transition-colors duration-200">
+                                    Explorar tema <span class="material-symbols-outlined text-sm">trending_flat</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Tema Card 2 -->
+                        <div
+                            class="theme-card group relative overflow-hidden aspect-[4/5] bg-slate-900 rounded-2xl shadow-md3-2 hover:shadow-md3-4 transition-shadow duration-300 cursor-pointer">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10">
+                            </div>
+                            <img class="absolute inset-0 w-full h-full object-cover opacity-60"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAayJLE2Gl4yTOMDA_St6N9cXTmN-NCqqh2k3FeUJfGPePJAyH3Yvdkr8HdLipVwwObr4xUaRKIBRt46DoGnAozzyprF_72IyvMut3-Ox4hJd6L_Kht1zmyFp3YruW_gJ0ubVwxLza6Jpfplb7jjpx7VLE2tUBBe6gMMRANZaH5c4eDnw9xeLmXo90UMPqyPALrYVpOPFDD-GEYg30PWHNJLW7EY0X-JFMWMGe2ebljsWEVGu2YRzW0VqnKdynHua6etfY7vK3FcuTT"
+                                alt="Educação" />
+                            <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end text-white">
+                                <span
+                                    class="text-accent-red font-black tracking-widest uppercase text-xs mb-2">Educação</span>
+                                <h3 class="text-2xl font-extrabold tracking-tight mb-3">Legislação Educacional</h3>
+                                <p
+                                    class="text-sm text-slate-300 mb-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                    Estatutos, resoluções e diretrizes da rede estadual de ensino.</p>
+                                <a href="tema.html"
+                                    class="flex items-center gap-2 font-bold text-sm hover:text-accent-red transition-colors duration-200">
+                                    Explorar tema <span class="material-symbols-outlined text-sm">trending_flat</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Tema Card 3 -->
+                        <div
+                            class="theme-card group relative overflow-hidden aspect-[4/5] bg-slate-900 rounded-2xl shadow-md3-2 hover:shadow-md3-4 transition-shadow duration-300 cursor-pointer">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10">
+                            </div>
+                            <img class="absolute inset-0 w-full h-full object-cover opacity-60"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeXhc5waFOcGR3WUfPPjmjupDbS2pVSi0iWut895v_X079UglnI6s17nRdwlly0ybzyAUVLalR_kv0o3iAYHYvdWGl63kGtBOWlhdlKUubWIBdIVka4gH1nXFlf4BrvrbD7XF6CsM8y0ECj4jwOjVEowIugppu2_dDHO5MPSgdnK3UV8jDF0k9lLlDIOe2ndBJvMGMNgKJRwaCKBQLmNuhqucYQFTOjsgovkzTq89y5WX_wQAFxUey1CIyzT1AYatpflSN7S5B9B5K"
+                                alt="Gestão Pública" />
+                            <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end text-white">
+                                <span class="text-accent-red font-black tracking-widest uppercase text-xs mb-2">Gestão
+                                    Pública</span>
+                                <h3 class="text-2xl font-extrabold tracking-tight mb-3">Reformas e Gestão</h3>
+                                <p
+                                    class="text-sm text-slate-300 mb-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                    Normas sobre o funcionalismo público, previdência e organização administrativa.</p>
+                                <a href="tema.html"
+                                    class="flex items-center gap-2 font-bold text-sm hover:text-accent-red transition-colors duration-200">
+                                    Explorar tema <span class="material-symbols-outlined text-sm">trending_flat</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const tabs = document.querySelectorAll('.md3-curation-tab');
+                    const contents = document.querySelectorAll('.curation-tab-content');
+
+                    tabs.forEach(tab => {
+                        tab.addEventListener('click', (e) => {
+                            e.preventDefault();
+
+                            // Reset tabs
+                            tabs.forEach(t => {
+                                t.classList.remove('text-primary', 'dark:text-white');
+                                t.classList.add('text-slate-400');
+                                t.querySelector('.tab-indicator').classList.add('opacity-0');
+                            });
+
+                            // Hide contents
+                            contents.forEach(c => {
+                                c.classList.remove('grid');
+                                c.classList.add('hidden');
+                            });
+
+                            // Set active tab
+                            tab.classList.remove('text-slate-400');
+                            tab.classList.add('text-primary', 'dark:text-white');
+                            tab.querySelector('.tab-indicator').classList.remove('opacity-0');
+
+                            // Show active content
+                            const targetId = tab.getAttribute('data-target');
+                            const targetContent = document.getElementById(targetId);
+                            if (targetContent) {
+                                targetContent.classList.remove('hidden');
+                                targetContent.classList.add('grid');
+                            }
+                        });
+                    });
+                });
+            </script>
+        </section>
+    </main>
+
+    <footer class="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="flex items-center justify-center bg-primary text-white p-2 rounded-lg">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 4L4 14V34L24 44L44 34V14L24 4Z" stroke="currentColor"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-lg font-extrabold uppercase tracking-tight">Catálogo de Normas SP</h2>
+                    </div>
+                    <p class="text-slate-500 max-w-sm mb-6 font-medium text-sm">Plataforma inteligente de consulta à
+                        legislação do Estado de São Paulo. Modernidade, transparência e acesso fácil ao direito.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs mb-6 text-accent-red">Links Úteis</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a class="hover:text-accent-red transition-colors duration-200" href="#">Assembleia
+                                Legislativa (ALESP)</a></li>
+                        <li><a class="hover:text-accent-red transition-colors duration-200" href="#">Diário Oficial do
+                                Estado</a></li>
+                        <li><a class="hover:text-accent-red transition-colors duration-200" href="#">Portal do
+                                Governo</a></li>
+                        <li><a class="hover:text-accent-red transition-colors duration-200" href="#">Transparência
+                                SP</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs mb-6 text-accent-red">Suporte</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a class="hover:text-accent-red transition-colors duration-200" href="#">Manual de Uso</a>
+                        </li>
+                        <li><a class="hover:text-accent-red transition-colors duration-200" href="#">Fale Conosco</a>
+                        </li>
+                        <li><a class="hover:text-accent-red transition-colors duration-200" href="#">Acessibilidade</a>
+                        </li>
+                        <li><a class="hover:text-accent-red transition-colors duration-200" href="#">Privacidade</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs font-bold text-slate-400">© 2024 Governo do Estado de São Paulo. Todos os direitos
+                    reservados.</p>
+                <div class="flex gap-6">
+                    <span
+                        class="text-[10px] font-black uppercase tracking-widest bg-slate-100 dark:bg-white/10 px-3 py-1 rounded">Versão
+                        2.4.0-Beta</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Ripple effect micro-interaction (MD3)
+        document.querySelectorAll('.ripple-container').forEach(el => {
+            el.addEventListener('click', function (e) {
+                const rect = el.getBoundingClientRect();
+                const circle = document.createElement('span');
+                const diameter = Math.max(rect.width, rect.height);
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+                circle.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+                circle.classList.add('ripple');
+                const existingRipple = el.querySelector('.ripple');
+                if (existingRipple) existingRipple.remove();
+                el.appendChild(circle);
+            });
+        });
+    </script>
+</body>
+
+</html>

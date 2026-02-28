@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LegiSP — Lei Nº 10.177/1998</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Vis.js Network for Legal Graph -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Material Design 3 System -->
+    <link rel="stylesheet" href="assets/css/md3.css">
+    <script src="assets/js/md3-tailwind-config.js"></script>
+    <style>
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-anim 600ms linear;
+            background-color: rgba(0, 0, 0, 0.12);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="md3-bg text-slate-900 dark:text-slate-100 antialiased font-display min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full md3-header">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <img src="assets/img/brasao-sp.svg" alt="Brasão do Estado de São Paulo"
+                    class="w-10 h-10 object-contain mr-1" />
+                <div class="flex flex-col">
+                    <span class="text-base font-extrabold tracking-tighter uppercase leading-none">Normas SP</span>
+                    <span class="text-[9px] font-bold text-accent-red tracking-widest uppercase mt-0.5">Estado de São
+                        Paulo</span>
+                </div>
+            </a>
+            <nav class="hidden flex-wrap md:flex items-center gap-8">
+                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    href="sobre.html">Sobre o LegiSP</a>
+                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    href="busca-avancada.html">Busca Avançada</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button
+                    class="p-2 hover:bg-neutral-soft dark:hover:bg-white/10 rounded-full transition-colors duration-200 ripple-container">
+                    <span class="material-symbols-outlined text-xl">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-6 py-6">
+        <!-- Breadcrumb -->
+        <nav
+            class="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-8 overflow-x-auto whitespace-nowrap">
+            <a class="hover:text-accent-red transition-colors duration-200" href="index.html">Home</a>
+            <span class="material-symbols-outlined text-[14px] opacity-50">chevron_right</span>
+            <a class="hover:text-accent-red transition-colors duration-200" href="busca-avancada.html">Busca
+                Avançada</a>
+            <span class="material-symbols-outlined text-[14px] opacity-50">chevron_right</span>
+            <a class="hover:text-accent-red transition-colors duration-200" href="#">Administrativo</a>
+            <span class="material-symbols-outlined text-[14px] opacity-50">chevron_right</span>
+            <span class="text-slate-900 dark:text-slate-200 font-bold">Lei Nº 10.177/1998</span>
+        </nav>
+        <div class="grid grid-cols-12 gap-8">
+            <!-- Left Column: Sumário (1/5) -->
+            <aside id="left-sidebar" class="col-span-12 lg:col-span-2 hidden lg:block transition-all duration-300">
+                <div class="sticky top-[84px] space-y-6">
+                    <!-- Configurações / Exibição -->
+                    <div
+                        class="bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 shadow-md3 rounded-xl py-2">
+                        <div class="px-4 py-2 border-b border-slate-100 dark:border-slate-800/60">
+                            <h3 class="text-[10px] font-black uppercase text-slate-400 tracking-wider mb-2">Exibição
+                            </h3>
+
+                            <label class="flex items-center justify-between py-2 cursor-pointer group">
+                                <div
+                                    class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">view_sidebar</span>
+                                    <span class="text-xs font-semibold">Sumário</span>
+                                </div>
+                                <div class="relative inline-block w-[32px] h-[18px] select-none">
+                                    <input type="checkbox" id="sidebar-toggle-sumario" checked class="peer sr-only">
+                                    <div
+                                        class="w-[32px] h-[18px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[14px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-primary shadow-inner">
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center justify-between py-2 cursor-pointer group">
+                                <div
+                                    class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">format_ink_highlighter</span>
+                                    <span class="text-xs font-semibold">Marcações</span>
+                                </div>
+                                <div class="relative inline-block w-[32px] h-[18px] select-none">
+                                    <input type="checkbox" id="sidebar-toggle-marcacoes" checked class="peer sr-only">
+                                    <div
+                                        class="w-[32px] h-[18px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[14px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-primary shadow-inner">
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center justify-between py-2 cursor-pointer group">
+                                <div
+                                    class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+                                    <span class="text-xs font-semibold">Texto Compilado</span>
+                                </div>
+                                <div class="relative inline-block w-[32px] h-[18px] select-none">
+                                    <input type="checkbox" id="sidebar-toggle-compilado" class="peer sr-only">
+                                    <div
+                                        class="w-[32px] h-[18px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[14px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-primary shadow-inner">
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center justify-between py-2 cursor-pointer group">
+                                <div
+                                    class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">fullscreen</span>
+                                    <span class="text-xs font-semibold">Modo Foco</span>
+                                </div>
+                                <div class="relative inline-block w-[32px] h-[18px] select-none">
+                                    <input type="checkbox" id="sidebar-toggle-focus" class="peer sr-only">
+                                    <div
+                                        class="w-[32px] h-[18px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[14px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-primary shadow-inner">
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="px-2 py-1">
+                            <button
+                                class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg group transition-colors">
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary">print</span>
+                                <span class="text-xs font-semibold group-hover:text-primary">Impressão</span>
+                            </button>
+                            <button
+                                class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg group transition-colors">
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary">history</span>
+                                <span class="text-xs font-semibold group-hover:text-primary">Histórico de
+                                    Alteração</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sumário de Navegação -->
+                    <div
+                        class="bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 shadow-md3 rounded-xl p-5">
+                        <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-2">Sumário
+                        </h3>
+                        <nav class="space-y-1">
+                            <a class="flex items-center gap-3 px-4 py-2 text-xs font-bold text-slate-900 dark:text-white bg-slate-200 dark:bg-white/10 rounded-full transition-all ripple-container"
+                                href="#cap1">Capítulo I</a>
+                            <a class="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-neutral-soft dark:text-slate-400 dark:hover:bg-white/5 rounded-full transition-all duration-200 ripple-container"
+                                href="#cap2">Capítulo II</a>
+                            <a class="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-neutral-soft dark:text-slate-400 dark:hover:bg-white/5 rounded-full transition-all duration-200 ripple-container"
+                                href="#cap3">Capítulo III</a>
+                            <a class="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-neutral-soft dark:text-slate-400 dark:hover:bg-white/5 rounded-full transition-all duration-200 ripple-container"
+                                href="#cap4">Capítulo IV</a>
+                            <a class="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-neutral-soft dark:text-slate-400 dark:hover:bg-white/5 rounded-full transition-all duration-200 ripple-container"
+                                href="#cap5">Capítulo V</a>
+                            <div class="pt-4 border-t border-slate-200 dark:border-slate-800 mt-4 mx-2">
+                                <button
+                                    class="w-full flex items-center justify-between text-[10px] font-bold text-slate-500 uppercase hover:text-slate-700 transition-colors duration-200">
+                                    Ver Notas <span class="material-symbols-outlined text-sm">expand_more</span>
+                                </button>
+                            </div>
+                        </nav>
+                    </div>
+            </aside>
+            <!-- Center Column: Conteúdo (3/5) -->
+            <section id="main-content"
+                class="col-span-12 lg:col-span-7 bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 p-8 lg:p-12 rounded-2xl shadow-md3 transition-all duration-300">
+
+                <!-- Skeleton Loader -->
+                <div id="skeleton-loader" class="space-y-6 animate-pulse">
+                    <div class="h-6 bg-slate-200 dark:bg-slate-700 rounded w-1/4 mb-10"></div>
+                    <div class="h-12 bg-slate-200 dark:bg-slate-700 rounded w-3/4 mb-4"></div>
+                    <div class="h-24 bg-slate-200 dark:bg-slate-700 rounded w-full mb-8"></div>
+                    <div class="space-y-3">
+                        <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded"></div>
+                        <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-5/6"></div>
+                        <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-4/6"></div>
+                    </div>
+                </div>
+
+                <!-- Actual Content (Hidden initially) -->
+                <div id="actual-content" class="hidden mb-10">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="bg-primary text-white text-[10px] font-black px-3 py-1.5 rounded-lg uppercase tracking-tighter shadow-sm ripple-container">LEI
+                                ORDINÁRIA</span>
+                            <span
+                                class="bg-surface dark:bg-white/10 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-600 shadow-sm ripple-container">ESTADUAL</span>
+                        </div>
+                        <div class="flex items-center gap-2 relative">
+                            <!-- Botão Grafo Above-the-fold -->
+                            <button id="open-graph-btn"
+                                class="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 rounded-full font-bold text-sm shadow-sm transition-all duration-200 ripple-container border border-primary/20 hover:border-primary/40">
+                                <span class="material-symbols-outlined text-lg">travel_explore</span>
+                                Mostrar Grafo
+                            </button>
+
+                            <!-- Menu de Ferramentas -->
+                            <button id="tools-menu-toggle" aria-expanded="false"
+                                class="p-2 text-slate-500 hover:text-primary hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-white/10 rounded-full transition-colors duration-200 ripple-container shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-slate-700 bg-white dark:bg-slate-800 relative"
+                                title="Ferramentas">
+                                <span class="material-symbols-outlined text-xl">tune</span>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div id="tools-dropdown"
+                                class="opacity-0 invisible absolute right-0 top-full mt-3 w-[260px] bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 py-1 z-50 transform scale-95 origin-top-right transition-all duration-200">
+                                <!-- Toggles Top -->
+                                <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-700">
+                                    <h3 class="text-[10px] font-black uppercase text-slate-400 tracking-wider mb-2">
+                                        Exibição</h3>
+
+                                    <label class="flex items-center justify-between py-2 cursor-pointer group">
+                                        <div
+                                            class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-[20px]">view_sidebar</span>
+                                            <span class="text-sm font-semibold">Sumário</span>
+                                        </div>
+                                        <div class="relative inline-block w-[36px] h-[20px] select-none">
+                                            <input type="checkbox" id="toggle-sumario" checked class="peer sr-only">
+                                            <div
+                                                class="w-[36px] h-[20px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[16px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[16px] after:w-[16px] after:transition-all peer-checked:bg-primary shadow-inner">
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <!-- Added missing option explicitly requested by visual ref -->
+                                    <label class="flex items-center justify-between py-2 cursor-pointer group">
+                                        <div
+                                            class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-[20px]">format_ink_highlighter</span>
+                                            <span class="text-sm font-semibold">Marcações</span>
+                                        </div>
+                                        <div class="relative inline-block w-[36px] h-[20px] select-none">
+                                            <input type="checkbox" id="toggle-marcacoes" checked class="peer sr-only">
+                                            <div
+                                                class="w-[36px] h-[20px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[16px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[16px] after:w-[16px] after:transition-all peer-checked:bg-primary shadow-inner">
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <!-- Added missing option explicitly requested by visual ref -->
+                                    <label class="flex items-center justify-between py-2 cursor-pointer group">
+                                        <div
+                                            class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                                            <span class="text-sm font-semibold">Texto Compilado</span>
+                                        </div>
+                                        <div class="relative inline-block w-[36px] h-[20px] select-none">
+                                            <input type="checkbox" id="toggle-compilado" class="peer sr-only">
+                                            <div
+                                                class="w-[36px] h-[20px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[16px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[16px] after:w-[16px] after:transition-all peer-checked:bg-primary shadow-inner">
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="flex items-center justify-between py-2 cursor-pointer group">
+                                        <div
+                                            class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-[20px]">fullscreen</span>
+                                            <span class="text-sm font-semibold">Modo Foco</span>
+                                        </div>
+                                        <div class="relative inline-block w-[36px] h-[20px] select-none">
+                                            <input type="checkbox" id="toggle-focus" class="peer sr-only">
+                                            <div
+                                                class="w-[36px] h-[20px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[16px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[16px] after:w-[16px] after:transition-all peer-checked:bg-primary shadow-inner">
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!-- Ações Bottom -->
+                                <div class="px-2 py-2">
+                                    <button
+                                        class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg group transition-colors">
+                                        <span
+                                            class="material-symbols-outlined text-xl text-slate-400 group-hover:text-primary">print</span>
+                                        <span class="text-sm font-semibold group-hover:text-primary">Impressão</span>
+                                    </button>
+                                    <button
+                                        class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg group transition-colors">
+                                        <span
+                                            class="material-symbols-outlined text-xl text-slate-400 group-hover:text-primary">history</span>
+                                        <span class="text-sm font-semibold group-hover:text-primary">Histórico de
+                                            Alteração</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1
+                        class="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-6">
+                        Lei Nº 10.177, de 30 de dezembro de 1998
+                    </h1>
+                    <div
+                        class="bg-surface dark:bg-white/5 p-6 rounded-xl border border-slate-200 dark:border-slate-700 italic text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
+                        "Dispõe sobre o processo administrativo no âmbito da Administração Pública Direta e Indireta do
+                        Estado."
+                    </div>
+                    <div
+                        class="flex flex-wrap gap-4 text-sm font-medium text-slate-500 border-b border-slate-200 dark:border-slate-700 pb-8 mb-8">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">calendar_today</span>
+                            <span>Publicado em 30/12/1998</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">account_balance</span>
+                            <span>Assembleia Legislativa de SP</span>
+                        </div>
+                    </div>
+                    <!-- Status Banner -->
+                    <div
+                        class="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-xl p-4 flex items-center justify-between mb-10">
+                        <div class="flex items-center gap-3 text-emerald-700 dark:text-emerald-400">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <div class="flex flex-col">
+                                <span class="text-sm font-black uppercase tracking-wide">Vigente</span>
+                                <span class="text-xs font-medium opacity-80">Última alteração em 15/03/2024</span>
+                            </div>
+                        </div>
+                        <span
+                            class="bg-emerald-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg uppercase tracking-widest shadow-sm">VERSÃO
+                            ATUAL</span>
+                    </div>
+                    <!-- Legal Text -->
+                    <div
+                        class="space-y-10 prose dark:prose-invert max-w-none font-law text-lg leading-[1.8] tracking-[0.01em]">
+                        <div id="cap1">
+                            <h2
+                                class="text-xl font-display font-black uppercase tracking-wider text-slate-900 dark:text-white mb-6 border-b-2 border-slate-900 dark:border-white inline-block">
+                                Capítulo I — Disposições Gerais</h2>
+                            <div class="space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+                                <p class="flex gap-4">
+                                    <span class="font-bold flex-shrink-0 text-slate-900 dark:text-white">Artigo 1º
+                                        -</span>
+                                    <span>Esta lei regula o processo administrativo no âmbito da Administração Pública
+                                        Direta e das Autarquias do Estado de São Paulo, visando, especialmente, à
+                                        proteção dos direitos dos administrados e ao melhor cumprimento dos fins da
+                                        Administração.</span>
+                                </p>
+                                <p class="flex gap-4">
+                                    <span class="font-bold flex-shrink-0 text-slate-900 dark:text-white">Artigo 2º
+                                        -</span>
+                                    <span>A Administração Pública obedecerá, dentre outros, aos princípios da
+                                        legalidade, finalidade, motivação, razoabilidade, proporcionalidade, moralidade,
+                                        ampla defesa, contraditório, segurança jurídica, interesse público e
+                                        eficiência.</span>
+                                </p>
+                                <div class="pl-8 space-y-4 border-l-2 border-slate-100 dark:border-slate-800">
+                                    <p class="flex gap-3 text-sm italic">
+                                        <span class="font-bold">Parágrafo único -</span>
+                                        <span>Nos processos administrativos observar-se-ão, entre outros, os critérios
+                                            de atuação conforme a lei e o Direito.</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4" id="cap2">
+                            <h2
+                                class="text-xl font-display font-black uppercase tracking-wider text-slate-900 dark:text-white mb-6 border-b-2 border-slate-900 dark:border-white inline-block">
+                                Capítulo II — Dos Atos Administrativos</h2>
+                            <p class="flex gap-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                                <span class="font-bold flex-shrink-0 text-slate-900 dark:text-white">Artigo 3º -</span>
+                                <span>Os atos administrativos deverão ser motivados, com indicação dos fatos e dos
+                                    fundamentos jurídicos, quando: I - neguem, limitem ou afetem direitos ou interesses;
+                                    II - imponham ou agravem deveres, encargos ou sanções.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Action Buttons -->
+                    <div
+                        class="flex flex-wrap items-center gap-4 mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
+                        <button
+                            class="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold hover:border-primary hover:text-primary transition-all duration-200 ripple-container shadow-md3">
+                            <span class="material-symbols-outlined text-lg">print</span> Imprimir
+                        </button>
+                        <button
+                            class="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold hover:border-primary hover:text-primary transition-all duration-200 ripple-container shadow-md3">
+                            <span class="material-symbols-outlined text-lg">download</span> Baixar PDF
+                        </button>
+                        <button
+                            class="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold hover:border-primary hover:text-primary transition-all duration-200 ripple-container shadow-md3 ml-auto">
+                            <span class="material-symbols-outlined text-lg">share</span> Compartilhar
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Right Column: Metadados & Timeline (1/5) -->
+            <aside id="right-sidebar" class="col-span-12 lg:col-span-3 space-y-8 transition-all duration-300">
+                <!-- Timeline Section -->
+                <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400">Linha do Tempo</h3>
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded-lg">Vigente</span>
+                    </div>
+                    <div class="relative space-y-6" id="timeline-container">
+                        <div class="absolute left-[11px] top-2 bottom-2 w-px bg-slate-200 dark:bg-slate-800"></div>
+
+                        <!-- Evento 1: Original -->
+                        <div class="relative flex gap-4">
+                            <div
+                                class="size-6 bg-primary/20 text-primary rounded-full flex items-center justify-center z-10">
+                                <span class="material-symbols-outlined text-sm font-bold">new_releases</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-black text-slate-900 dark:text-white">Publicação Original</p>
+                                <p class="text-[10px] text-slate-500">30 de Dezembro de 1998</p>
+                            </div>
+                        </div>
+
+                        <!-- Eventos Intermediários Ocultos -->
+                        <div id="timeline-expanded" class="hidden space-y-6">
+                            <div class="relative flex gap-4">
+                                <div
+                                    class="size-6 bg-slate-100 dark:bg-slate-800 text-slate-400 rounded-full flex items-center justify-center z-10">
+                                    <span class="material-symbols-outlined text-sm">edit</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-black text-slate-600 dark:text-slate-400">Alterada por Lei
+                                        12.234</p>
+                                    <p class="text-[10px] text-slate-500">12 de Maio de 2005</p>
+                                </div>
+                            </div>
+                            <div class="relative flex gap-4">
+                                <div
+                                    class="size-6 bg-slate-100 dark:bg-slate-800 text-slate-400 rounded-full flex items-center justify-center z-10">
+                                    <span class="material-symbols-outlined text-sm">rule</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-black text-slate-600 dark:text-slate-400">Regulamentada por
+                                        Decreto</p>
+                                    <p class="text-[10px] text-slate-500">04 de Fevereiro de 2010</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Evento Final: Atual -->
+                        <div class="relative flex gap-4">
+                            <div
+                                class="size-6 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center z-10">
+                                <span class="material-symbols-outlined text-sm font-bold">update</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-black text-emerald-600 dark:text-emerald-400">Última Alteração
+                                </p>
+                                <p class="text-[10px] text-slate-500">15 de Março de 2024</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Toggle Expansion Button -->
+                    <button
+                        onclick="document.getElementById('timeline-expanded').classList.toggle('hidden'); this.innerHTML = this.innerHTML.includes('Expandir') ? '<span class=\'material-symbols-outlined text-md\'>unfold_less</span> Recolher Histórico' : '<span class=\'material-symbols-outlined text-md\'>unfold_more</span> Expandir Histórico (2)'"
+                        class="w-full mt-6 bg-surface dark:bg-white/5 hover:bg-neutral-soft dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 text-xs font-bold py-2 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 ripple-container">
+                        <span class="material-symbols-outlined text-md">unfold_more</span> Expandir Histórico (2)
+                    </button>
+                </div>
+                <!-- Technical Data -->
+                <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-6">Dados Técnicos</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Área de Atuação
+                            </p>
+                            <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">Direito Administrativo
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Classificação
+                                Temática</p>
+                            <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">Organização
+                                Administrativa</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Indexação</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span
+                                    class="bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 ripple-container"><span
+                                        class="material-symbols-outlined text-[12px]">sell</span> PROCESSO</span>
+                                <span
+                                    class="bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 ripple-container"><span
+                                        class="material-symbols-outlined text-[12px]">sell</span> RECURSO</span>
+                                <span
+                                    class="bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 ripple-container"><span
+                                        class="material-symbols-outlined text-[12px]">sell</span> SÃO
+                                    PAULO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Related Norms -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 px-2">Normas Relacionadas
+                    </h3>
+                    <a class="block p-4 bg-white dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary transition-all group"
+                        href="#">
+                        <p class="text-[10px] font-black text-primary uppercase mb-1">Lei Nº 10.261/1968</p>
+                        <p
+                            class="text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
+                            Estatuto dos Funcionários Públicos Civis de SP</p>
+                    </a>
+                    <a class="block p-4 bg-white dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary transition-all group"
+                        href="#">
+                        <p class="text-[10px] font-black text-primary uppercase mb-1">Decreto Nº 44.567/1999</p>
+                        <p
+                            class="text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
+                            Regulamenta o Processo Administrativo</p>
+                    </a>
+                    <a class="block p-4 bg-white dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary transition-all group"
+                        href="#">
+                        <p class="text-[10px] font-black text-primary uppercase mb-1">CF/1988</p>
+                        <p
+                            class="text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
+                            Constituição da República Federativa do Brasil</p>
+                    </a>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Modal: Mapa de Impacto Jurídico -->
+        <div id="graph-modal"
+            class="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 lg:p-10 opacity-0 transition-opacity duration-300">
+            <section
+                class="bg-white dark:bg-slate-900 w-full h-full max-w-7xl rounded-[32px] shadow-2xl overflow-hidden flex flex-col border border-slate-200 dark:border-slate-800 relative scale-95 transition-transform duration-300 transform-gpu"
+                id="graph-modal-content">
+                <!-- Header do Modal -->
+                <div
+                    class="px-8 py-5 border-b border-slate-100 dark:border-slate-800 flex flex-wrap gap-4 justify-between items-center bg-slate-50 dark:bg-slate-900/50">
+                    <div>
+                        <h2
+                            class="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-3xl">travel_explore</span>
+                            Mapa de Impacto Jurídico
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 mt-1 text-xs md:text-sm">
+                            Explore interativamente as relações desta norma no ordenamento jurídico. Clique num nó para
+                            ver detalhes.
+                        </p>
+                    </div>
+                    <button id="close-graph-btn"
+                        class="p-3 text-slate-400 hover:text-accent-red hover:bg-red-50 dark:hover:bg-red-500/10 rounded-full transition-colors flex items-center justify-center ripple-container">
+                        <span class="material-symbols-outlined text-2xl">close</span>
+                    </button>
+                </div>
+
+                <div class="flex-1 p-6 flex flex-col relative h-full min-h-0">
+                    <!-- Legenda Overlay -->
+                    <div
+                        class="mb-4 flex flex-wrap gap-2 text-[10px] font-bold absolute top-10 left-10 z-10 pointer-events-none">
+                        <span
+                            class="flex items-center gap-1 bg-white/95 dark:bg-slate-800/95 text-primary px-3 py-1.5 rounded shadow-sm backdrop-blur-md border border-slate-200 dark:border-slate-700 pointer-events-auto">
+                            <div class="size-2 rounded-full bg-primary"></div> Norma Atual
+                        </span>
+                        <span
+                            class="flex items-center gap-1 bg-white/95 dark:bg-slate-800/95 text-slate-600 dark:text-slate-300 px-3 py-1.5 rounded shadow-sm backdrop-blur-md border border-slate-200 dark:border-slate-700 pointer-events-auto">
+                            <div class="size-2 rounded-full bg-slate-400"></div> Hierarquia Superior
+                        </span>
+                        <span
+                            class="flex items-center gap-1 bg-white/95 dark:bg-slate-800/95 text-emerald-600 dark:text-emerald-400 px-3 py-1.5 rounded shadow-sm backdrop-blur-md border border-slate-200 dark:border-slate-700 pointer-events-auto">
+                            <div class="size-2 rounded-full bg-emerald-500"></div> Modificadora
+                        </span>
+                    </div>
+
+                    <!-- Container do Grafo + Detalhes -->
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 h-full flex-1 min-h-0">
+                        <!-- Area do Grafo -->
+                        <div
+                            class="lg:col-span-3 bg-slate-50 dark:bg-slate-900/50 rounded-[24px] border border-slate-200 dark:border-slate-800 overflow-hidden relative shadow-inner">
+                            <div id="legisp-graph" class="w-full h-full cursor-move"></div>
+                        </div>
+
+                        <!-- Painel de Detalhes (Node selection) -->
+                        <div id="node-panel"
+                            class="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 flex flex-col shadow-sm transition-all h-full overflow-y-auto">
+                            <div class="text-center opacity-50 py-12 m-auto" id="panel-empty">
+                                <span class="material-symbols-outlined text-4xl mb-2">touch_app</span>
+                                <p class="text-sm font-medium">Selecione uma norma no mapa para ver seus detalhes.</p>
+                            </div>
+
+                            <div id="panel-content" class="hidden flex-col h-full">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span id="node-badge"
+                                        class="px-2 py-1 text-[10px] uppercase font-black tracking-widest rounded-md bg-slate-100 text-slate-600">LEI
+                                        ORDINÁRIA</span>
+                                </div>
+                                <h3 id="node-title"
+                                    class="text-xl font-black text-slate-900 dark:text-white leading-tight mb-2">Título
+                                </h3>
+                                <p id="node-desc"
+                                    class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed overflow-y-auto pr-2 flex-1 mb-6">
+                                    Descrição...</p>
+
+                                <div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+                                    <button
+                                        class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-3 rounded-xl font-bold text-sm hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-colors flex items-center justify-center gap-2 ripple-container">
+                                        Abrir Norma Completa <span
+                                            class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+    <!-- Footer -->
+    <footer
+        class="mt-auto bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 w-full px-6 py-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="size-7 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined text-base">gavel</span>
+                </div>
+                <h2 class="text-sm font-extrabold uppercase tracking-tight">Normas SP <span
+                        class="text-slate-400 font-medium ml-1 tracking-widest text-[10px]">Reader</span></h2>
+            </div>
+            <div class="flex gap-8 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
+                <a href="#" class="hover:text-accent-red transition-colors duration-200">Termos de Uso</a>
+                <a href="#" class="hover:text-accent-red transition-colors duration-200">Privacidade</a>
+                <a href="#" class="hover:text-accent-red transition-colors duration-200">Open Data API</a>
+            </div>
+            <p class="text-xs text-slate-400 font-medium">&copy; 2024 Governo do Estado de São Paulo — ALESP</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obsidian Light Mode palette
+            var labelColor = "#475569";      // Slate 600
+            var centralLabelColor = "#334155"; // Slate 700
+            var nodeBg = "#94a3b8";          // Slate 400
+            var centralNodeBg = "#8b5cf6";   // Purple 500
+            var edgeColor = "#cbd5e1";       // Slate 300
+
+            var nodesData = [
+                { id: 1, label: "Lei Nº 10.177/1998", badge: "Lei Ordinária", desc: "Regula o processo administrativo no âmbito da Administração Pública Direta e das Autarquias do Estado de São Paulo, visando a proteção dos direitos dos administrados.", shape: "dot", size: 28, color: { background: centralNodeBg, border: centralNodeBg, hover: { background: centralNodeBg, border: centralNodeBg } }, font: { color: centralLabelColor, size: 16, face: 'Inter', bold: true, vadjust: -40 } },
+                { id: 2, label: "CF/1988", badge: "Constituição", desc: "Constituição da República Federativa do Brasil. Lei suprema que serve como fundamento de validade para todas as demais normas do ordenamento jurídico, incluindo as estaduais.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } },
+                { id: 3, label: "Decreto Nº 44.567/1999", badge: "Decreto Regulamentar", desc: "Regulamenta o Processo Administrativo Tributário Decorrente de Lançamento de Ofício, detalhando os trâmites processuais referenciados na lei 10.177.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } },
+                { id: 4, label: "Lei Nº 10.261/1968", badge: "Lei Ordinária", desc: "Estatuto dos Funcionários Públicos Civis do Estado de São Paulo. Aplica-se subsidiariamente aos processos disciplinares no que não contrariar a lei de processo administrativo.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } },
+                { id: 5, label: "Lei Nº 12.234/2005", badge: "Lei Modificadora", desc: "Altera e acrescenta dispositivos à Lei 10.177/1998, prevendo a adoção do meio eletrônico para a tramitação de processos administrativos empresariais e civis.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } },
+                { id: 6, label: "Portaria PGE 12/2020", badge: "Portaria Normativa", desc: "Aprova regras internas para o envio de intimações, aplicando diretamente os ritos de comunicação previstos na Lei 10.177.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } }
+            ];
+
+            var nodes = new vis.DataSet(nodesData);
+
+            // Removing arrows and labels from edges for maximal minimalism
+            var edges = new vis.DataSet([
+                { from: 1, to: 2, color: { color: edgeColor, hover: "#94a3b8" } },
+                { from: 3, to: 1, color: { color: edgeColor, hover: "#94a3b8" } },
+                { from: 1, to: 4, dashes: true, color: { color: edgeColor, hover: "#94a3b8" } }, // kept dashes for 'subsidiaria'
+                { from: 5, to: 1, color: { color: edgeColor, hover: "#94a3b8" } },
+                { from: 6, to: 1, color: { color: edgeColor, hover: "#94a3b8" } }
+            ]);
+
+            var container = document.getElementById("legisp-graph");
+            var data = { nodes: nodes, edges: edges };
+            var options = {
+                nodes: {
+                    borderWidth: 0,
+                    borderWidthSelected: 0,
+                    shadow: false
+                },
+                edges: {
+                    width: 1.5,
+                    selectionWidth: 2,
+                    smooth: false // Straight lines like Obsidian
+                },
+                interaction: {
+                    hover: true,
+                    navigationButtons: false,
+                    keyboard: false,
+                    zoomView: true,
+                    dragView: true
+                },
+                physics: {
+                    enabled: true,
+                    solver: 'forceAtlas2Based',
+                    forceAtlas2Based: {
+                        gravitationalConstant: -50,
+                        centralGravity: 0.01,
+                        springConstant: 0.08,
+                        springLength: 150,
+                        damping: 0.4,
+                        avoidOverlap: 1
+                    }
+                },
+                layout: {
+                    hierarchical: false // Organic, non-hierarchical layout
+                }
+            };
+
+            var network = new vis.Network(container, data, options);
+
+            // Interaction logic for Node details panel
+            network.on("selectNode", function (params) {
+                if (params.nodes.length == 1) {
+                    var nodeId = params.nodes[0];
+                    var nodeData = nodesData.find(n => n.id === nodeId);
+
+                    document.getElementById("panel-empty").classList.add("hidden");
+                    document.getElementById("panel-content").classList.remove("hidden");
+                    document.getElementById("panel-content").classList.add("flex");
+
+                    document.getElementById("node-title").innerText = nodeData.label;
+                    document.getElementById("node-desc").innerText = nodeData.desc;
+                    document.getElementById("node-badge").innerText = nodeData.badge;
+
+                    if (nodeId === 1 || nodeId === 5) {
+                        document.getElementById("node-badge").className = "px-2 py-1 text-[10px] uppercase font-black tracking-widest rounded-md bg-primary/10 text-primary";
+                    } else {
+                        document.getElementById("node-badge").className = "px-2 py-1 text-[10px] uppercase font-black tracking-widest rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300";
+                    }
+                }
+            });
+
+            network.on("deselectNode", function () {
+                document.getElementById("panel-empty").classList.remove("hidden");
+                document.getElementById("panel-content").classList.add("hidden");
+                document.getElementById("panel-content").classList.remove("flex");
+            });
+        });
+
+        // Ripple MD3
+        document.querySelectorAll('.ripple-container').forEach(el => {
+            el.addEventListener('click', function (e) {
+                const rect = el.getBoundingClientRect();
+                const circle = document.createElement('span');
+                const diameter = Math.max(rect.width, rect.height);
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+                circle.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+                circle.classList.add('ripple');
+                const ex = el.querySelector('.ripple');
+                if (ex) ex.remove();
+                el.appendChild(circle);
+            });
+        });
+
+        // Interface Logic: Skeleton & Focus Mode
+        document.addEventListener("DOMContentLoaded", () => {
+            // Remove skeleton after 1.2s
+            setTimeout(() => {
+                const skeleton = document.getElementById('skeleton-loader');
+                const content = document.getElementById('actual-content');
+                if (skeleton && content) {
+                    skeleton.classList.add('hidden');
+                    content.classList.remove('hidden');
+                    content.style.opacity = '0';
+                    content.style.transition = 'opacity 0.5s ease-out';
+                    requestAnimationFrame(() => {
+                        content.style.opacity = '1';
+                    });
+                }
+            }, 1200);
+
+            // Graph Modal Logic
+            const openGraphBtn = document.getElementById('open-graph-btn');
+            const closeGraphBtn = document.getElementById('close-graph-btn');
+            const graphModal = document.getElementById('graph-modal');
+            const graphContent = document.getElementById('graph-modal-content');
+
+            if (openGraphBtn && closeGraphBtn && graphModal) {
+                openGraphBtn.addEventListener('click', () => {
+                    graphModal.classList.remove('hidden');
+                    graphModal.classList.add('flex');
+                    // Pequeno delay para a animação de opacidade funcionar
+                    setTimeout(() => {
+                        graphModal.classList.remove('opacity-0');
+                        graphContent.classList.remove('scale-95');
+                        graphContent.classList.add('scale-100');
+                    }, 10);
+                });
+
+                closeGraphBtn.addEventListener('click', () => {
+                    graphModal.classList.add('opacity-0');
+                    graphContent.classList.remove('scale-100');
+                    graphContent.classList.add('scale-95');
+                    setTimeout(() => {
+                        graphModal.classList.add('hidden');
+                        graphModal.classList.remove('flex');
+                    }, 300); // tempo do transition duration
+                });
+            }
+
+            // Tools Dropdown Logic
+            const toolsToggleBtn = document.getElementById('tools-menu-toggle');
+            const toolsDropdown = document.getElementById('tools-dropdown');
+
+            if (toolsToggleBtn && toolsDropdown) {
+                toolsToggleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isExpanded = toolsToggleBtn.getAttribute('aria-expanded') === 'true';
+                    toolsToggleBtn.setAttribute('aria-expanded', !isExpanded);
+
+                    if (!isExpanded) {
+                        toolsDropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
+                        toolsDropdown.classList.add('opacity-100', 'visible', 'scale-100');
+                        toolsToggleBtn.classList.add('bg-slate-100', 'dark:bg-slate-800');
+                    } else {
+                        toolsDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+                        toolsDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+                        toolsToggleBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800');
+                    }
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!toolsToggleBtn.contains(e.target) && !toolsDropdown.contains(e.target)) {
+                        toolsToggleBtn.setAttribute('aria-expanded', 'false');
+                        toolsDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+                        toolsDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+                        toolsToggleBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800');
+                    }
+                });
+            }
+
+            // UI Toggles (Sumário & Focus)
+            const leftSidebar = document.getElementById('left-sidebar');
+            const rightSidebar = document.getElementById('right-sidebar');
+            const mainContent = document.getElementById('main-content');
+
+            const toggleSumario = document.getElementById('toggle-sumario');
+            const toggleFocus = document.getElementById('toggle-focus');
+            const sidebarToggleSumario = document.getElementById('sidebar-toggle-sumario');
+            const sidebarToggleFocus = document.getElementById('sidebar-toggle-focus');
+
+            function updateLayoutSumario(isChecked) {
+                if (isChecked) {
+                    leftSidebar.classList.remove('hidden');
+                    // Se não estiver em modo foco, ajusta o grid
+                    if (!toggleFocus.checked && !sidebarToggleFocus.checked) {
+                        mainContent.classList.add('lg:col-span-7');
+                        mainContent.classList.remove('lg:col-span-9', 'lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full');
+                    }
+                } else {
+                    leftSidebar.classList.add('hidden');
+                    // Se não estiver em modo foco e a direita estiver visível, o centro expande parcialmente
+                    if (!toggleFocus.checked && !sidebarToggleFocus.checked && rightSidebar && !rightSidebar.classList.contains('hidden')) {
+                        mainContent.classList.remove('lg:col-span-7');
+                        mainContent.classList.add('lg:col-span-9');
+                    } else if (!toggleFocus.checked && !sidebarToggleFocus.checked) {
+                        // Se a direita tb estiver oculta
+                        mainContent.classList.remove('lg:col-span-7', 'lg:col-span-9');
+                        mainContent.classList.add('lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full');
+                    }
+                }
+            }
+
+            function updateLayoutFocus(isFocus) {
+                if (isFocus) {
+                    // Força ocultar ambos sidebars
+                    if (leftSidebar) leftSidebar.classList.add('hidden');
+                    if (rightSidebar) rightSidebar.classList.add('hidden');
+
+                    mainContent.classList.remove('lg:col-span-7', 'lg:col-span-9');
+                    mainContent.classList.add('lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full');
+                } else {
+                    // Restaura estado baseado no toggle sumário
+                    if (toggleSumario && toggleSumario.checked && leftSidebar) {
+                        leftSidebar.classList.remove('hidden');
+                        mainContent.classList.add('lg:col-span-7');
+                        mainContent.classList.remove('lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full', 'lg:col-span-9');
+                    } else {
+                        mainContent.classList.remove('lg:col-span-7', 'lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full');
+                        mainContent.classList.add('lg:col-span-9');
+                    }
+                    // Restaura sidebar direita sempre ao sair do foco
+                    if (rightSidebar) rightSidebar.classList.remove('hidden');
+                }
+            }
+
+            if (toggleSumario && sidebarToggleSumario) {
+                toggleSumario.addEventListener('change', (e) => {
+                    sidebarToggleSumario.checked = e.target.checked;
+                    updateLayoutSumario(e.target.checked);
+                });
+                sidebarToggleSumario.addEventListener('change', (e) => {
+                    toggleSumario.checked = e.target.checked;
+                    updateLayoutSumario(e.target.checked);
+                });
+            }
+
+            if (toggleFocus && sidebarToggleFocus) {
+                toggleFocus.addEventListener('change', (e) => {
+                    sidebarToggleFocus.checked = e.target.checked;
+                    updateLayoutFocus(e.target.checked);
+                });
+                sidebarToggleFocus.addEventListener('change', (e) => {
+                    toggleFocus.checked = e.target.checked;
+                    updateLayoutFocus(e.target.checked);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

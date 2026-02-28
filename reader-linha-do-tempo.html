@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Leitura da norma com linha do tempo — Catálogo Inteligente de Normas SP." />
+    <title>Reader da Norma — Normas SP</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Material Design 3 System -->
+    <link rel="stylesheet" href="assets/css/md3.css">
+    <script src="assets/js/md3-tailwind-config.js"></script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .law-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.75;
+        }
+
+        .law-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .ripple-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-anim 600ms linear;
+            background-color: rgba(0, 0, 0, .12);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light font-sans text-slate-900 antialiased">
+
+        <header class="sticky top-0 z-50 w-full md3-header">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <div
+                    class="flex items-center justify-center bg-black dark:bg-white text-white dark:text-black p-2 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4L4 14V34L24 44L44 34V14L24 4Z" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="4"></path>
+                        <path d="M24 4V44" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="4"></path>
+                        <path d="M4 14L24 24L44 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="4"></path>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-base font-extrabold tracking-tighter uppercase leading-none">Normas SP</span>
+                    <span class="text-[9px] font-bold text-accent-red tracking-widest uppercase mt-0.5">Estado de São
+                        Paulo</span>
+                </div>
+            </a>
+                        <nav class="hidden flex-wrap md:flex items-center gap-8">
+                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    href="sobre.html">Sobre o LegiSP</a>
+                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    href="busca-avancada.html">Busca Avançada</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button
+                    class="p-2 hover:bg-neutral-soft dark:hover:bg-white/10 rounded-full transition-colors duration-200 ripple-container">
+                    <span class="material-symbols-outlined text-xl">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex h-[calc(100vh-64px)] overflow-hidden">
+        <!-- Left Sidebar: Structural Summary -->
+        <aside class="w-72 flex-shrink-0 border-r border-slate-200 bg-white overflow-y-auto">
+            <div class="p-4 border-b border-slate-100 bg-slate-50/50">
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">account_tree</span> Sumário Estrutural
+                </h3>
+            </div>
+            <div class="p-2 space-y-1">
+                <div class="group">
+                    <button
+                        class="w-full flex items-center gap-2 px-3 py-2 text-sm font-bold text-slate-900 bg-slate-100 rounded-lg">
+                        <span class="material-symbols-outlined text-sm">expand_more</span> Título I
+                    </button>
+                    <div class="ml-4 border-l-2 border-slate-100 pl-2 mt-1 space-y-1">
+                        <a class="block px-3 py-1.5 text-sm text-primary font-medium hover:bg-slate-50 rounded"
+                            href="#cap1">Capítulo I - Princípios</a>
+                        <a class="block px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50 rounded"
+                            href="#cap2">Capítulo II - Direitos</a>
+                    </div>
+                </div>
+                <div class="group">
+                    <button
+                        class="w-full flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg">
+                        <span class="material-symbols-outlined text-sm">chevron_right</span> Título II
+                    </button>
+                </div>
+                <div class="group">
+                    <button
+                        class="w-full flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg">
+                        <span class="material-symbols-outlined text-sm">chevron_right</span> Título III
+                    </button>
+                </div>
+                <div class="pt-4 px-3">
+                    <button
+                        class="w-full py-2 px-4 border-2 border-dashed border-slate-200 rounded-lg text-xs font-bold text-slate-400 hover:border-slate-300 hover:text-slate-500 transition-colors">
+                        Expandir Tudo
+                    </button>
+                </div>
+            </div>
+        </aside>
+        <!-- Center Column: Reader -->
+        <section class="flex-1 overflow-y-auto bg-white relative">
+            <!-- Law Header Info -->
+            <div class="max-w-4xl mx-auto px-8 pt-10 pb-6 border-b border-slate-100">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex gap-2">
+                        <span
+                            class="inline-flex items-center rounded bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">
+                            <span class="material-symbols-outlined text-xs mr-1">check_circle</span> VIGENTE
+                        </span>
+                        <span
+                            class="inline-flex items-center rounded bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700">
+                            LEI ORDINÁRIA
+                        </span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-sm">share</span> Compartilhar
+                        </button>
+                        <button
+                            class="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-sm">print</span> Imprimir
+                        </button>
+                    </div>
+                </div>
+                <h1 class="text-3xl font-black text-slate-900 leading-tight mb-2">Lei nº 10.177, de 30 de dezembro de
+                    1998</h1>
+                <p class="text-lg text-slate-600 font-medium italic mb-6">Regula o processo administrativo no âmbito da
+                    Administração Pública Estadual.</p>
+                <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <div class="flex-1">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Fonte Oficial</p>
+                        <a class="text-sm font-bold text-accent-red hover:underline flex items-center gap-1" href="#">
+                            Acessar no Diário Oficial de SP <span
+                                class="material-symbols-outlined text-xs">open_in_new</span>
+                        </a>
+                    </div>
+                    <button
+                        class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">history_edu</span> Comparar Versões
+                    </button>
+                </div>
+            </div>
+            <!-- Law Body -->
+            <div class="max-w-4xl mx-auto px-8 py-12 font-serif text-lg law-content text-slate-800 relative">
+                <!-- Watermark Background -->
+                <div
+                    class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none overflow-hidden">
+                    <img class="w-[500px]" data-alt="Brasão do Estado de São Paulo em marca d'água"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwsJ_RZ1RynyF6f58I4WJiAT5mBFvt-0exOAUpJVbopbbiqMCJQwS_vUpKjAM0vDpWV9OYIH15a30AzyzVWCWMW7cXKlUIbERFU0qqY6t4GJcM0mOVUn5QJeVNV5dCXEYZOOfGsELQVrCQLKeNEmblIyUxmEmtrR9sRTafxrOzEr9FPK_FpTxIb2MJAlEQtUGjNjKAGzl1sqDW9jacd3RT3GCk3LRUl6lzLevd3ydGyIBk1o9tAQyCwbThJPiVdw9P20lESjP5YCUA" />
+                </div>
+                <div class="relative z-10">
+                    <p class="font-bold text-center mb-8">O GOVERNADOR DO ESTADO DE SÃO PAULO:</p>
+                    <p class="mb-8">Faço saber que a Assembléia Legislativa decreta e eu promulgo a seguinte lei:</p>
+                    <h3 id="cap1">CAPÍTULO I<br />Das Disposições Gerais</h3>
+                    <p><strong>Artigo 1º -</strong> Esta lei estabelece as normas básicas sobre o processo
+                        administrativo no âmbito da Administração Centralizada e Autárquica do Estado, visando, em
+                        especial, à proteção dos direitos dos administrados e ao melhor cumprimento dos fins da
+                        Administração.</p>
+                    <p><strong>Artigo 2º -</strong> A Administração Pública obedecerá, dentre outros, aos princípios da
+                        legalidade, impessoalidade, moralidade, publicidade, finalidade, motivação, razoabilidade,
+                        proporcionalidade, ampla defesa, contraditório e eficiência.</p>
+                    <h3 id="cap2">CAPÍTULO II<br />Dos Direitos dos Administrados</h3>
+                    <p><strong>Artigo 3º -</strong> O administrado tem os seguintes direitos perante a Administração,
+                        sem prejuízo de outros que confiram a Constituição Federal, a Constituição Estadual e as leis:
+                    </p>
+                    <ul class="list-none space-y-4 ml-6 italic">
+                        <li>I - ser tratado com respeito pelas autoridades e servidores, que deverão facilitar o
+                            exercício de seus direitos e o cumprimento de suas obrigações;</li>
+                        <li>II - ter ciência da tramitação dos processos administrativos em que tenha a condição de
+                            interessado, ter vista dos autos no local de sua repartição, obter cópias de documentos e
+                            certidões e conhecer as decisões proferidas;</li>
+                    </ul>
+                    <div class="my-10 p-4 bg-red-50 border-l-4 border-accent-red rounded-r-lg">
+                        <p class="text-sm font-bold text-accent-red mb-1 italic flex items-center gap-2">
+                            <span class="material-symbols-outlined text-base">info</span> Redação alterada pela Lei nº
+                            12.345/2022:
+                        </p>
+                        <p class="text-base text-slate-700 mb-0"><strong>Artigo 4º -</strong> Os atos administrativos do
+                            processo devem ser produzidos por escrito, em vernáculo, com a data e o local de sua
+                            realização e a assinatura da autoridade responsável.</p>
+                    </div>
+                    <p><strong>Artigo 5º -</strong> Salvo imposição legal, o reconhecimento de firma somente será
+                        exigido quando houver dúvida sobre a autenticidade.</p>
+                </div>
+            </div>
+            <!-- IA Assistida Floating Bar -->
+            <div class="sticky bottom-6 left-0 right-0 flex justify-center px-8 z-40 pointer-events-none">
+                <div
+                    class="w-full max-w-2xl bg-primary text-white p-2 pl-4 rounded-full shadow-2xl flex items-center gap-3 border border-slate-700 pointer-events-auto">
+                    <div
+                        class="flex-shrink-0 size-8 rounded-full bg-gradient-to-tr from-accent-red to-red-400 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-lg">auto_awesome</span>
+                    </div>
+                    <input class="bg-transparent border-none focus:ring-0 text-sm flex-1 placeholder:text-slate-400"
+                        placeholder="Pergunte algo sobre esta lei (ex: 'Quais os prazos recursais?')" type="text" />
+                    <button
+                        class="bg-white text-primary px-4 py-1.5 rounded-full text-xs font-bold hover:bg-slate-100 transition-colors">
+                        Perguntar
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Right Sidebar: Life Cycle Timeline -->
+        <aside class="w-80 flex-shrink-0 border-l border-slate-200 bg-white overflow-y-auto">
+            <div class="p-4 border-b border-slate-100 bg-slate-50/50">
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">history</span> Ciclo de Vida
+                </h3>
+            </div>
+            <div class="p-6 relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-9 top-10 bottom-10 w-0.5 bg-slate-100"></div>
+                <div class="space-y-10 relative">
+                    <!-- Event: Creation -->
+                    <div class="flex gap-4 group">
+                        <div
+                            class="relative z-10 size-6 rounded-full bg-emerald-500 ring-4 ring-white flex items-center justify-center shadow-sm">
+                            <span class="material-symbols-outlined text-white text-[14px]">add</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[10px] font-black text-emerald-600 uppercase">Criação</p>
+                            <p class="text-xs font-bold text-slate-900 mt-0.5">Publicação Original</p>
+                            <p class="text-xs text-slate-500">30 Dez 1998</p>
+                            <a class="inline-flex items-center mt-2 text-[11px] font-bold text-primary hover:text-accent-red"
+                                href="#">
+                                Ver DOESP <span class="material-symbols-outlined text-[12px] ml-1">link</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Event: Amendment -->
+                    <div class="flex gap-4 group">
+                        <div
+                            class="relative z-10 size-6 rounded-full bg-blue-500 ring-4 ring-white flex items-center justify-center shadow-sm">
+                            <span class="material-symbols-outlined text-white text-[14px]">edit</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[10px] font-black text-blue-600 uppercase">Alteração</p>
+                            <p class="text-xs font-bold text-slate-900 mt-0.5">Lei nº 12.345/2022</p>
+                            <p class="text-xs text-slate-500">15 Set 2022</p>
+                            <p
+                                class="text-[11px] text-slate-600 bg-blue-50 p-2 rounded mt-2 border border-blue-100 italic">
+                                Altera redação do Art. 4º sobre assinaturas digitais.
+                            </p>
+                            <a class="inline-flex items-center mt-2 text-[11px] font-bold text-primary hover:text-accent-red"
+                                href="#">
+                                Comparar Texto <span
+                                    class="material-symbols-outlined text-[12px] ml-1">difference</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Event: Revocation (Critical/Alert) -->
+                    <div class="flex gap-4 group opacity-50 hover:opacity-100 transition-opacity">
+                        <div
+                            class="relative z-10 size-6 rounded-full bg-slate-300 ring-4 ring-white flex items-center justify-center shadow-sm">
+                            <span class="material-symbols-outlined text-white text-[14px]">block</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[10px] font-black text-slate-500 uppercase">Revogação Parcial</p>
+                            <p class="text-xs font-bold text-slate-900 mt-0.5">Decreto nº 88.000</p>
+                            <p class="text-xs text-slate-500">Aguardando Vigência</p>
+                        </div>
+                    </div>
+                    <!-- Future/Current status -->
+                    <div class="flex gap-4">
+                        <div
+                            class="relative z-10 size-6 rounded-full bg-white border-2 border-emerald-500 ring-4 ring-white flex items-center justify-center shadow-sm">
+                            <div class="size-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[10px] font-black text-emerald-600 uppercase">Status Atual</p>
+                            <p class="text-xs font-bold text-slate-900 mt-0.5">Consolidado &amp; Vigente</p>
+                            <p class="text-[11px] text-slate-500">Última atualização: Hoje</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 p-4 mx-4 bg-slate-900 rounded-xl text-white">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Resumo de Impacto</p>
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs">Artigos Alterados</span>
+                    <span class="text-xs font-bold bg-accent-red px-2 py-0.5 rounded">12</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs">Remissões Externas</span>
+                    <span class="text-xs font-bold bg-slate-700 px-2 py-0.5 rounded">08</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+</body>
+
+</html>

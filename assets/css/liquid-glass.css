@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+ * Apple Liquid Glass Design System
+ * Focus: Profundidade extrema, blur translúcido, highlights de borda
+ */
+
+@layer utilities {
+
+    /* 1. MESH BACKGROUND ANIMADO */
+    /* Cria um fundo abstrato e colorido onde o vidro possa atuar desfocando as cores. */
+    .apple-mesh-bg {
+        background-color: #f3f4f6;
+        /* zinc-100 */
+        background-image:
+            radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 0.03) 0, transparent 50%),
+            radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.04) 0, transparent 50%),
+            radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.04) 0, transparent 50%);
+        background-attachment: fixed;
+    }
+
+    .dark .apple-mesh-bg {
+        background-color: #000000;
+        background-image:
+            radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+            radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.2) 0, transparent 50%),
+            radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.2) 0, transparent 50%);
+    }
+
+    /* Padrão sutil por cima do Mesh */
+    .apple-grid-pattern {
+        background-size: 32px 32px;
+        background-image:
+            linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    }
+
+    .dark .apple-grid-pattern {
+        background-image:
+            linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    /* 2. VIDRO TRANSLÚCIDO (GLASS PANELS) */
+    .apple-glass-panel {
+        @apply bg-white/60 dark:bg-black/40;
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        /* Highlights sutil nas bordas simulando espessura do vidro */
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        /* Brilho interno do vidro */
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+            0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        /* Sombra exterior suave */
+        @apply transition-all duration-300 ease-out;
+    }
+
+    .dark .apple-glass-panel {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Borda muito mais sutil no escuro */
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05),
+            0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        /* Sombra exterior mais intensa no escuro */
+    }
+
+    /* Painel elevado (hover state) para cards */
+    .apple-glass-panel-hover:hover {
+        @apply bg-white/70 dark:bg-zinc-900/60;
+        transform: translateY(-2px);
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4),
+            0 12px 40px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .dark .apple-glass-panel-hover:hover {
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08),
+            0 12px 40px 0 rgba(0, 0, 0, 0.6);
+    }
+
+    /* 3. HEADER GLASS */
+    .apple-glass-header {
+        @apply bg-white/60 dark:bg-black/50;
+        backdrop-filter: blur(32px) saturate(180%);
+        -webkit-backdrop-filter: blur(32px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .dark .apple-glass-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* 4. BOTÕES "PILL" (Pílula) */
+    .apple-glass-button {
+        @apply bg-white/80 dark:bg-zinc-800/80 rounded-full px-5 py-2 font-medium text-sm;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        @apply transition-all duration-300 ease-out active:scale-95;
+    }
+
+    .dark .apple-glass-button {
+        @apply text-white;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .apple-glass-button:hover {
+        @apply bg-white dark:bg-zinc-700/80;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Botão Principal Em destaque (Ação primária) */
+    .apple-primary-button {
+        @apply bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full px-6 py-2.5 font-semibold tracking-tight;
+        box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.15);
+        @apply transition-all duration-300 ease-out active:scale-95;
+    }
+
+    .apple-primary-button:hover {
+        @apply bg-slate-800 dark:bg-slate-100;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+        transform: translateY(-1px);
+    }
+
+    /* Tipografia (ajuste do letter-spacing) */
+    .apple-title {
+        @apply tracking-tight font-semibold text-slate-900 dark:text-white;
+    }
+
+    /* Scrollbar minimalista estilo macOS */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .dark ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+}

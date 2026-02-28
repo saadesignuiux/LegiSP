@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Curadoria legislativa de Saúde Pública no Estado de São Paulo — Normas SP." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Material Design 3 System -->
+    <link rel="stylesheet" href="assets/css/md3.css">
+    <script src="assets/js/md3-tailwind-config.js"></script>
+    <title>Curadoria: Saúde Pública — Normas SP</title>
+    <style>
+        .ripple-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-anim 600ms linear;
+            background-color: rgba(0, 0, 0, .12);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 antialiased">
+
+    <header class="sticky top-0 z-50 w-full md3-header">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <img src="assets/img/brasao-sp.svg" alt="Brasão do Estado de São Paulo"
+                    class="w-10 h-10 object-contain mr-1" />
+                <div class="flex flex-col">
+                    <span class="text-base font-extrabold tracking-tighter uppercase leading-none">Normas SP</span>
+                    <span class="text-[9px] font-bold text-accent-red tracking-widest uppercase mt-0.5">Estado de São
+                        Paulo</span>
+                </div>
+            </a>
+            <nav class="hidden flex-wrap md:flex items-center gap-8">
+                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    href="sobre.html">Sobre o LegiSP</a>
+                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    href="busca-avancada.html">Busca Avançada</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button
+                    class="p-2 hover:bg-neutral-soft dark:hover:bg-white/10 rounded-full transition-colors duration-200 ripple-container">
+                    <span class="material-symbols-outlined text-xl">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-[540px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-1000"
+            data-alt="Modern clean hospital interior with blue tones"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqLErrLxTey2sDedY53X4bPqvGly8Hi5_SMy2Mgz_fVAttDT9RfklTAOYPw9TokrsHIEdIQnnuSG04xFpHVIaSQLteSHFrp4rLFKMDghnyv6Y-tVwl0MW2Jl7-IddM4XOxaI56Ru49PpMBqH7126bxRyJ6OIUBD0AFq8K9JjY1MR4syJ9xSBKfAnua-y_22lsTR3Apc4pd8kfxwU60HVzTRjVIZqDZZkcrDBxoaTrSNnN_SNOd50Adr4C0Hm_tLcmSnThY7rV1ulxH');">
+        </div>
+        <div class="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-transparent"></div>
+        <div class="relative z-20 max-w-7xl mx-auto px-6 w-full text-white">
+            <nav class="flex items-center gap-2 text-xs font-medium mb-6 opacity-80 uppercase tracking-widest">
+                <span>Home</span> <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                <span>Curadoria</span> <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                <span class="text-primary">Saúde Pública</span>
+            </nav>
+            <span
+                class="inline-block bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full mb-4 uppercase tracking-[0.2em]">Saúde
+                Pública</span>
+            <h1 class="text-6xl md:text-7xl font-black mb-4 leading-[1.05] tracking-tight">O GUIA DA<br />SAÚDE EM SP
+            </h1>
+            <div class="max-w-xl">
+                <p class="text-lg text-slate-200 mb-8 font-light leading-relaxed">
+                    Acompanhe a legislação completa da saúde pública no estado de São Paulo. Recomendações, protocolos e
+                    diretrizes organizadas de forma estratégica.
+                </p>
+                <div class="flex items-center gap-4 mb-10">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black text-primary">234</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Normas nesta
+                            coleção</span>
+                    </div>
+                    <div class="w-px h-10 bg-slate-700 mx-2"></div>
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black text-white">12</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Atualizadas este
+                            mês</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-4">
+                <button
+                    class="bg-slate-950 text-white border border-slate-700 hover:bg-slate-900 px-8 py-4 rounded-lg font-bold flex items-center gap-2 transition-all">
+                    Ver todas as normas <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+                <button
+                    class="bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold transition-all">
+                    Receber alertas
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Subtheme Tabs -->
+    <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-8 overflow-x-auto no-scrollbar py-1">
+                <a class="py-5 border-b-4 border-primary text-slate-900 dark:text-white font-bold text-sm whitespace-nowrap transition-all"
+                    href="#">SUS Estadual</a>
+                <a class="py-5 border-b-4 border-transparent hover:border-slate-300 dark:hover:border-slate-700 text-slate-500 dark:text-slate-400 font-bold text-sm whitespace-nowrap transition-all"
+                    href="#">Vigilância Sanitária</a>
+                <a class="py-5 border-b-4 border-transparent hover:border-slate-300 dark:hover:border-slate-700 text-slate-500 dark:text-slate-400 font-bold text-sm whitespace-nowrap transition-all"
+                    href="#">Regulamentação de Profissões</a>
+                <a class="py-5 border-b-4 border-transparent hover:border-slate-300 dark:hover:border-slate-700 text-slate-500 dark:text-slate-400 font-bold text-sm whitespace-nowrap transition-all"
+                    href="#">Hospitais e Unidades</a>
+                <a class="py-5 border-b-4 border-transparent hover:border-slate-300 dark:hover:border-slate-700 text-slate-500 dark:text-slate-400 font-bold text-sm whitespace-nowrap transition-all"
+                    href="#">Medicamentos</a>
+            </div>
+        </div>
+    </div>
+    <!-- Normas em Destaque -->
+    <main class="max-w-7xl mx-auto px-6 py-20">
+        <div class="flex items-end justify-between mb-12 border-b-4 border-slate-950 dark:border-slate-100 pb-4">
+            <h2 class="text-3xl font-black tracking-tighter uppercase">Normas em Destaque</h2>
+            <a class="text-sm font-bold text-primary flex items-center gap-1 hover:underline" href="#">Ver arquivo
+                completo <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards loop -->
+            <div class="md3-card-interactive p-8 group flex flex-col justify-between h-full">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide">SUS
+                            ESTADUAL</span>
+                        <span class="text-[10px] font-bold text-slate-400">LEI Nº 17.383</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 leading-tight group-hover:text-primary transition-colors">
+                        Código de Saúde do Estado de São Paulo</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-6 font-medium">Dispõe sobre a
+                        organização, o planejamento, o controle e a fiscalização das ações e serviços de saúde no
+                        território estadual.</p>
+                </div>
+                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-6">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase">Publicado em 2021</span>
+                    <button
+                        class="text-primary font-black text-xs uppercase flex items-center gap-1 group-hover:gap-2 transition-all">Acessar
+                        Integra <span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                </div>
+            </div>
+            <div class="md3-card-interactive p-8 group flex flex-col justify-between h-full">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide">VIGILÂNCIA</span>
+                        <span class="text-[10px] font-bold text-slate-400">RES Nº 212</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 leading-tight group-hover:text-primary transition-colors">
+                        Protocolos de Segurança Hospitalar Sanitária</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-6 font-medium">Estabelece
+                        diretrizes para o monitoramento de infecções em ambiente de cuidados intensivos e farmácia
+                        hospitalar.</p>
+                </div>
+                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-6">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase">Atualizado em 2024</span>
+                    <button
+                        class="text-primary font-black text-xs uppercase flex items-center gap-1 group-hover:gap-2 transition-all">Acessar
+                        Integra <span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                </div>
+            </div>
+            <div class="md3-card-interactive p-8 group flex flex-col justify-between h-full">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide">MEDICAMENTOS</span>
+                        <span class="text-[10px] font-bold text-slate-400">DECRETO Nº 65.123</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 leading-tight group-hover:text-primary transition-colors">
+                        Programa Dose Certa Estadual</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-6 font-medium">Regulamenta a
+                        distribuição gratuita de medicamentos de uso contínuo para hipertensão e diabetes em farmácias
+                        populares.</p>
+                </div>
+                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-6">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase">Vigência Ativa</span>
+                    <button
+                        class="text-primary font-black text-xs uppercase flex items-center gap-1 group-hover:gap-2 transition-all">Acessar
+                        Integra <span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                </div>
+            </div>
+            <div class="md3-card-interactive p-8 group flex flex-col justify-between h-full">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide">HOSPITAIS</span>
+                        <span class="text-[10px] font-bold text-slate-400">PORTARIA Nº 54</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 leading-tight group-hover:text-primary transition-colors">
+                        Gestão de Resíduos de Saúde</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-6 font-medium">Regras para o
+                        manejo, segregação e descarte final de resíduos infectantes em unidades públicas de saúde.</p>
+                </div>
+                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-6">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase">Publicado em 2022</span>
+                    <button
+                        class="text-primary font-black text-xs uppercase flex items-center gap-1 group-hover:gap-2 transition-all">Acessar
+                        Integra <span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                </div>
+            </div>
+            <div class="md3-card-interactive p-8 group flex flex-col justify-between h-full">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide">REGULAMENTAÇÃO</span>
+                        <span class="text-[10px] font-bold text-slate-400">LEI Nº 16.000</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 leading-tight group-hover:text-primary transition-colors">
+                        Carreira de Médicos do Estado</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-6 font-medium">Reestrutura o
+                        plano de cargos e salários para profissionais médicos vinculados à Secretaria de Saúde.</p>
+                </div>
+                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-6">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase">Vigência Ativa</span>
+                    <button
+                        class="text-primary font-black text-xs uppercase flex items-center gap-1 group-hover:gap-2 transition-all">Acessar
+                        Integra <span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                </div>
+            </div>
+            <div class="md3-card-interactive p-8 group flex flex-col justify-between h-full">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide">SUS
+                            ESTADUAL</span>
+                        <span class="text-[10px] font-bold text-slate-400">LEI Nº 15.266</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 leading-tight group-hover:text-primary transition-colors">
+                        Atendimento Prioritário em SP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-6 font-medium">Define
+                        diretrizes para o atendimento humanizado e prioritário em toda rede de saúde pública do estado.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-6">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase">Vigência Ativa</span>
+                    <button
+                        class="text-primary font-black text-xs uppercase flex items-center gap-1 group-hover:gap-2 transition-all">Acessar
+                        Integra <span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Linha do Tempo Section -->
+    <section class="bg-slate-950 text-white py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-black mb-16 flex items-center gap-4 uppercase tracking-tighter">
+                <span class="bg-primary w-2 h-10 block"></span>
+                Linha do Tempo da Legislação de Saúde
+            </h2>
+            <div class="relative pt-12">
+                <!-- Main line -->
+                <div class="absolute top-[13.5rem] left-0 w-full h-1 bg-slate-800"></div>
+                <div class="flex items-start justify-between relative">
+                    <!-- Timeline Item -->
+                    <div class="flex flex-col items-center w-1/5 px-4 text-center group">
+                        <div class="mb-12 h-20 flex flex-col justify-end">
+                            <span
+                                class="text-primary font-black text-sm mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Criação
+                                do SUS</span>
+                            <p class="text-xs text-slate-400 group-hover:text-white transition-colors">Constituição
+                                Estadual de São Paulo</p>
+                        </div>
+                        <div
+                            class="relative z-10 w-6 h-6 rounded-full bg-slate-800 border-4 border-slate-950 group-hover:bg-primary transition-all">
+                        </div>
+                        <span
+                            class="mt-4 text-2xl font-black text-slate-600 group-hover:text-white transition-colors tracking-tighter">1989</span>
+                    </div>
+                    <div class="flex flex-col items-center w-1/5 px-4 text-center group">
+                        <div class="mb-12 h-20 flex flex-col justify-end">
+                            <span
+                                class="text-primary font-black text-sm mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Código
+                                de Saúde</span>
+                            <p class="text-xs text-slate-400 group-hover:text-white transition-colors">Lei Estadual n.
+                                10.083</p>
+                        </div>
+                        <div
+                            class="relative z-10 w-6 h-6 rounded-full bg-slate-800 border-4 border-slate-950 group-hover:bg-primary transition-all">
+                        </div>
+                        <span
+                            class="mt-4 text-2xl font-black text-slate-600 group-hover:text-white transition-colors tracking-tighter">1998</span>
+                    </div>
+                    <div class="flex flex-col items-center w-1/5 px-4 text-center group">
+                        <div class="mb-12 h-20 flex flex-col justify-end">
+                            <span
+                                class="text-primary font-black text-sm mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Organizações
+                                Sociais</span>
+                            <p class="text-xs text-slate-400 group-hover:text-white transition-colors">Lei Complementar
+                                n. 846</p>
+                        </div>
+                        <div
+                            class="relative z-10 w-6 h-6 rounded-full bg-slate-800 border-4 border-slate-950 group-hover:bg-primary transition-all">
+                        </div>
+                        <span
+                            class="mt-4 text-2xl font-black text-slate-600 group-hover:text-white transition-colors tracking-tighter">2008</span>
+                    </div>
+                    <div class="flex flex-col items-center w-1/5 px-4 text-center group">
+                        <div class="mb-12 h-20 flex flex-col justify-end">
+                            <span
+                                class="text-primary font-black text-sm mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Lei
+                                Antifumo SP</span>
+                            <p class="text-xs text-slate-400 group-hover:text-white transition-colors">Lei Estadual n.
+                                13.541</p>
+                        </div>
+                        <div
+                            class="relative z-10 w-6 h-6 rounded-full bg-slate-800 border-4 border-slate-950 group-hover:bg-primary transition-all">
+                        </div>
+                        <span
+                            class="mt-4 text-2xl font-black text-slate-600 group-hover:text-white transition-colors tracking-tighter">2009</span>
+                    </div>
+                    <div class="flex flex-col items-center w-1/5 px-4 text-center group">
+                        <div class="mb-12 h-20 flex flex-col justify-end">
+                            <span
+                                class="text-primary font-black text-sm mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Novas
+                                Diretrizes</span>
+                            <p class="text-xs text-slate-400 group-hover:text-white transition-colors">Atualização do
+                                SUS Estadual</p>
+                        </div>
+                        <div
+                            class="relative z-10 w-6 h-6 rounded-full bg-slate-800 border-4 border-slate-950 group-hover:bg-primary transition-all">
+                        </div>
+                        <span
+                            class="mt-4 text-2xl font-black text-slate-600 group-hover:text-white transition-colors tracking-tighter">2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Alterações Recentes -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            <div class="lg:col-span-2">
+                <h2 class="text-2xl font-black mb-8 uppercase tracking-tighter flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">history</span>
+                    Alterações Recentes nesta Área
+                </h2>
+                <div class="space-y-4">
+                    <div
+                        class="p-6 bg-white dark:bg-slate-900 rounded-lg border-l-4 border-primary shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-black text-slate-400">15 OUT 2024</span>
+                            <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                            <span class="text-xs font-bold text-primary">RETIFICAÇÃO</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Decreto nº 68.423 - Alteração na Tabela
+                            SUS-SP</h4>
+                        <p class="text-sm text-slate-500 mt-1">Atualização dos valores de repasse para hospitais
+                            filantrópicos conveniados.</p>
+                    </div>
+                    <div
+                        class="p-6 bg-white dark:bg-slate-900 rounded-lg border-l-4 border-primary shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-black text-slate-400">02 OUT 2024</span>
+                            <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                            <span class="text-xs font-bold text-primary">NOVA NORMA</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Portaria SS-112 - Protocolo de Manejo de
+                            Arboviroses</h4>
+                        <p class="text-sm text-slate-500 mt-1">Diretrizes clínicas para atendimento de casos de Dengue,
+                            Zika e Chikungunya.</p>
+                    </div>
+                    <div
+                        class="p-6 bg-white dark:bg-slate-900 rounded-lg border-l-4 border-primary shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-black text-slate-400">28 SET 2024</span>
+                            <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                            <span class="text-xs font-bold text-primary">REVOGAÇÃO</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Resolução nº 45/2012 - Revogada pela
+                            Resolução 12/2024</h4>
+                        <p class="text-sm text-slate-500 mt-1">Normativa anterior sobre transporte sanitário
+                            intermunicipal perde validade.</p>
+                    </div>
+                </div>
+            </div>
+            <aside>
+                <div class="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl h-full">
+                    <h3 class="font-black text-xl mb-6 uppercase tracking-tight">Recursos Úteis</h3>
+                    <ul class="space-y-4">
+                        <li>
+                            <a class="flex items-center justify-between group" href="#">
+                                <span class="font-bold text-sm">Biblioteca Digital da Saúde</span>
+                                <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">download</span>
+                            </a>
+                        </li>
+                        <hr class="border-slate-200 dark:border-slate-700" />
+                        <li>
+                            <a class="flex items-center justify-between group" href="#">
+                                <span class="font-bold text-sm">Dúvidas Frequentes (FAQ)</span>
+                                <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">help</span>
+                            </a>
+                        </li>
+                        <hr class="border-slate-200 dark:border-slate-700" />
+                        <li>
+                            <a class="flex items-center justify-between group" href="#">
+                                <span class="font-bold text-sm">Contatos Secretaria da Saúde</span>
+                                <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">mail</span>
+                            </a>
+                        </li>
+                        <hr class="border-slate-200 dark:border-slate-700" />
+                        <li>
+                            <a class="flex items-center justify-between group" href="#">
+                                <span class="font-bold text-sm">API para Desenvolvedores</span>
+                                <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">code</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="mt-12 bg-primary p-6 rounded-lg text-white">
+                        <h4 class="font-black mb-2 uppercase text-sm">Assine a Curadoria</h4>
+                        <p class="text-xs opacity-90 mb-4">Receba um resumo semanal das novas legislações de saúde no
+                            seu e-mail.</p>
+                        <input
+                            class="w-full text-xs p-3 rounded bg-white/10 border-white/20 text-white placeholder:text-white/60 mb-3 outline-none focus:ring-1 focus:ring-white"
+                            placeholder="seu@email.com" type="email" />
+                        <button
+                            class="w-full bg-white text-primary font-black py-2 rounded text-xs uppercase tracking-widest hover:bg-slate-100 transition-colors">Inscrever-se</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+    <!-- Outras Curadorias Section -->
+    <section class="bg-slate-50 dark:bg-slate-950/50 py-20 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl font-black mb-10 uppercase tracking-tighter">Explore outras áreas</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a class="group block bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-4">school</span>
+                    <h5 class="font-bold text-sm mb-1">Educação</h5>
+                    <p class="text-[11px] text-slate-500 uppercase font-bold tracking-wider">185 NORMAS</p>
+                </a>
+                <a class="group block bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-4">security</span>
+                    <h5 class="font-bold text-sm mb-1">Segurança</h5>
+                    <p class="text-[11px] text-slate-500 uppercase font-bold tracking-wider">142 NORMAS</p>
+                </a>
+                <a class="group block bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary transition-all"
+                    href="#">
+                    <span
+                        class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-4">corporate_fare</span>
+                    <h5 class="font-bold text-sm mb-1">Gestão Pública</h5>
+                    <p class="text-[11px] text-slate-500 uppercase font-bold tracking-wider">312 NORMAS</p>
+                </a>
+                <a class="group block bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-4">payments</span>
+                    <h5 class="font-bold text-sm mb-1">Tributação</h5>
+                    <p class="text-[11px] text-slate-500 uppercase font-bold tracking-wider">98 NORMAS</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-950 pt-20 pb-10 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="bg-primary p-1 rounded">
+                            <svg class="w-5 h-5 text-white" fill="none" viewbox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd"
+                                    d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                                    fill="currentColor" fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <span class="text-lg font-black tracking-tighter">NORMAS SP</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                        Portal oficial de curadoria legislativa do Estado de São Paulo. Facilidade e transparência no
+                        acesso às normas vigentes.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+                            href="#"><span class="material-symbols-outlined text-sm">share</span></a>
+                        <a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+                            href="#"><span class="material-symbols-outlined text-sm">rss_feed</span></a>
+                    </div>
+                </div>
+                <div>
+                    <h6 class="font-black text-xs uppercase tracking-widest mb-6">Legislativo</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 font-medium">
+                        <li><a class="hover:text-primary transition-colors" href="#">Assembleia Legislativa (ALESP)</a>
+                        </li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Diário Oficial do Estado</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Consultas Públicas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Transparência SP</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-black text-xs uppercase tracking-widest mb-6">Informações</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 font-medium">
+                        <li><a class="hover:text-primary transition-colors" href="#">Sobre a Curadoria</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Metodologia de Filtro</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">API e Dados Abertos</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-black text-xs uppercase tracking-widest mb-6">Governo de SP</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 font-medium">
+                        <li><a class="hover:text-primary transition-colors" href="#">Portal do Governo</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Secretarias de Estado</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Serviços ao Cidadão</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Ouvidoria Geral</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-10 border-t border-slate-100 dark:border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">© 2024 Governo do Estado de São
+                    Paulo - Todos os direitos reservados</p>
+                <div class="flex items-center gap-6">
+                    <img alt="Logo Governo SP"
+                        class="h-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                        data-alt="Official logo of São Paulo State Government"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_KvLL-fmZCpQq5D7HfSDWIE-6qxo4deOUJanVOgsi3VAgwbZkpiUzA_yXoeWJavPO1mH3oYNrQgwPZcYYXXVPxE9ulzL9KS3LBiiRKnSsqaGLshNhjS14vCavh-l0vm-AngBtSk4IADq4FeadKtYBb5QrEbS5CGrHX2xkoyftyXy08PCyJps5jRjt4_3QAc_9Y0hWnIWt2wDLyCimJVhrrrqynz5adiscdjI8X_qx6a0r2ph-WOf2Xd7HKk4dYSqxWo-xn_TyuLAN" />
+                    <img alt="Logo ALESP"
+                        class="h-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                        data-alt="Logo of the Legislative Assembly of Sao Paulo"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj-iosFmPmtzfIgd2ebt_d0Kn4CqrFP-_UqXUOf1CidpMVBH5c1Kdlv_mcUTDXWiBL5n9jKA6lEHZVmUNGTtAgdHJOUVbunU5uVr5TAy6MDkmYIJ6Q63Fh6t_apjoof41c8o9Kyg7ST7Ud-K_0BLQ0xI6T5Uh6QX_BZ7ua8ckeABswsysBhyFSV550EF20tXXxuNjJvSbh-hKarr2B_PC_V0Wcz4n1GF7970ixNH4XieBj-AbVnGJKYMS0SqoNYVdCB9Fclxk0mOd6" />
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
