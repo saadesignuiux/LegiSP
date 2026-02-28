@@ -149,12 +149,10 @@
             }
         }
 
-        #search-glow-container::after {
+        .animated-glow::after {
             content: '';
             position: absolute;
             inset: -2px;
-            /* levemente além da borda para acomodar o blur */
-            border-radius: 34px;
             background: conic-gradient(from var(--search-stroke-angle),
                     transparent 0deg,
                     transparent 60deg,
@@ -179,6 +177,18 @@
             /* Blur muito discreto encostado na própria borda */
             filter: blur(4px) drop-shadow(0 0 4px rgba(227, 6, 19, 0.2));
             animation: search-stroke-rotate 6s linear infinite;
+        }
+
+        #search-glow-container::after {
+            border-radius: 34px;
+        }
+
+        #search-autocomplete-dropdown {
+            position: absolute;
+        }
+
+        #search-autocomplete-dropdown::after {
+            border-radius: 26px;
         }
     </style>
     <script src="assets/js/header-scroll.js" defer></script>
@@ -233,7 +243,7 @@
 
                 <!-- Search Container Inspired by Image -->
                 <div id="search-glow-container"
-                    class="relative w-full max-w-4xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[32px] border border-slate-200/50 dark:border-slate-700/50 shadow-md3 hover:border-slate-300 dark:hover:border-slate-600 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-300 flex flex-col mb-8 group overflow-visible">
+                    class="animated-glow relative w-full max-w-4xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[32px] border border-slate-200/50 dark:border-slate-700/50 shadow-md3 hover:border-slate-300 dark:hover:border-slate-600 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-300 flex flex-col mb-8 group overflow-visible">
 
                     <!-- Top Row: Search Input -->
                     <div class="flex flex-col w-full relative z-[60]">
@@ -248,7 +258,7 @@
 
                         <!-- Autocomplete Dropdown (Google Style) -->
                         <div id="search-autocomplete-dropdown"
-                            class="absolute top-full left-0 right-0 mt-4 bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden opacity-0 invisible translate-y-[-10px] transition-all duration-200 z-[100]">
+                            class="animated-glow absolute top-full left-0 right-0 mt-4 bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border border-slate-200 dark:border-slate-800 opacity-0 invisible translate-y-[-10px] transition-all duration-200 z-[100]">
                             <!-- Divider inside dropdown -->
                             <div class="h-[1px] bg-slate-100 dark:bg-slate-800 mx-6 mb-2"></div>
 
@@ -284,7 +294,7 @@
 
                             <!-- Search Actions within dropdown -->
                             <div
-                                class="bg-slate-50 dark:bg-slate-800/30 px-6 py-3 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                                class="bg-slate-50 dark:bg-slate-800/30 px-6 py-3 border-t border-slate-100 dark:border-slate-800 rounded-b-[24px] flex justify-between items-center">
                                 <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Resultados
                                     da IA</span>
                                 <button
