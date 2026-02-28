@@ -236,13 +236,62 @@
                     class="relative w-full max-w-4xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[32px] border border-slate-200/50 dark:border-slate-700/50 shadow-md3 hover:border-slate-300 dark:hover:border-slate-600 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-300 flex flex-col mb-8 group overflow-visible">
 
                     <!-- Top Row: Search Input -->
-                    <div class="flex items-center w-full px-6 pt-4 pb-2 relative z-10">
-                        <input
-                            class="w-full h-12 bg-transparent border-none text-base md:text-lg font-medium focus:ring-0 px-0 text-slate-900 dark:text-white placeholder:text-slate-400"
-                            placeholder="Buscar termo, número da lei ou assunto" type="text" />
-                        <span
-                            class="material-symbols-outlined text-slate-400 dark:text-slate-500 ml-2 select-none cursor-pointer hover:text-primary transition-all duration-300 hover:scale-110 active:scale-95"
-                            title="Busca com Inteligência Artificial">auto_awesome</span>
+                    <div class="flex flex-col w-full relative z-[60]">
+                        <div class="flex items-center w-full px-6 pt-4 pb-2 relative z-10">
+                            <input id="main-search-input"
+                                class="w-full h-12 bg-transparent border-none text-base md:text-lg font-medium focus:ring-0 px-0 text-slate-900 dark:text-white placeholder:text-slate-400"
+                                placeholder="Buscar termo, número da lei ou assunto" type="text" autocomplete="off" />
+                            <span
+                                class="material-symbols-outlined text-slate-400 dark:text-slate-500 ml-2 select-none cursor-pointer hover:text-primary transition-all duration-300 hover:scale-110 active:scale-95"
+                                title="Busca com Inteligência Artificial">auto_awesome</span>
+                        </div>
+
+                        <!-- Autocomplete Dropdown (Google Style) -->
+                        <div id="search-autocomplete-dropdown"
+                            class="absolute top-full left-0 right-0 mt-4 bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden opacity-0 invisible translate-y-[-10px] transition-all duration-200 z-[100]">
+                            <!-- Divider inside dropdown -->
+                            <div class="h-[1px] bg-slate-100 dark:bg-slate-800 mx-6 mb-2"></div>
+
+                            <!-- Suggestions List -->
+                            <ul class="py-2" id="autocomplete-list">
+                                <!-- Pre-populated examples based on State Laws Context -->
+                                <li
+                                    class="px-6 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer flex items-center gap-3 transition-colors duration-150">
+                                    <span class="material-symbols-outlined text-sm text-slate-400">search</span>
+                                    <span class="font-medium text-slate-700 dark:text-slate-300">Constituição do Estado
+                                        de São Paulo</span>
+                                </li>
+                                <li
+                                    class="px-6 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer flex items-center gap-3 transition-colors duration-150">
+                                    <span class="material-symbols-outlined text-sm text-slate-400">search</span>
+                                    <span class="font-medium text-slate-700 dark:text-slate-300">Lei do IPVA <span
+                                            class="text-slate-400 font-normal ml-1">13.296/2008</span></span>
+                                </li>
+                                <li
+                                    class="px-6 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer flex items-center gap-3 transition-colors duration-150">
+                                    <span class="material-symbols-outlined text-sm text-slate-400">history</span>
+                                    <span class="font-medium text-primary dark:text-accent-red">Licitação compras
+                                        diretas <span class="text-slate-400 font-normal ml-1">buscas
+                                            recentes</span></span>
+                                </li>
+                                <li
+                                    class="px-6 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer flex items-center gap-3 transition-colors duration-150">
+                                    <span class="material-symbols-outlined text-sm text-slate-400">search</span>
+                                    <span class="font-medium text-slate-700 dark:text-slate-300">Código Sanitário
+                                        Estadual</span>
+                                </li>
+                            </ul>
+
+                            <!-- Search Actions within dropdown -->
+                            <div
+                                class="bg-slate-50 dark:bg-slate-800/30 px-6 py-3 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Resultados
+                                    da IA</span>
+                                <button
+                                    class="text-xs font-bold text-primary hover:text-accent-red transition-colors duration-200">Ver
+                                    todos os resultados</button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Bottom Row: Filters & Actions -->
@@ -1116,6 +1165,40 @@
                 el.appendChild(circle);
             });
         });
+
+        // Search Autocomplete Logic
+        const searchInput = document.getElementById('main-search-input');
+        const autocompleteDropdown = document.getElementById('search-autocomplete-dropdown');
+        const searchContainer = document.getElementById('search-glow-container');
+
+        if (searchInput && autocompleteDropdown && searchContainer) {
+            // Show dropdown on focus
+            searchInput.addEventListener('focus', () => {
+                autocompleteDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-[-10px]');
+                autocompleteDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+                searchContainer.classList.add('ring-4', 'ring-primary/10', 'border-primary');
+            });
+
+            // Hide dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!searchContainer.contains(e.target)) {
+                    autocompleteDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                    autocompleteDropdown.classList.add('opacity-0', 'invisible', 'translate-y-[-10px]');
+                    searchContainer.classList.remove('ring-4', 'ring-primary/10', 'border-primary');
+                }
+            });
+
+            // Handle typing (simulate filtering)
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                const listItems = autocompleteDropdown.querySelectorAll('li');
+
+                if (query.length > 0) {
+                    // Simulate filtering/fetching new results...
+                    // In a real app, you would fetch data here
+                }
+            });
+        }
     </script>
 </body>
 
