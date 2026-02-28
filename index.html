@@ -46,6 +46,20 @@
             }
         }
 
+        @keyframes logos-scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .logos-scroll-track:hover {
+            animation-play-state: paused;
+        }
+
         /* Search bar focus & transitions */
         #search-bar-wrapper:focus-within #search-icon {
             color: #E30613;
@@ -112,36 +126,35 @@
 <body class="md3-bg font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen">
 
     <!-- Top Navigation Bar (MD3 Top App Bar) -->
-    <header class="sticky top-0 z-50 w-full md3-header">
+    <header id="main-header" class="sticky top-0 z-50 w-full md3-header transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
                 <img src="assets/img/brasao-sp.svg" alt="Brasão do Estado de São Paulo"
                     class="w-10 h-10 object-contain mr-1" />
                 <div class="flex flex-col">
-                    <span class="text-base font-extrabold tracking-tighter uppercase leading-none">Normas SP</span>
-                    <span class="text-[9px] font-bold text-accent-red tracking-widest uppercase mt-0.5">Estado de São
-                        Paulo</span>
+                    <span id="header-brand-name"
+                        class="text-base font-extrabold tracking-tighter uppercase leading-none transition-colors duration-300">Normas
+                        SP</span>
+                    <span id="header-brand-sub"
+                        class="text-[9px] font-bold text-accent-red tracking-widest uppercase mt-0.5 transition-colors duration-300">Estado
+                        de São Paulo</span>
                 </div>
             </a>
             <nav class="hidden flex-wrap md:flex items-center gap-8">
-                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                <a id="header-nav-sobre"
+                    class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
                     href="sobre.html">Sobre o LegiSP</a>
-                <a class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                <a id="header-nav-busca"
+                    class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
                     href="busca-avancada.html">Busca Avançada</a>
             </nav>
-            <div class="flex items-center gap-3">
-                <button
-                    class="p-2 hover:bg-neutral-soft dark:hover:bg-white/10 rounded-full transition-colors duration-200 ripple-container">
-                    <span class="material-symbols-outlined text-xl">account_circle</span>
-                </button>
-            </div>
         </div>
     </header>
 
     <main class="w-full">
         <!-- Hero Minimalist Section -->
         <section
-            class="relative pt-24 pb-20 px-6 bg-background-light dark:bg-background-dark min-h-[500px] flex flex-col items-center justify-center">
+            class="relative pt-24 pb-0 px-6 bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center justify-between">
             <div class="max-w-4xl w-full mx-auto text-center">
 
                 <h1
@@ -158,106 +171,333 @@
 
                 <!-- Search Container Inspired by Image -->
                 <div
-                    class="relative w-full max-w-3xl mx-auto bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-700 shadow-md3 hover:border-slate-300 dark:hover:border-slate-600 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-300 flex flex-col overflow-hidden mb-8 group">
+                    class="relative w-full max-w-4xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[32px] border border-slate-200/50 dark:border-slate-700/50 shadow-md3 hover:border-slate-300 dark:hover:border-slate-600 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-300 flex flex-col mb-8 group overflow-visible">
 
-                    <!-- Search Input Row -->
-                    <div class="flex items-center w-full px-4 pt-4 pb-2">
+                    <!-- Top Row: Search Input -->
+                    <div class="flex items-center w-full px-6 pt-4 pb-2 relative z-10">
                         <input
-                            class="w-full h-12 bg-transparent border-none text-base md:text-lg font-medium focus:ring-0 px-2 text-slate-900 dark:text-white placeholder:text-slate-400"
-                            placeholder="O que posso procurar para você?" type="text" />
+                            class="w-full h-12 bg-transparent border-none text-base md:text-lg font-medium focus:ring-0 px-0 text-slate-900 dark:text-white placeholder:text-slate-400"
+                            placeholder="Buscar termo, número da lei ou assunto" type="text" />
                         <span
-                            class="material-symbols-outlined text-slate-300 dark:text-slate-600 ml-2 select-none">magic_button</span>
+                            class="material-symbols-outlined text-slate-400 dark:text-slate-500 ml-2 select-none cursor-pointer hover:text-primary transition-all duration-300 hover:scale-110 active:scale-95"
+                            title="Busca com Inteligência Artificial">auto_awesome</span>
                     </div>
 
-                    <!-- Tools and Actions Row -->
-                    <div class="flex items-center justify-between px-6 pb-4 pt-2">
-                        <!-- Left Actions -->
-                        <div class="flex items-center gap-3">
-                            <button
-                                class="size-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <span class="material-symbols-outlined">add</span>
-                            </button>
+                    <!-- Bottom Row: Filters & Actions -->
+                    <div class="flex items-center justify-between px-6 pb-4 pt-2 relative z-20">
+                        <!-- Left Actions: Feature Filters -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <!-- Tipo -->
+                            <div class="relative group/dropdown">
+                                <button
+                                    class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200/80 dark:border-slate-700/80 bg-white/50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm">
+                                    <span
+                                        class="material-symbols-outlined text-sm text-slate-500 dark:text-slate-400">description</span>
+                                    Tipo <span
+                                        class="material-symbols-outlined ml-1 text-[16px] text-slate-400">expand_more</span>
+                                </button>
+                                <!-- Dropdown Menu -->
+                                <div
+                                    class="absolute top-full mt-2 left-0 w-64 bg-slate-900/95 backdrop-blur-3xl border border-slate-700/50 rounded-2xl shadow-xl opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible focus-within:opacity-100 focus-within:visible transition-all duration-200 z-50 overflow-hidden divide-y divide-slate-800">
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Todas
+                                        as Normas</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Constituição
+                                        Estadual</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Lei
+                                        Complementar</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Lei
+                                        Ordinária</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Decretos-Lei</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Decretos</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Leis
+                                        Infradecreto</a>
+                                </div>
+                            </div>
 
-                            <!-- Chips / Menus -->
-                            <button
-                                class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <span class="material-symbols-outlined text-sm">tune</span> Filtros
-                            </button>
+                            <!-- Autoridade -->
+                            <div class="relative group/dropdown">
+                                <button
+                                    class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200/80 dark:border-slate-700/80 bg-white/50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm">
+                                    <span
+                                        class="material-symbols-outlined text-sm text-slate-500 dark:text-slate-400">account_balance</span>
+                                    Autoridade <span
+                                        class="material-symbols-outlined ml-1 text-[16px] text-slate-400">expand_more</span>
+                                </button>
+                                <!-- Dropdown Menu -->
+                                <div
+                                    class="absolute top-full mt-2 left-0 w-72 bg-slate-900/95 backdrop-blur-3xl border border-slate-700/50 rounded-2xl shadow-xl opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible focus-within:opacity-100 focus-within:visible transition-all duration-200 z-50 overflow-hidden divide-y divide-slate-800">
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Todas
+                                        as Autoridades</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Governador
+                                        do Estado</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Assembleia
+                                        Legislativa (ALESP)</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Secretarias
+                                        de Estado</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Tribunal
+                                        de Justiça (TJSP)</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Tribunal
+                                        de Contas (TCESP)</a>
+                                    <a href="#"
+                                        class="block px-5 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Ministério
+                                        Público (MPSP)</a>
+                                </div>
+                            </div>
 
-                            <button
-                                class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <span class="material-symbols-outlined text-sm">category</span> Categorias <span
-                                    class="material-symbols-outlined ml-1 text-xs">expand_more</span>
-                            </button>
+                            <!-- Ano -->
+                            <div class="relative group/dropdown">
+                                <button
+                                    class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200/80 dark:border-slate-700/80 bg-white/50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm">
+                                    <span
+                                        class="material-symbols-outlined text-sm text-slate-500 dark:text-slate-400">calendar_month</span>
+                                    Ano <span
+                                        class="material-symbols-outlined ml-1 text-[16px] text-slate-400">expand_more</span>
+                                </button>
+                                <!-- Dropdown Menu -->
+                                <div
+                                    class="absolute top-full mt-2 left-0 w-32 bg-slate-900/95 backdrop-blur-3xl border border-slate-700/50 rounded-2xl shadow-xl opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible focus-within:opacity-100 focus-within:visible transition-all duration-200 z-50 overflow-y-auto max-h-64 no-scrollbar divide-y divide-slate-800">
+                                    <a href="#"
+                                        class="block px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Todos</a>
+                                    <a href="#"
+                                        class="block px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors">2026</a>
+                                    <a href="#"
+                                        class="block px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors">2025</a>
+                                    <a href="#"
+                                        class="block px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors">2024</a>
+                                    <a href="#"
+                                        class="block px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors">2023</a>
+                                    <a href="#"
+                                        class="block px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors">2022</a>
+                                    <a href="#"
+                                        class="block px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors">2021</a>
+                                    <a href="#"
+                                        class="block px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors">Mais
+                                        antigos</a>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Right Actions -->
+                        <!-- Right Actions: Search Button MD3 -->
                         <button
-                            class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors p-2">
-                            <span class="material-symbols-outlined text-2xl">mic</span>
+                            class="flex items-center gap-2 px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold hover:bg-slate-700 dark:hover:bg-slate-100 active:scale-95 transition-all duration-200 shadow-sm select-none"
+                            title="Buscar">
+                            <span class="material-symbols-outlined text-[18px]">search</span>
+                            Buscar
                         </button>
                     </div>
                 </div>
 
-                <!-- Suggested Actions 2x2 Grid -->
-                <div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-                    <!-- Card 1 -->
-                    <a href="busca-avancada.html"
-                        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group cursor-pointer">
-                        <div
-                            class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
-                            <span class="material-symbols-outlined text-slate-500 dark:text-slate-400">gavel</span>
-                        </div>
-                        <div class="flex-1 mt-0.5">
-                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight"><span
-                                    class="font-extrabold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Buscar
-                                    ementa</span> de leis ordinárias recentes</p>
-                        </div>
-                    </a>
+                <!-- Partner Logos Carousel -->
+                <div class="pt-16 pb-8" style="width: 100vw; margin-left: calc(-50vw + 50%);">
+                    <!-- Scroll Track -->
+                    <div
+                        class="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,4%,black_14%,black_86%,transparent_96%,transparent)]">
+                        <div class="flex items-center gap-16 logos-scroll-track"
+                            style="width: max-content; animation: logos-scroll 30s linear infinite;">
+                            <!-- Logo set -->
+                            <div class="flex items-center gap-16 shrink-0">
+                                <!-- Diário Oficial SP -->
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"
+                                        class="h-10 w-10 fill-slate-700 dark:fill-slate-400">
+                                        <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor"
+                                            stroke-width="3" />
+                                        <text x="30" y="37" text-anchor="middle" font-size="22" font-weight="900"
+                                            font-family="serif" fill="currentColor">SP</text>
+                                    </svg>
+                                    <div class="leading-none">
+                                        <p
+                                            class="text-base font-black text-slate-700 dark:text-slate-300 tracking-tight">
+                                            Diário Oficial</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Estado de SP</p>
+                                    </div>
+                                </div>
 
-                    <!-- Card 2 -->
-                    <a href="busca-avancada.html"
-                        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group cursor-pointer">
-                        <div
-                            class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
-                            <span class="material-symbols-outlined text-slate-500 dark:text-slate-400">history</span>
-                        </div>
-                        <div class="flex-1 mt-0.5">
-                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight"><span
-                                    class="font-extrabold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Verificar
-                                    histórico</span> do Estatuto do Servidor</p>
-                        </div>
-                    </a>
+                                <!-- Imprensa Oficial -->
+                                <div
+                                    class="flex items-center gap-1 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div class="w-0.5 h-10 bg-slate-700 dark:bg-slate-400 mr-2"></div>
+                                    <div>
+                                        <p class="text-lg font-black text-slate-700 dark:text-slate-300 leading-none">
+                                            <span class="italic">imprensa</span><span class="font-black">oficial</span>
+                                        </p>
+                                        <p
+                                            class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mt-1">
+                                            Governo do Estado de São Paulo</p>
+                                    </div>
+                                </div>
 
-                    <!-- Card 3 -->
-                    <a href="busca-avancada.html"
-                        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group cursor-pointer">
-                        <div
-                            class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
-                            <span
-                                class="material-symbols-outlined text-slate-500 dark:text-slate-400">travel_explore</span>
-                        </div>
-                        <div class="flex-1 mt-0.5">
-                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight"><span
-                                    class="font-extrabold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Analisar
-                                    impacto</span> de uma norma na Saúde Pública</p>
-                        </div>
-                    </a>
+                                <!-- ALESP -->
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div>
+                                        <p
+                                            class="text-2xl font-black text-slate-700 dark:text-slate-300 tracking-tight">
+                                            Alesp</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Assembleia Legislativa</p>
+                                    </div>
+                                </div>
 
-                    <!-- Card 4 -->
-                    <a href="busca-avancada.html"
-                        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group cursor-pointer">
-                        <div
-                            class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
-                            <span class="material-symbols-outlined text-slate-500 dark:text-slate-400">lightbulb</span>
+                                <!-- Governo SP -->
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="h-9 w-9">
+                                        <rect x="0" y="0" width="22" height="48" fill="#374151" rx="2" />
+                                        <rect x="26" y="0" width="22" height="22" rx="22" fill="#374151" />
+                                    </svg>
+                                    <div class="leading-none">
+                                        <p
+                                            class="text-base font-black text-slate-700 dark:text-slate-300 tracking-tight uppercase">
+                                            São Paulo</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Governo do Estado</p>
+                                    </div>
+                                </div>
+
+                                <!-- TCESP -->
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div>
+                                        <p
+                                            class="text-2xl font-black text-slate-700 dark:text-slate-300 tracking-tighter">
+                                            TCESP</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Tribunal de Contas</p>
+                                    </div>
+                                </div>
+
+                                <!-- TJSP -->
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div>
+                                        <p
+                                            class="text-2xl font-black text-slate-700 dark:text-slate-300 tracking-tighter">
+                                            TJSP</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Tribunal de Justiça</p>
+                                    </div>
+                                </div>
+
+                                <!-- MPSP -->
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div>
+                                        <p
+                                            class="text-2xl font-black text-slate-700 dark:text-slate-300 tracking-tighter">
+                                            MPSP</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Ministério Público</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Duplicated set for seamless loop -->
+                            <div class="flex items-center gap-16 shrink-0" aria-hidden="true">
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"
+                                        class="h-10 w-10 fill-slate-700 dark:fill-slate-400">
+                                        <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor"
+                                            stroke-width="3" />
+                                        <text x="30" y="37" text-anchor="middle" font-size="22" font-weight="900"
+                                            font-family="serif" fill="currentColor">SP</text>
+                                    </svg>
+                                    <div class="leading-none">
+                                        <p
+                                            class="text-base font-black text-slate-700 dark:text-slate-300 tracking-tight">
+                                            Diário Oficial</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Estado de SP</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-1 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div class="w-0.5 h-10 bg-slate-700 dark:bg-slate-400 mr-2"></div>
+                                    <div>
+                                        <p class="text-lg font-black text-slate-700 dark:text-slate-300 leading-none">
+                                            <span class="italic">imprensa</span><span class="font-black">oficial</span>
+                                        </p>
+                                        <p
+                                            class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mt-1">
+                                            Governo do Estado de São Paulo</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div>
+                                        <p
+                                            class="text-2xl font-black text-slate-700 dark:text-slate-300 tracking-tight">
+                                            Alesp</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Assembleia Legislativa</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="h-9 w-9">
+                                        <rect x="0" y="0" width="22" height="48" fill="#374151" rx="2" />
+                                        <rect x="26" y="0" width="22" height="22" rx="22" fill="#374151" />
+                                    </svg>
+                                    <div class="leading-none">
+                                        <p
+                                            class="text-base font-black text-slate-700 dark:text-slate-300 tracking-tight uppercase">
+                                            São Paulo</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Governo do Estado</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div>
+                                        <p
+                                            class="text-2xl font-black text-slate-700 dark:text-slate-300 tracking-tighter">
+                                            TCESP</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Tribunal de Contas</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div>
+                                        <p
+                                            class="text-2xl font-black text-slate-700 dark:text-slate-300 tracking-tighter">
+                                            TJSP</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Tribunal de Justiça</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-3 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale cursor-default select-none">
+                                    <div>
+                                        <p
+                                            class="text-2xl font-black text-slate-700 dark:text-slate-300 tracking-tighter">
+                                            MPSP</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                                            Ministério Público</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex-1 mt-0.5">
-                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight"><span
-                                    class="font-extrabold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Ter
-                                    ideias</span> sobre regras de Licitações 2024</p>
-                        </div>
-                    </a>
+                    </div>
                 </div>
+
+
             </div>
         </section>
 
@@ -710,6 +950,37 @@
                 el.appendChild(circle);
             });
         });
+
+        // Header scroll-to-black behavior
+        const header = document.getElementById('main-header');
+        const brandName = document.getElementById('header-brand-name');
+        const brandSub = document.getElementById('header-brand-sub');
+        const navSobre = document.getElementById('header-nav-sobre');
+        const navBusca = document.getElementById('header-nav-busca');
+
+        function updateHeader() {
+            const scrolled = window.scrollY > 60;
+            if (scrolled) {
+                header.style.backgroundColor = '#0a0a0a';
+                header.style.borderBottom = '1px solid rgba(255,255,255,0.08)';
+                header.style.backdropFilter = 'none';
+                if (brandName) { brandName.style.color = '#ffffff'; }
+                if (brandSub) { brandSub.style.color = '#ff3b3b'; }
+                if (navSobre) { navSobre.style.color = '#e2e8f0'; }
+                if (navBusca) { navBusca.style.color = '#e2e8f0'; }
+            } else {
+                header.style.backgroundColor = '';
+                header.style.borderBottom = '';
+                header.style.backdropFilter = '';
+                if (brandName) { brandName.style.color = ''; }
+                if (brandSub) { brandSub.style.color = ''; }
+                if (navSobre) { navSobre.style.color = ''; }
+                if (navBusca) { navBusca.style.color = ''; }
+            }
+        }
+
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader(); // run on load
     </script>
 </body>
 
