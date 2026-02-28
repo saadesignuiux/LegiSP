@@ -182,6 +182,7 @@
         }
     </style>
     <script src="assets/js/header-scroll.js" defer></script>
+    <script src="assets/js/count-up.js" defer></script>
 </head>
 
 <body class="md3-bg font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen">
@@ -562,8 +563,36 @@
             </div>
         </section>
 
+        <!-- Big Numbers Divider -->
+        <section class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-slate-200/60 dark:divide-slate-800">
+                <!-- Item 1 -->
+                <div class="py-6 md:py-0 text-center flex flex-col items-center justify-center">
+                    <h3 class="text-4xl md:text-5xl font-medium text-slate-800 dark:text-slate-200 tracking-tight mb-2 js-count-up"
+                        data-target="150" data-suffix="k+">0</h3>
+                    <p class="text-xs font-medium text-slate-500 max-w-[140px] leading-snug">Normas Estaduais
+                        Cadastradas</p>
+                </div>
+                <!-- Item 2 -->
+                <div class="py-6 md:py-0 text-center flex flex-col items-center justify-center">
+                    <h3 class="text-4xl md:text-5xl font-medium text-slate-800 dark:text-slate-200 tracking-tight mb-2 js-count-up"
+                        data-target="645" data-suffix="">0</h3>
+                    <p class="text-xs font-medium text-slate-500 max-w-[140px] leading-snug">Municípios Paulistas
+                        Abrangidos</p>
+                </div>
+                <!-- Item 3 -->
+                <div class="py-6 md:py-0 text-center flex flex-col items-center justify-center">
+                    <h3 class="text-4xl md:text-5xl font-medium text-slate-800 dark:text-slate-200 tracking-tight mb-2 js-count-up"
+                        data-target="99" data-suffix="%">0</h3>
+                    <p class="text-xs font-medium text-slate-500 max-w-[140px] leading-snug">Precisão na Busca por IA
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Normas + Sidebar -->
-        <section class="max-w-7xl mx-auto px-6 py-12">
+        <section class="max-w-7xl mx-auto px-6 py-6 md:py-12">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <!-- Most Accessed Norms -->
                 <div class="lg:col-span-2 space-y-6">
@@ -711,189 +740,247 @@
                     </div>
                 </div>
 
-                <!-- MD3 Tabs -->
-                <div
-                    class="border-b border-slate-200 dark:border-slate-800 mb-10 flex gap-8 overflow-x-auto no-scrollbar relative w-full pt-2">
-                    <button
-                        class="md3-curation-tab relative pb-4 text-sm font-bold text-primary dark:text-white uppercase tracking-widest whitespace-nowrap transition-colors"
-                        data-target="tab-tipos">
-                        Tipos de Norma
-                        <div
-                            class="tab-indicator absolute bottom-0 left-0 w-full h-[3px] bg-primary dark:bg-white rounded-t-md transition-opacity duration-300">
-                        </div>
-                    </button>
-                    <button
-                        class="md3-curation-tab relative pb-4 text-sm font-bold text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 uppercase tracking-widest whitespace-nowrap transition-colors"
-                        data-target="tab-orgaos">
-                        Órgãos Emissores
-                        <div
-                            class="tab-indicator absolute bottom-0 left-0 w-full h-[3px] bg-primary dark:bg-white rounded-t-md opacity-0 transition-opacity duration-300">
-                        </div>
-                    </button>
-                    <button
-                        class="md3-curation-tab relative pb-4 text-sm font-bold text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 uppercase tracking-widest whitespace-nowrap transition-colors"
-                        data-target="tab-categorias">
-                        Categorias Temáticas
-                        <div
-                            class="tab-indicator absolute bottom-0 left-0 w-full h-[3px] bg-primary dark:bg-white rounded-t-md opacity-0 transition-opacity duration-300">
-                        </div>
-                    </button>
+                <!-- Curation Tabs (Pill Style) -->
+                <div class="mb-10 w-full overflow-x-auto no-scrollbar">
+                    <div
+                        class="bg-slate-100 dark:bg-slate-800/50 rounded-full p-1.5 inline-flex items-center min-w-max">
+                        <button
+                            class="md3-curation-tab px-6 py-2.5 text-sm font-semibold rounded-full whitespace-nowrap transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white"
+                            data-target="tab-tipos">
+                            Tipos de Norma
+                        </button>
+                        <button
+                            class="md3-curation-tab px-6 py-2.5 text-sm font-semibold rounded-full whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                            data-target="tab-orgaos">
+                            Órgãos Emissores
+                        </button>
+                        <button
+                            class="md3-curation-tab px-6 py-2.5 text-sm font-semibold rounded-full whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                            data-target="tab-categorias">
+                            Categorias Temáticas
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Tab Contents Container -->
                 <div class="relative w-full min-h-[400px]">
 
                     <!-- Tab Content: Tipos de Norma (Active) -->
-                    <div class="curation-tab-content grid grid-cols-2 lg:grid-cols-4 gap-5 transition-opacity duration-500"
+                    <div class="curation-tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500"
                         id="tab-tipos">
                         <a href="busca-avancada.html"
-                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
-                            <span class="material-symbols-outlined text-4xl text-accent-red">gavel</span>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Leis</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Ordinárias e
-                                    Complementares</p>
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">gavel</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Leis</h3>
+                                <p class="text-xs text-slate-500 font-medium">Ordinárias e Complementares</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
-                            <span class="material-symbols-outlined text-4xl text-blue-600">description</span>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Decretos</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Regulamentações
-                                    do Executivo</p>
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-blue-600">description</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Decretos</h3>
+                                <p class="text-xs text-slate-500 font-medium">Regulamentações do Executivo</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
-                            <span class="material-symbols-outlined text-4xl text-green-600">article</span>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Resoluções</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Normativas de
-                                    Secretarias</p>
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-green-600">article</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Resoluções</h3>
+                                <p class="text-xs text-slate-500 font-medium">Normativas de Secretarias</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
-                            <span class="material-symbols-outlined text-4xl text-orange-500">assignment</span>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Portarias</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Atos
-                                    administrativos internos</p>
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-orange-500">assignment</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Portarias</h3>
+                                <p class="text-xs text-slate-500 font-medium">Atos administrativos internos</p>
                             </div>
                         </a>
                     </div>
 
                     <!-- Tab Content: Órgãos Emissores (Hidden) -->
-                    <div class="curation-tab-content hidden grid-cols-2 lg:grid-cols-4 gap-5 transition-opacity duration-500"
+                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500"
                         id="tab-orgaos">
                         <a href="busca-avancada.html"
-                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
-                            <span
-                                class="material-symbols-outlined text-4xl text-slate-600 dark:text-slate-300">account_balance</span>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Governador</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Poder Executivo
-                                </p>
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span
+                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300">account_balance</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Governador</h3>
+                                <p class="text-xs text-slate-500 font-medium">Poder Executivo</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
-                            <span
-                                class="material-symbols-outlined text-4xl text-slate-600 dark:text-slate-300">gavel</span>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">ALESP</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Poder Legislativo
-                                </p>
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">gavel</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    ALESP</h3>
+                                <p class="text-xs text-slate-500 font-medium">Poder Legislativo</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
-                            <span
-                                class="material-symbols-outlined text-4xl text-slate-600 dark:text-slate-300">account_balance_wallet</span>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Sec. da Fazenda</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Sefaz SP</p>
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span
+                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300">account_balance_wallet</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Sec. da Fazenda</h3>
+                                <p class="text-xs text-slate-500 font-medium">Sefaz SP</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="md3-card-interactive p-8 flex flex-col items-center justify-center text-center gap-4 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-white/5">
-                            <span
-                                class="material-symbols-outlined text-4xl text-slate-600 dark:text-slate-300">health_and_safety</span>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Sec. da Saúde</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Secretaria de
-                                    Estado</p>
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span
+                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300">health_and_safety</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Sec. da Saúde</h3>
+                                <p class="text-xs text-slate-500 font-medium">Secretaria de Estado</p>
                             </div>
                         </a>
                     </div>
 
                     <!-- Tab Content: Categorias Temáticas (Hidden) -->
-                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-3 gap-8 transition-opacity duration-500"
+                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500"
                         id="tab-categorias">
-                        <!-- Tema Card 1 -->
-                        <div
-                            class="theme-card group relative overflow-hidden aspect-[4/5] bg-slate-900 rounded-2xl shadow-md3-2 hover:shadow-md3-4 transition-shadow duration-300 cursor-pointer">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10">
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">school</span>
                             </div>
-                            <img class="absolute inset-0 w-full h-full object-cover opacity-60"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuApwsv55EtPhB1h-vj_fIvmWbJWjgip4H9eTjpC31Na3gncl0324cULt_UtTR4L9ojMAYnlSHHex7riRKqrHlzV-FsCyzRpRY57Qn12436nr-zeNzD0Yf1nWZNGRh-Bvtbd3tlEpAsm3flefw9bjTzXsOXGF4LiZt9pGfjXSWidgbcSxQfzAL9slUpjxCqi3TODhZtchwbXzjWxiuG2hUzvU-HpPsI5mf7lPw8XQ7l6xAtMHm_IXWZDYHbdqkJyCbGwZwRDNXcDxP7T"
-                                alt="Saúde" />
-                            <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end text-white">
-                                <span class="text-accent-red font-black tracking-widest uppercase text-xs mb-2">Saúde
-                                    Pública</span>
-                                <h3 class="text-2xl font-extrabold tracking-tight mb-3">O Guia da Saúde em SP</h3>
-                                <p
-                                    class="text-sm text-slate-300 mb-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                    Todas as normas do SUS e Vigilância Sanitária estadual em um só lugar.</p>
-                                <a href="tema.html"
-                                    class="flex items-center gap-2 font-bold text-sm hover:text-accent-red transition-colors duration-200">
-                                    Explorar tema <span class="material-symbols-outlined text-sm">trending_flat</span>
-                                </a>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Educação</h3>
+                                <p class="text-xs text-slate-500 font-medium">234 normas</p>
                             </div>
-                        </div>
-                        <!-- Tema Card 2 -->
-                        <div
-                            class="theme-card group relative overflow-hidden aspect-[4/5] bg-slate-900 rounded-2xl shadow-md3-2 hover:shadow-md3-4 transition-shadow duration-300 cursor-pointer">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10">
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">monitor_heart</span>
                             </div>
-                            <img class="absolute inset-0 w-full h-full object-cover opacity-60"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAayJLE2Gl4yTOMDA_St6N9cXTmN-NCqqh2k3FeUJfGPePJAyH3Yvdkr8HdLipVwwObr4xUaRKIBRt46DoGnAozzyprF_72IyvMut3-Ox4hJd6L_Kht1zmyFp3YruW_gJ0ubVwxLza6Jpfplb7jjpx7VLE2tUBBe6gMMRANZaH5c4eDnw9xeLmXo90UMPqyPALrYVpOPFDD-GEYg30PWHNJLW7EY0X-JFMWMGe2ebljsWEVGu2YRzW0VqnKdynHua6etfY7vK3FcuTT"
-                                alt="Educação" />
-                            <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end text-white">
-                                <span
-                                    class="text-accent-red font-black tracking-widest uppercase text-xs mb-2">Educação</span>
-                                <h3 class="text-2xl font-extrabold tracking-tight mb-3">Legislação Educacional</h3>
-                                <p
-                                    class="text-sm text-slate-300 mb-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                    Estatutos, resoluções e diretrizes da rede estadual de ensino.</p>
-                                <a href="tema.html"
-                                    class="flex items-center gap-2 font-bold text-sm hover:text-accent-red transition-colors duration-200">
-                                    Explorar tema <span class="material-symbols-outlined text-sm">trending_flat</span>
-                                </a>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Saúde</h3>
+                                <p class="text-xs text-slate-500 font-medium">189 normas</p>
                             </div>
-                        </div>
-                        <!-- Tema Card 3 -->
-                        <div
-                            class="theme-card group relative overflow-hidden aspect-[4/5] bg-slate-900 rounded-2xl shadow-md3-2 hover:shadow-md3-4 transition-shadow duration-300 cursor-pointer">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10">
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">security</span>
                             </div>
-                            <img class="absolute inset-0 w-full h-full object-cover opacity-60"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeXhc5waFOcGR3WUfPPjmjupDbS2pVSi0iWut895v_X079UglnI6s17nRdwlly0ybzyAUVLalR_kv0o3iAYHYvdWGl63kGtBOWlhdlKUubWIBdIVka4gH1nXFlf4BrvrbD7XF6CsM8y0ECj4jwOjVEowIugppu2_dDHO5MPSgdnK3UV8jDF0k9lLlDIOe2ndBJvMGMNgKJRwaCKBQLmNuhqucYQFTOjsgovkzTq89y5WX_wQAFxUey1CIyzT1AYatpflSN7S5B9B5K"
-                                alt="Gestão Pública" />
-                            <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end text-white">
-                                <span class="text-accent-red font-black tracking-widest uppercase text-xs mb-2">Gestão
-                                    Pública</span>
-                                <h3 class="text-2xl font-extrabold tracking-tight mb-3">Reformas e Gestão</h3>
-                                <p
-                                    class="text-sm text-slate-300 mb-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                    Normas sobre o funcionalismo público, previdência e organização administrativa.</p>
-                                <a href="tema.html"
-                                    class="flex items-center gap-2 font-bold text-sm hover:text-accent-red transition-colors duration-200">
-                                    Explorar tema <span class="material-symbols-outlined text-sm">trending_flat</span>
-                                </a>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Segurança Pública</h3>
+                                <p class="text-xs text-slate-500 font-medium">156 normas</p>
                             </div>
-                        </div>
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">eco</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Meio Ambiente</h3>
+                                <p class="text-xs text-slate-500 font-medium">142 normas</p>
+                            </div>
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">business</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Administração Pública</h3>
+                                <p class="text-xs text-slate-500 font-medium">312 normas</p>
+                            </div>
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">balance</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Justiça e Direitos</h3>
+                                <p class="text-xs text-slate-500 font-medium">98 normas</p>
+                            </div>
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">group</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Desenvolvimento Social</h3>
+                                <p class="text-xs text-slate-500 font-medium">127 normas</p>
+                            </div>
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-accent-red">work</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                    Economia e Finanças</h3>
+                                <p class="text-xs text-slate-500 font-medium">201 normas</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -907,11 +994,10 @@
                         tab.addEventListener('click', (e) => {
                             e.preventDefault();
 
-                            // Reset tabs
+                            // Reset tabs (switch to inactive styling)
                             tabs.forEach(t => {
-                                t.classList.remove('text-primary', 'dark:text-white');
-                                t.classList.add('text-slate-400');
-                                t.querySelector('.tab-indicator').classList.add('opacity-0');
+                                t.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow-sm', 'text-slate-900', 'dark:text-white');
+                                t.classList.add('text-slate-600', 'dark:text-slate-400', 'hover:text-slate-900', 'dark:hover:text-white');
                             });
 
                             // Hide contents
@@ -920,10 +1006,9 @@
                                 c.classList.add('hidden');
                             });
 
-                            // Set active tab
-                            tab.classList.remove('text-slate-400');
-                            tab.classList.add('text-primary', 'dark:text-white');
-                            tab.querySelector('.tab-indicator').classList.remove('opacity-0');
+                            // Set active tab styling
+                            tab.classList.remove('text-slate-600', 'dark:text-slate-400', 'hover:text-slate-900', 'dark:hover:text-white');
+                            tab.classList.add('bg-white', 'dark:bg-slate-700', 'shadow-sm', 'text-slate-900', 'dark:text-white');
 
                             // Show active content
                             const targetId = tab.getAttribute('data-target');
