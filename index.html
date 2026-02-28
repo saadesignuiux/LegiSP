@@ -667,21 +667,22 @@
         </section>
 
         <!-- Curated Discovery Section (Tabs: Tipo, Órgão, Categoria) -->
-        <section class="bg-neutral-50 dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-12">
+        <section
+            class="bg-neutral-50 dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-16 md:py-24">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
-                    <div>
-                        <h2 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3"
-                            style="letter-spacing: -0.02em;">Navegação Especializada</h2>
-                        <p class="text-slate-500 max-w-xl font-medium">Explore o acervo navegando pelos principais eixos
-                            estruturais do Estado de São Paulo.</p>
-                    </div>
+                <!-- Section Header (Centered) -->
+                <div class="flex flex-col items-center justify-center text-center mb-10 gap-4">
+                    <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white"
+                        style="letter-spacing: -0.02em;">Navegação Especializada</h2>
+                    <p class="text-slate-500 max-w-2xl font-medium text-base md:text-lg">Explore o acervo navegando
+                        pelos principais eixos
+                        estruturais do Estado de São Paulo.</p>
                 </div>
 
-                <!-- Curation Tabs (Pill Style) -->
-                <div class="mb-10 w-full overflow-x-auto no-scrollbar">
+                <!-- Curation Tabs (Pill Style, Centered) -->
+                <div class="mb-12 w-full flex justify-center overflow-x-auto no-scrollbar">
                     <div
-                        class="bg-slate-100 dark:bg-slate-800/50 rounded-full p-1.5 inline-flex items-center min-w-max">
+                        class="bg-slate-100/80 dark:bg-slate-800/50 backdrop-blur-md rounded-full p-1.5 inline-flex items-center min-w-max border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
                         <button
                             class="md3-curation-tab px-6 py-2.5 text-sm font-semibold rounded-full whitespace-nowrap transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white"
                             data-target="tab-tipos">
@@ -704,219 +705,211 @@
                 <div class="relative w-full min-h-[400px]">
 
                     <!-- Tab Content: Tipos de Norma (Active) -->
-                    <div class="curation-tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500"
+                    <div class="curation-tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 transition-opacity duration-500"
                         id="tab-tipos">
+                        <!-- Card 1 -->
                         <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">gavel</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">gavel</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Leis</h3>
-                                <p class="text-xs text-slate-500 font-medium">Ordinárias e Complementares</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Ordinárias e Complementares
+                                </p>
                             </div>
                         </a>
+                        <!-- Card 2 -->
                         <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-blue-600">description</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-blue-600 text-2xl transition-colors">description</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Decretos</h3>
-                                <p class="text-xs text-slate-500 font-medium">Regulamentações do Executivo</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Regulamentações do Executivo
+                                </p>
                             </div>
                         </a>
+                        <!-- Card 3 -->
                         <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-green-600">article</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-green-50 dark:group-hover:bg-green-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-green-600 text-2xl transition-colors">article</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Resoluções</h3>
-                                <p class="text-xs text-slate-500 font-medium">Normativas de Secretarias</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Normativas de Secretarias</p>
                             </div>
                         </a>
+                        <!-- Card 4 -->
                         <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-orange-500">assignment</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-orange-50 dark:group-hover:bg-orange-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-orange-500 text-2xl transition-colors">assignment</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Portarias</h3>
-                                <p class="text-xs text-slate-500 font-medium">Atos administrativos internos</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Atos administrativos internos
+                                </p>
                             </div>
                         </a>
                     </div>
 
                     <!-- Tab Content: Órgãos Emissores (Hidden) -->
-                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500"
+                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 transition-opacity duration-500"
                         id="tab-orgaos">
                         <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-slate-100 dark:group-hover:bg-slate-700 transition-all duration-300">
                                 <span
-                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300">account_balance</span>
+                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300 text-2xl transition-colors">account_balance</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Governador</h3>
-                                <p class="text-xs text-slate-500 font-medium">Poder Executivo</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Poder Executivo</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">gavel</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-slate-100 dark:group-hover:bg-slate-700 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300 text-2xl transition-colors">gavel</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     ALESP</h3>
-                                <p class="text-xs text-slate-500 font-medium">Poder Legislativo</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Poder Legislativo</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-slate-100 dark:group-hover:bg-slate-700 transition-all duration-300">
                                 <span
-                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300">account_balance_wallet</span>
+                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300 text-2xl transition-colors">account_balance_wallet</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Sec. da Fazenda</h3>
-                                <p class="text-xs text-slate-500 font-medium">Sefaz SP</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Sefaz SP</p>
                             </div>
                         </a>
                         <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-slate-100 dark:group-hover:bg-slate-700 transition-all duration-300">
                                 <span
-                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300">health_and_safety</span>
+                                    class="material-symbols-outlined text-slate-600 dark:text-slate-300 text-2xl transition-colors">health_and_safety</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Sec. da Saúde</h3>
-                                <p class="text-xs text-slate-500 font-medium">Secretaria de Estado</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Secretaria de Estado</p>
                             </div>
                         </a>
                     </div>
 
                     <!-- Tab Content: Categorias Temáticas (Hidden) -->
-                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500"
+                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500"
                         id="tab-categorias">
 
                         <a href="tema.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">school</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">school</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Educação</h3>
-                                <p class="text-xs text-slate-500 font-medium">234 normas</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">234 normas</p>
                             </div>
                         </a>
 
                         <a href="tema.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">monitor_heart</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">monitor_heart</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Saúde</h3>
-                                <p class="text-xs text-slate-500 font-medium">189 normas</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">189 normas</p>
                             </div>
                         </a>
 
                         <a href="tema.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">security</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">security</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Segurança Pública</h3>
-                                <p class="text-xs text-slate-500 font-medium">156 normas</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">156 normas</p>
                             </div>
                         </a>
 
                         <a href="tema.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">eco</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">eco</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Meio Ambiente</h3>
-                                <p class="text-xs text-slate-500 font-medium">142 normas</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">142 normas</p>
                             </div>
                         </a>
 
                         <a href="tema.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">business</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">business</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Administração Pública</h3>
-                                <p class="text-xs text-slate-500 font-medium">312 normas</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">312 normas</p>
                             </div>
                         </a>
 
                         <a href="tema.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">balance</span>
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">balance</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Justiça e Direitos</h3>
-                                <p class="text-xs text-slate-500 font-medium">98 normas</p>
-                            </div>
-                        </a>
-
-                        <a href="tema.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">group</span>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
-                                    Desenvolvimento Social</h3>
-                                <p class="text-xs text-slate-500 font-medium">127 normas</p>
-                            </div>
-                        </a>
-
-                        <a href="tema.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-accent-red">work</span>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-[15px] leading-tight mb-0.5">
-                                    Economia e Finanças</h3>
-                                <p class="text-xs text-slate-500 font-medium">201 normas</p>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">98 normas</p>
                             </div>
                         </a>
                     </div>
