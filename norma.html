@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/brasao-sp.svg" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>LegiSP — Lei Nº 10.177/1998</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -36,6 +36,29 @@
                 opacity: 0;
             }
         }
+
+        /* Focus Mode Styles */
+        body.focus-mode-active #left-sidebar,
+        body.focus-mode-active #right-sidebar {
+            display: none !important;
+        }
+
+        body.focus-mode-active #main-content {
+            grid-column: span 12 / span 12 !important;
+        }
+
+        /* Floating Back Button in Focus Mode */
+        #focus-mode-fab {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+
+        body.focus-mode-active #focus-mode-fab {
+            display: flex;
+        }
     </style>
     <script src="assets/js/header-scroll.js" defer></script>
 </head>
@@ -57,9 +80,9 @@
                 </div>
             </a>
             <nav class="hidden flex-wrap md:flex items-center gap-8">
-                <a class="header-nav-link text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                <a class="header-nav-link text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 dark:after:bg-white after:transition-all after:duration-200 hover:after:w-full"
                     href="sobre.html">Sobre o LegiSP</a>
-                <a class="header-nav-link text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                <a class="header-nav-link text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 dark:after:bg-white after:transition-all after:duration-200 hover:after:w-full"
                     href="busca-avancada.html">Busca Avançada</a>
             </nav>
         </div>
@@ -137,7 +160,8 @@
                                     <span class="text-xs font-semibold">Modo Foco</span>
                                 </div>
                                 <div class="relative inline-block w-[32px] h-[18px] select-none">
-                                    <input type="checkbox" id="sidebar-toggle-focus" class="peer sr-only">
+                                    <input type="checkbox" id="sidebar-toggle-focus" class="peer sr-only"
+                                        onchange="toggleFocusMode()">
                                     <div
                                         class="w-[32px] h-[18px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[14px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-primary shadow-inner">
                                     </div>
@@ -162,8 +186,8 @@
                     </div>
 
                     <!-- Sumário de Navegação -->
-                    <div
-                        class="bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 shadow-md3 rounded-xl p-5">
+                    <div id="sumario-nav-box"
+                        class="bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 shadow-md3 rounded-xl p-5 transition-all duration-300">
                         <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-2">Sumário
                         </h3>
                         <nav class="space-y-1">
@@ -188,7 +212,7 @@
             </aside>
             <!-- Center Column: Conteúdo (3/5) -->
             <section id="main-content"
-                class="col-span-12 lg:col-span-7 bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 p-8 lg:p-12 rounded-2xl shadow-md3 transition-all duration-300">
+                class="col-span-12 lg:col-span-7 bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 p-5 md:p-8 lg:p-12 rounded-2xl shadow-md3 transition-all duration-300">
 
                 <!-- Skeleton Loader -->
                 <div id="skeleton-loader" class="space-y-6 animate-pulse">
@@ -220,98 +244,12 @@
                                 Mostrar Grafo
                             </button>
 
-                            <!-- Menu de Ferramentas -->
-                            <button id="tools-menu-toggle" aria-expanded="false"
+                            <!-- Botão Expandir / Modo Foco -->
+                            <button id="top-focus-toggle" onclick="toggleFocusMode()"
                                 class="p-2 text-slate-500 hover:text-primary hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-white/10 rounded-full transition-colors duration-200 ripple-container shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-slate-700 bg-white dark:bg-slate-800 relative"
-                                title="Ferramentas">
-                                <span class="material-symbols-outlined text-xl">tune</span>
+                                title="Expandir Tela">
+                                <span id="top-focus-icon" class="material-symbols-outlined text-xl">fullscreen</span>
                             </button>
-
-                            <!-- Dropdown Menu -->
-                            <div id="tools-dropdown"
-                                class="opacity-0 invisible absolute right-0 top-full mt-3 w-[260px] bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 py-1 z-50 transform scale-95 origin-top-right transition-all duration-200">
-                                <!-- Toggles Top -->
-                                <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-700">
-                                    <h3 class="text-[10px] font-black uppercase text-slate-400 tracking-wider mb-2">
-                                        Exibição</h3>
-
-                                    <label class="flex items-center justify-between py-2 cursor-pointer group">
-                                        <div
-                                            class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
-                                            <span class="material-symbols-outlined text-[20px]">view_sidebar</span>
-                                            <span class="text-sm font-semibold">Sumário</span>
-                                        </div>
-                                        <div class="relative inline-block w-[36px] h-[20px] select-none">
-                                            <input type="checkbox" id="toggle-sumario" checked class="peer sr-only">
-                                            <div
-                                                class="w-[36px] h-[20px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[16px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[16px] after:w-[16px] after:transition-all peer-checked:bg-primary shadow-inner">
-                                            </div>
-                                        </div>
-                                    </label>
-
-                                    <!-- Added missing option explicitly requested by visual ref -->
-                                    <label class="flex items-center justify-between py-2 cursor-pointer group">
-                                        <div
-                                            class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
-                                            <span
-                                                class="material-symbols-outlined text-[20px]">format_ink_highlighter</span>
-                                            <span class="text-sm font-semibold">Marcações</span>
-                                        </div>
-                                        <div class="relative inline-block w-[36px] h-[20px] select-none">
-                                            <input type="checkbox" id="toggle-marcacoes" checked class="peer sr-only">
-                                            <div
-                                                class="w-[36px] h-[20px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[16px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[16px] after:w-[16px] after:transition-all peer-checked:bg-primary shadow-inner">
-                                            </div>
-                                        </div>
-                                    </label>
-
-                                    <!-- Added missing option explicitly requested by visual ref -->
-                                    <label class="flex items-center justify-between py-2 cursor-pointer group">
-                                        <div
-                                            class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
-                                            <span class="material-symbols-outlined text-[20px]">receipt_long</span>
-                                            <span class="text-sm font-semibold">Texto Compilado</span>
-                                        </div>
-                                        <div class="relative inline-block w-[36px] h-[20px] select-none">
-                                            <input type="checkbox" id="toggle-compilado" class="peer sr-only">
-                                            <div
-                                                class="w-[36px] h-[20px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[16px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[16px] after:w-[16px] after:transition-all peer-checked:bg-primary shadow-inner">
-                                            </div>
-                                        </div>
-                                    </label>
-
-                                    <label class="flex items-center justify-between py-2 cursor-pointer group">
-                                        <div
-                                            class="flex items-center gap-3 text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">
-                                            <span class="material-symbols-outlined text-[20px]">fullscreen</span>
-                                            <span class="text-sm font-semibold">Modo Foco</span>
-                                        </div>
-                                        <div class="relative inline-block w-[36px] h-[20px] select-none">
-                                            <input type="checkbox" id="toggle-focus" class="peer sr-only">
-                                            <div
-                                                class="w-[36px] h-[20px] bg-slate-200 rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-[16px] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[16px] after:w-[16px] after:transition-all peer-checked:bg-primary shadow-inner">
-                                            </div>
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <!-- Ações Bottom -->
-                                <div class="px-2 py-2">
-                                    <button
-                                        class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg group transition-colors">
-                                        <span
-                                            class="material-symbols-outlined text-xl text-slate-400 group-hover:text-primary">print</span>
-                                        <span class="text-sm font-semibold group-hover:text-primary">Impressão</span>
-                                    </button>
-                                    <button
-                                        class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg group transition-colors">
-                                        <span
-                                            class="material-symbols-outlined text-xl text-slate-400 group-hover:text-primary">history</span>
-                                        <span class="text-sm font-semibold group-hover:text-primary">Histórico de
-                                            Alteração</span>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <h1
@@ -628,6 +566,13 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- FAB Exit Focus Mode -->
+                <button id="focus-mode-fab" onclick="toggleFocusMode()"
+                    class="items-center justify-center gap-2 px-6 py-4 bg-slate-900 text-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:bg-slate-800 hover:-translate-y-1 transition-all duration-300 font-bold">
+                    <span class="material-symbols-outlined">fullscreen_exit</span>
+                    Sair do Modo Foco
+                </button>
             </section>
         </div>
 
@@ -652,22 +597,80 @@
         </div>
     </footer>
 
+    <!-- Bottom Navigation Bar (Mobile) -->
+    <nav id="mobile-bottom-nav"
+        class="fixed bottom-0 left-0 right-0 md:hidden bg-white/95 dark:bg-background-dark/95 border-t border-slate-200 dark:border-slate-800 px-6 pb-6 pt-3 backdrop-blur-md z-[80]">
+        <div class="flex justify-between items-center max-w-md mx-auto">
+            <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 ripple-container"
+                href="index.html">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Início</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 ripple-container"
+                href="sobre.html">
+                <span class="material-symbols-outlined">info</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Sobre</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 ripple-container"
+                href="index.html">
+                <span class="material-symbols-outlined">search</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Busca</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-accent-red" href="busca-avancada.html">
+                <span class="material-symbols-outlined">description</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Normas</span>
+            </a>
+        </div>
+    </nav>
+    <div class="h-24 md:hidden"></div>
+
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             // Obsidian Light Mode palette
             var labelColor = "#475569";      // Slate 600
-            var centralLabelColor = "#334155"; // Slate 700
+            var centralLabelColor = "#1e293b"; // Slate 800
             var nodeBg = "#94a3b8";          // Slate 400
             var centralNodeBg = "#8b5cf6";   // Purple 500
-            var edgeColor = "#cbd5e1";       // Slate 300
+            var edgeColor = "#e2e8f0";       // Slate 200 (mais sutil)
 
             var nodesData = [
-                { id: 1, label: "Lei Nº 10.177/1998", badge: "Lei Ordinária", desc: "Regula o processo administrativo no âmbito da Administração Pública Direta e das Autarquias do Estado de São Paulo, visando a proteção dos direitos dos administrados.", shape: "dot", size: 28, color: { background: centralNodeBg, border: centralNodeBg, hover: { background: centralNodeBg, border: centralNodeBg } }, font: { color: centralLabelColor, size: 16, face: 'Inter', bold: true, vadjust: -40 } },
-                { id: 2, label: "CF/1988", badge: "Constituição", desc: "Constituição da República Federativa do Brasil. Lei suprema que serve como fundamento de validade para todas as demais normas do ordenamento jurídico, incluindo as estaduais.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } },
-                { id: 3, label: "Decreto Nº 44.567/1999", badge: "Decreto Regulamentar", desc: "Regulamenta o Processo Administrativo Tributário Decorrente de Lançamento de Ofício, detalhando os trâmites processuais referenciados na lei 10.177.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } },
-                { id: 4, label: "Lei Nº 10.261/1968", badge: "Lei Ordinária", desc: "Estatuto dos Funcionários Públicos Civis do Estado de São Paulo. Aplica-se subsidiariamente aos processos disciplinares no que não contrariar a lei de processo administrativo.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } },
-                { id: 5, label: "Lei Nº 12.234/2005", badge: "Lei Modificadora", desc: "Altera e acrescenta dispositivos à Lei 10.177/1998, prevendo a adoção do meio eletrônico para a tramitação de processos administrativos empresariais e civis.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } },
-                { id: 6, label: "Portaria PGE 12/2020", badge: "Portaria Normativa", desc: "Aprova regras internas para o envio de intimações, aplicando diretamente os ritos de comunicação previstos na Lei 10.177.", shape: "dot", size: 14, color: { background: nodeBg, border: nodeBg, hover: { background: "#64748b" } }, font: { color: labelColor, size: 14, face: 'Inter', vadjust: -25 } }
+                {
+                    id: 1, label: "Lei Nº 10.177/1998", badge: "Lei Ordinária", desc: "Regula o processo administrativo no âmbito da Administração Pública Direta e das Autarquias do Estado de São Paulo.",
+                    shape: "dot", size: 22,
+                    color: { background: centralNodeBg, border: centralNodeBg, highlight: centralNodeBg },
+                    font: { color: centralLabelColor, size: 13, face: 'Inter', bold: true, strokeWidth: 4, strokeColor: '#ffffff' },
+                    labelHighlightBold: true
+                },
+                {
+                    id: 2, label: "CF/1988", badge: "Constituição", desc: "Constituição da República Federativa do Brasil.",
+                    shape: "dot", size: 8,
+                    color: { background: nodeBg, border: nodeBg, highlight: "#64748b" },
+                    font: { color: labelColor, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' }
+                },
+                {
+                    id: 3, label: "Decreto Nº 44.567/1999", badge: "Decreto Regulamentar", desc: "Regulamenta o Processo Administrativo Tributário.",
+                    shape: "dot", size: 8,
+                    color: { background: nodeBg, border: nodeBg, highlight: "#64748b" },
+                    font: { color: labelColor, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' }
+                },
+                {
+                    id: 4, label: "Lei Nº 10.261/1968", badge: "Lei Ordinária", desc: "Estatuto dos Funcionários Públicos Civis.",
+                    shape: "dot", size: 8,
+                    color: { background: nodeBg, border: nodeBg, highlight: "#64748b" },
+                    font: { color: labelColor, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' }
+                },
+                {
+                    id: 5, label: "Lei Nº 12.234/2005", badge: "Lei Modificadora", desc: "Altera e acrescenta dispositivos à Lei 10.177/1998.",
+                    shape: "dot", size: 8,
+                    color: { background: nodeBg, border: nodeBg, highlight: "#64748b" },
+                    font: { color: labelColor, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' }
+                },
+                {
+                    id: 6, label: "Portaria PGE 12/2020", badge: "Portaria Normativa", desc: "Aprova regras internas para o envio de intimações.",
+                    shape: "dot", size: 8,
+                    color: { background: nodeBg, border: nodeBg, highlight: "#64748b" },
+                    font: { color: labelColor, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' }
+                }
             ];
 
             var nodes = new vis.DataSet(nodesData);
@@ -687,41 +690,141 @@
                 nodes: {
                     borderWidth: 0,
                     borderWidthSelected: 0,
-                    shadow: false
+                    shadow: false,
+                    margin: 10
                 },
                 edges: {
-                    width: 1.5,
-                    selectionWidth: 2,
-                    smooth: false // Straight lines like Obsidian
+                    width: 0.5,
+                    selectionWidth: 1,
+                    hoverWidth: 1.5,
+                    smooth: false,
+                    color: {
+                        color: edgeColor,
+                        highlight: centralNodeBg,
+                        hover: centralNodeBg,
+                        inherit: false
+                    }
                 },
                 interaction: {
                     hover: true,
                     navigationButtons: false,
                     keyboard: false,
                     zoomView: true,
-                    dragView: true
+                    dragView: true,
+                    hideEdgesOnDrag: false,
+                    hoverConnectedEdges: true
                 },
                 physics: {
                     enabled: true,
                     solver: 'forceAtlas2Based',
                     forceAtlas2Based: {
-                        gravitationalConstant: -50,
-                        centralGravity: 0.01,
-                        springConstant: 0.08,
-                        springLength: 150,
+                        gravitationalConstant: -100,
+                        centralGravity: 0.005,
+                        springConstant: 0.05,
+                        springLength: 120,
                         damping: 0.4,
                         avoidOverlap: 1
+                    },
+                    stabilization: {
+                        enabled: true,
+                        iterations: 1000,
+                        updateInterval: 50
                     }
                 },
                 layout: {
-                    hierarchical: false // Organic, non-hierarchical layout
+                    hierarchical: false
                 }
             };
 
             var network = new vis.Network(container, data, options);
 
+            // ====== Lógica do Modo Foco Ocultada dentro do DOMContentLoaded ====== //
+            window.toggleFocusMode = function () {
+                const body = document.body;
+                body.classList.toggle('focus-mode-active');
+
+                // Sincroniza o ícone do topo
+                const icon = document.getElementById('top-focus-icon');
+                if (icon) {
+                    icon.textContent = body.classList.contains('focus-mode-active') ? 'fullscreen_exit' : 'fullscreen';
+                }
+
+                // Sincroniza o toggle do sidebar se existir
+                const toggle = document.getElementById('sidebar-toggle-focus');
+                if (toggle) {
+                    toggle.checked = body.classList.contains('focus-mode-active');
+                }
+
+                // Força o resize do canvas do Vis.js para evitar glitch na rede
+                setTimeout(() => {
+                    network.fit();
+                }, 50);
+            };
+
+            // Obsidian-style Neighborhood Highlight
+            network.on("hoverNode", function (params) {
+                var selectedNode = params.node;
+                var neighbors = network.getConnectedNodes(selectedNode);
+                var connectedEdges = network.getConnectedEdges(selectedNode);
+
+                var allNodes = nodes.get();
+                var allEdges = edges.get();
+
+                // Esmaece tudo primeiro
+                allNodes.forEach(node => {
+                    node.color = Object.assign({}, node.color, { opacity: 0.1 });
+                    node.font = Object.assign({}, node.font, { color: 'rgba(0,0,0,0.1)', strokeWidth: 0 });
+                });
+                allEdges.forEach(edge => {
+                    edge.color = { color: 'rgba(0,0,0,0.05)' };
+                });
+
+                // Destaca o selecionado
+                var node = nodes.get(selectedNode);
+                node.color = Object.assign({}, node.color, { opacity: 1 });
+                node.font = Object.assign({}, node.font, { color: centralLabelColor, strokeWidth: 4 });
+                nodes.update(node);
+
+                // Destaca vizinhos
+                neighbors.forEach(neighborId => {
+                    var neighborNode = nodes.get(neighborId);
+                    neighborNode.color = Object.assign({}, neighborNode.color, { opacity: 1 });
+                    neighborNode.font = Object.assign({}, neighborNode.font, { color: labelColor, strokeWidth: 3 });
+                    nodes.update(neighborNode);
+                });
+
+                // Destaca arestas conectadas
+                connectedEdges.forEach(edgeId => {
+                    var edge = edges.get(edgeId);
+                    edge.color = { color: centralNodeBg, opacity: 1 };
+                    edge.width = 2;
+                    edges.update(edge);
+                });
+            });
+
+            network.on("blurNode", function () {
+                var allNodes = nodes.get();
+                var allEdges = edges.get();
+
+                // Restaura o estado original de todos os nós
+                allNodes.forEach(nodeData => {
+                    var original = nodesData.find(n => n.id === nodeData.id);
+                    nodeData.color = Object.assign({}, original.color, { opacity: 1 });
+                    nodeData.font = Object.assign({}, original.font, { color: (nodeData.id === 1 ? centralLabelColor : labelColor) });
+                    if (original.font.strokeWidth) nodeData.font.strokeWidth = original.font.strokeWidth;
+                });
+                nodes.update(allNodes);
+
+                // Restaura arestas
+                allEdges.forEach(edge => {
+                    edge.color = { color: edgeColor };
+                    edge.width = 0.5;
+                });
+                edges.update(allEdges);
+            });
+
             // Interaction logic for Node details panel
-            network.on("selectNode", function (params) {
+            network.on("click", function (params) {
                 if (params.nodes.length == 1) {
                     var nodeId = params.nodes[0];
                     var nodeData = nodesData.find(n => n.id === nodeId);
@@ -797,6 +900,9 @@
                         graphModal.classList.remove('opacity-0');
                         graphContent.classList.remove('scale-95');
                         graphContent.classList.add('scale-100');
+                        setTimeout(() => {
+                            if (typeof network !== 'undefined') network.fit();
+                        }, 50); // Ajusta o zoom apos renderizar visualmente
                     }, 10);
                 });
 
@@ -811,38 +917,6 @@
                 });
             }
 
-            // Tools Dropdown Logic
-            const toolsToggleBtn = document.getElementById('tools-menu-toggle');
-            const toolsDropdown = document.getElementById('tools-dropdown');
-
-            if (toolsToggleBtn && toolsDropdown) {
-                toolsToggleBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const isExpanded = toolsToggleBtn.getAttribute('aria-expanded') === 'true';
-                    toolsToggleBtn.setAttribute('aria-expanded', !isExpanded);
-
-                    if (!isExpanded) {
-                        toolsDropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
-                        toolsDropdown.classList.add('opacity-100', 'visible', 'scale-100');
-                        toolsToggleBtn.classList.add('bg-slate-100', 'dark:bg-slate-800');
-                    } else {
-                        toolsDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-                        toolsDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-                        toolsToggleBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800');
-                    }
-                });
-
-                // Close dropdown when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!toolsToggleBtn.contains(e.target) && !toolsDropdown.contains(e.target)) {
-                        toolsToggleBtn.setAttribute('aria-expanded', 'false');
-                        toolsDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-                        toolsDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-                        toolsToggleBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800');
-                    }
-                });
-            }
-
             // UI Toggles (Sumário & Focus)
             const leftSidebar = document.getElementById('left-sidebar');
             const rightSidebar = document.getElementById('right-sidebar');
@@ -853,24 +927,17 @@
             const sidebarToggleSumario = document.getElementById('sidebar-toggle-sumario');
             const sidebarToggleFocus = document.getElementById('sidebar-toggle-focus');
 
+            const topFocusToggle = document.getElementById('top-focus-toggle');
+            const topFocusIcon = document.getElementById('top-focus-icon');
+            let isTopFocusMode = false;
+
             function updateLayoutSumario(isChecked) {
-                if (isChecked) {
-                    leftSidebar.classList.remove('hidden');
-                    // Se não estiver em modo foco, ajusta o grid
-                    if (!toggleFocus.checked && !sidebarToggleFocus.checked) {
-                        mainContent.classList.add('lg:col-span-7');
-                        mainContent.classList.remove('lg:col-span-9', 'lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full');
-                    }
-                } else {
-                    leftSidebar.classList.add('hidden');
-                    // Se não estiver em modo foco e a direita estiver visível, o centro expande parcialmente
-                    if (!toggleFocus.checked && !sidebarToggleFocus.checked && rightSidebar && !rightSidebar.classList.contains('hidden')) {
-                        mainContent.classList.remove('lg:col-span-7');
-                        mainContent.classList.add('lg:col-span-9');
-                    } else if (!toggleFocus.checked && !sidebarToggleFocus.checked) {
-                        // Se a direita tb estiver oculta
-                        mainContent.classList.remove('lg:col-span-7', 'lg:col-span-9');
-                        mainContent.classList.add('lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full');
+                const sumarioBox = document.getElementById('sumario-nav-box');
+                if (sumarioBox) {
+                    if (isChecked) {
+                        sumarioBox.classList.remove('hidden', 'opacity-0');
+                    } else {
+                        sumarioBox.classList.add('hidden', 'opacity-0');
                     }
                 }
             }
@@ -882,40 +949,54 @@
                     if (rightSidebar) rightSidebar.classList.add('hidden');
 
                     mainContent.classList.remove('lg:col-span-7', 'lg:col-span-9');
-                    mainContent.classList.add('lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full');
+                    mainContent.classList.add('lg:col-span-12');
                 } else {
-                    // Restaura estado baseado no toggle sumário
-                    if (toggleSumario && toggleSumario.checked && leftSidebar) {
-                        leftSidebar.classList.remove('hidden');
-                        mainContent.classList.add('lg:col-span-7');
-                        mainContent.classList.remove('lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full', 'lg:col-span-9');
-                    } else {
-                        mainContent.classList.remove('lg:col-span-7', 'lg:col-span-12', 'max-w-4xl', 'mx-auto', 'w-full');
-                        mainContent.classList.add('lg:col-span-9');
-                    }
+                    // Sempre restaura o leftSidebar, pois os controles de exibicao ficam la
+                    if (leftSidebar) leftSidebar.classList.remove('hidden');
+                    mainContent.classList.add('lg:col-span-7');
+                    mainContent.classList.remove('lg:col-span-12');
+
                     // Restaura sidebar direita sempre ao sair do foco
                     if (rightSidebar) rightSidebar.classList.remove('hidden');
                 }
             }
 
-            if (toggleSumario && sidebarToggleSumario) {
+            if (topFocusToggle) {
+                topFocusToggle.addEventListener('click', () => {
+                    isTopFocusMode = !isTopFocusMode;
+                    if (topFocusIcon) topFocusIcon.innerText = isTopFocusMode ? 'fullscreen_exit' : 'fullscreen';
+                    if (sidebarToggleFocus) sidebarToggleFocus.checked = isTopFocusMode;
+                    if (toggleFocus) toggleFocus.checked = isTopFocusMode;
+                    updateLayoutFocus(isTopFocusMode);
+                });
+            }
+
+            if (toggleSumario) {
                 toggleSumario.addEventListener('change', (e) => {
-                    sidebarToggleSumario.checked = e.target.checked;
+                    if (sidebarToggleSumario) sidebarToggleSumario.checked = e.target.checked;
                     updateLayoutSumario(e.target.checked);
                 });
+            }
+            if (sidebarToggleSumario) {
                 sidebarToggleSumario.addEventListener('change', (e) => {
-                    toggleSumario.checked = e.target.checked;
+                    if (toggleSumario) toggleSumario.checked = e.target.checked;
                     updateLayoutSumario(e.target.checked);
                 });
             }
 
-            if (toggleFocus && sidebarToggleFocus) {
+            if (toggleFocus) {
                 toggleFocus.addEventListener('change', (e) => {
-                    sidebarToggleFocus.checked = e.target.checked;
+                    if (sidebarToggleFocus) sidebarToggleFocus.checked = e.target.checked;
+                    isTopFocusMode = e.target.checked;
+                    if (topFocusIcon) topFocusIcon.innerText = isTopFocusMode ? 'fullscreen_exit' : 'fullscreen';
                     updateLayoutFocus(e.target.checked);
                 });
+            }
+            if (sidebarToggleFocus) {
                 sidebarToggleFocus.addEventListener('change', (e) => {
-                    toggleFocus.checked = e.target.checked;
+                    if (toggleFocus) toggleFocus.checked = e.target.checked;
+                    isTopFocusMode = e.target.checked;
+                    if (topFocusIcon) topFocusIcon.innerText = isTopFocusMode ? 'fullscreen_exit' : 'fullscreen';
                     updateLayoutFocus(e.target.checked);
                 });
             }

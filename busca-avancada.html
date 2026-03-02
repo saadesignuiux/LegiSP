@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/brasao-sp.svg" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description"
         content="Explore o catálogo completo de normas do Estado de São Paulo, filtrando por tipo, ano e secretaria." />
@@ -47,8 +47,8 @@
         .skeleton-card {
             background: white;
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 24px;
+            border-radius: 28px;
+            padding: 32px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
@@ -79,6 +79,78 @@
                 opacity: 0;
             }
         }
+
+        /* Search bar — rotating glow */
+        @keyframes search-glow-rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #search-glow-container {
+            position: relative;
+        }
+
+        /* Search bar — animated stroke */
+        @property --search-stroke-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @keyframes search-stroke-rotate {
+            to {
+                --search-stroke-angle: 360deg;
+            }
+        }
+
+        .animated-glow::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: conic-gradient(from var(--search-stroke-angle),
+                    transparent 0deg,
+                    transparent 40deg,
+                    rgba(255, 120, 120, 0.6) 120deg,
+                    rgba(255, 180, 180, 0.3) 150deg,
+                    rgba(180, 180, 180, 0.5) 210deg,
+                    rgba(200, 200, 200, 0.2) 250deg,
+                    transparent 300deg,
+                    transparent 360deg);
+            filter: blur(12px);
+            z-index: -2;
+            pointer-events: none;
+            border-radius: inherit;
+            animation: search-stroke-rotate 6s linear infinite;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+        }
+
+        .animated-glow::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: conic-gradient(from var(--search-stroke-angle),
+                    transparent 0deg,
+                    transparent 60deg,
+                    rgba(227, 6, 19, 0.8) 120deg,
+                    rgba(255, 80, 80, 0.5) 150deg,
+                    rgba(150, 150, 150, 0.8) 210deg,
+                    rgba(100, 100, 100, 0.4) 250deg,
+                    transparent 300deg,
+                    transparent 360deg);
+            z-index: -1;
+            pointer-events: none;
+            border-radius: inherit;
+            filter: blur(2px);
+            animation: search-stroke-rotate 6s linear infinite;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+        }
     </style>
     <script src="assets/js/header-scroll.js" defer></script>
 </head>
@@ -100,9 +172,9 @@
                 </div>
             </a>
             <nav class="hidden flex-wrap md:flex items-center gap-8">
-                <a class="header-nav-link text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                <a class="header-nav-link text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 dark:after:bg-white after:transition-all after:duration-200 hover:after:w-full"
                     href="sobre.html">Sobre o LegiSP</a>
-                <a class="header-nav-link text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                <a class="header-nav-link text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 dark:after:bg-white after:transition-all after:duration-200 hover:after:w-full"
                     href="busca-avancada.html">Busca Avançada</a>
             </nav>
         </div>
@@ -110,22 +182,42 @@
 
     <main class="max-w-7xl mx-auto px-6 py-8 md:py-12">
         <!-- New Search Bar Superior -->
-        <div class="w-full relative mb-10 group">
-            <span
-                class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 text-3xl group-focus-within:text-primary transition-colors">search</span>
-            <input type="text" placeholder="Pesquisar por lei, termo ou assunto..."
-                class="w-full h-16 bg-surface dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full pl-16 pr-32 text-lg font-medium shadow-md3 focus:outline-none focus:border-primary focus:shadow-md3-2 transition-all duration-300 text-slate-900 dark:text-white placeholder:text-slate-400">
-            <button
-                class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white h-12 px-6 rounded-full font-bold shadow-md3-1 hover:bg-accent-red hover:shadow-md3-2 transition-all ripple-container">
-                Buscar
-            </button>
+        <div id="search-glow-container"
+            class="animated-glow relative z-50 w-full rounded-full transition-all duration-300 flex flex-col mb-10 group overflow-visible">
+
+            <div
+                class="absolute inset-0 bg-white dark:bg-slate-900 rounded-full z-0 shadow-sm border border-slate-100 dark:border-slate-800 transition-all duration-300 outline-none group-focus-within:!border-primary">
+            </div>
+
+            <div class="flex items-center w-full px-5 md:px-6 py-2 md:pt-4 md:pb-4 relative z-10 transition-colors duration-200"
+                id="search-input-row">
+                <span class="material-symbols-outlined text-slate-400 dark:text-slate-500 mr-3 block">search</span>
+                <input id="main-search-input"
+                    class="w-full h-12 md:h-12 bg-transparent border-none text-base md:text-lg font-medium focus:ring-0 px-0 text-slate-900 dark:text-white placeholder:text-slate-400"
+                    placeholder="Pesquisar por lei, termo ou assunto..." type="text" autocomplete="off" />
+                <button id="main-search-button"
+                    class="flex items-center justify-center w-12 h-12 shrink-0 ml-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100 active:scale-95 transition-all duration-200 shadow-sm select-none"
+                    title="Buscar">
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                </button>
+            </div>
         </div>
 
         <div class="flex flex-col md:flex-row gap-10">
             <!-- Left Sidebar: Filters -->
-            <aside class="w-full md:w-[280px] shrink-0 space-y-6">
-                <div
-                    class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-md3 p-6">
+            <aside class="w-full md:w-[280px] shrink-0 space-y-4">
+                <!-- Mobile Filter Toggle Button -->
+                <button id="mobile-filter-toggle"
+                    class="md:hidden w-full flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.05)] text-sm font-bold text-slate-900 dark:text-white transition-all active:scale-95">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px] text-accent-red">tune</span>
+                        Filtros Avançados
+                    </div>
+                    <span id="mobile-filter-icon" class="material-symbols-outlined text-sm">expand_more</span>
+                </button>
+
+                <div id="filter-container"
+                    class="hidden md:block bg-white dark:bg-white/5 rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-md3 p-6 transition-all duration-300">
                     <h2
                         class="text-xs font-black uppercase tracking-widest text-slate-500 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
                         Filtros Avançados</h2>
@@ -139,6 +231,22 @@
                             <div class="space-y-3">
                                 <label class="flex items-center gap-3 cursor-pointer group">
                                     <input checked
+                                        class="rounded-md border-slate-300 dark:border-slate-600 text-accent-red focus:ring-accent-red h-4 w-4"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Constituição
+                                        Estadual</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 dark:border-slate-600 text-accent-red focus:ring-accent-red h-4 w-4"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Lei
+                                        Complementar</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
                                         class="rounded border-slate-300 dark:border-slate-600 text-accent-red focus:ring-accent-red h-4 w-4"
                                         type="checkbox" />
                                     <span
@@ -150,21 +258,22 @@
                                         class="rounded border-slate-300 dark:border-slate-600 text-accent-red focus:ring-accent-red h-4 w-4"
                                         type="checkbox" />
                                     <span
-                                        class="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Decreto</span>
+                                        class="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Decretos-Lei</span>
                                 </label>
                                 <label class="flex items-center gap-3 cursor-pointer group">
                                     <input
                                         class="rounded border-slate-300 dark:border-slate-600 text-accent-red focus:ring-accent-red h-4 w-4"
                                         type="checkbox" />
                                     <span
-                                        class="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Portaria</span>
+                                        class="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Decretos</span>
                                 </label>
                                 <label class="flex items-center gap-3 cursor-pointer group">
                                     <input
                                         class="rounded border-slate-300 dark:border-slate-600 text-accent-red focus:ring-accent-red h-4 w-4"
                                         type="checkbox" />
                                     <span
-                                        class="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Resolução</span>
+                                        class="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Leis
+                                        Infradecreto</span>
                                 </label>
                             </div>
                         </section>
@@ -176,11 +285,11 @@
                             </h3>
                             <div class="grid grid-cols-2 gap-2">
                                 <button
-                                    class="text-xs py-2 px-3 bg-surface dark:bg-white/5 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-semibold ripple-container">2024</button>
+                                    class="text-xs py-2 px-3 bg-surface dark:bg-white/5 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-semibold ripple-container">2024</button>
                                 <button
-                                    class="text-xs py-2 px-3 bg-surface dark:bg-white/5 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-semibold ripple-container">2023</button>
+                                    class="text-xs py-2 px-3 bg-surface dark:bg-white/5 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-semibold ripple-container">2023</button>
                                 <button
-                                    class="text-xs py-2 px-3 bg-surface dark:bg-white/5 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-semibold ripple-container">2022</button>
+                                    class="text-xs py-2 px-3 bg-surface dark:bg-white/5 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-semibold ripple-container">2022</button>
                                 <button
                                     class="text-xs py-2 px-3 font-semibold text-accent-red hover:bg-accent-red/10 rounded-lg transition-all duration-200">Ver
                                     todos</button>
@@ -190,7 +299,7 @@
                         <section>
                             <h3 class="text-sm font-bold mb-4">Secretaria / Órgão</h3>
                             <select
-                                class="w-full text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-surface dark:bg-white/5 focus:border-primary focus:ring-primary py-2.5 transition-colors duration-200">
+                                class="w-full text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-surface dark:bg-white/5 focus:border-primary focus:ring-primary py-2.5 transition-colors duration-200">
                                 <option>Todas as secretarias</option>
                                 <option>Educação</option>
                                 <option>Saúde</option>
@@ -229,7 +338,7 @@
             <div class="flex-1 w-full">
                 <!-- Top Bar -->
                 <div
-                    class="bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 shadow-md3 sticky top-[80px] z-40">
+                    class="bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 shadow-md3 sticky top-[80px] z-40">
                     <p class="text-sm text-slate-500 font-medium">Exibindo <span
                             class="font-bold text-slate-900 dark:text-white">12</span> de <span
                             class="font-bold text-slate-900 dark:text-white">94.000</span> resultados</p>
@@ -285,99 +394,102 @@
                 <div id="results-list" class="space-y-4">
                     <!-- Norm Card -->
                     <article
-                        class="md3-card-interactive p-6 group block text-left text-slate-900 border border-slate-200 dark:border-slate-800">
-                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                            <div class="space-y-3">
+                        class="md3-card-interactive p-6 md:p-8 group block text-left text-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                            <div class="space-y-4">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span
-                                        class="px-2 py-0.5 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded">Lei
+                                        class="px-3 py-1 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-full">Lei
                                         Ordinária</span>
                                     <span
-                                        class="px-2 py-0.5 bg-surface dark:bg-white/10 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-widest">Nº
+                                        class="px-3 py-1 bg-surface dark:bg-white/10 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded-full tracking-widest">Nº
                                         17.557 / 2021</span>
                                     <span
-                                        class="flex items-center gap-1 px-2 py-0.5 bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase rounded tracking-widest">
+                                        class="flex items-center gap-1 px-3 py-1 bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase rounded-full tracking-widest">
                                         <span class="material-symbols-outlined text-[12px]">check_circle</span> Vigente
                                     </span>
                                 </div>
                                 <h3
-                                    class="font-bold text-lg leading-tight group-hover:text-accent-red transition-colors duration-200">
+                                    class="font-bold text-xl leading-tight group-hover:text-accent-red transition-colors duration-200">
                                     Dispõe sobre a regularização de edificações, condicionada, quando necessário, à
                                     realização de obras.
                                 </h3>
-                                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                                <p
+                                    class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed max-w-2xl">
                                     Esta lei estabelece os critérios e procedimentos para a regularização de imóveis no
                                     Estado de São Paulo, focando em segurança e acessibilidade...
                                 </p>
                             </div>
                             <a href="norma.html"
-                                class="shrink-0 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 rounded-lg px-5 py-2 text-sm font-bold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 ripple-container">
+                                class="shrink-0 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 rounded-full px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 ripple-container self-center shadow-sm">
                                 Acessar <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </a>
                         </div>
                     </article>
 
                     <article
-                        class="md3-card-interactive p-6 group block text-left text-slate-900 border border-slate-200 dark:border-slate-800">
-                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                            <div class="space-y-3">
+                        class="md3-card-interactive p-6 md:p-8 group block text-left text-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                            <div class="space-y-4">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span
-                                        class="px-2 py-0.5 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded">Decreto</span>
+                                        class="px-3 py-1 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-full">Decreto</span>
                                     <span
-                                        class="px-2 py-0.5 bg-surface dark:bg-white/10 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-widest">Nº
+                                        class="px-3 py-1 bg-surface dark:bg-white/10 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded-full tracking-widest">Nº
                                         60.061 / 2021</span>
                                     <span
-                                        class="flex items-center gap-1 px-2 py-0.5 bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase rounded tracking-widest">
+                                        class="flex items-center gap-1 px-3 py-1 bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase rounded-full tracking-widest">
                                         <span class="material-symbols-outlined text-[12px]">check_circle</span> Vigente
                                     </span>
                                 </div>
                                 <h3
-                                    class="font-bold text-lg leading-tight group-hover:text-accent-red transition-colors duration-200">
+                                    class="font-bold text-xl leading-tight group-hover:text-accent-red transition-colors duration-200">
                                     Regulamenta a Lei nº 17.557, de 26 de maio de 2021, que dispõe sobre a regularização
                                     de
                                     edificações.
                                 </h3>
-                                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                                <p
+                                    class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed max-w-2xl">
                                     Dispõe sobre os formulários, taxas e documentação necessária para o protocolo dos
                                     pedidos de anistia de imóveis residenciais e comerciais...
                                 </p>
                             </div>
                             <a href="norma.html"
-                                class="shrink-0 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 rounded-lg px-5 py-2 text-sm font-bold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 ripple-container">
+                                class="shrink-0 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 rounded-full px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 ripple-container self-center shadow-sm">
                                 Acessar <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </a>
                         </div>
                     </article>
 
                     <article
-                        class="md3-card-interactive p-6 group block text-left text-slate-900 border border-slate-200 dark:border-slate-800">
-                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                            <div class="space-y-3">
+                        class="md3-card-interactive p-6 md:p-8 group block text-left text-slate-900 border border-slate-200 dark:border-slate-800">
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                            <div class="space-y-4">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span
-                                        class="px-2 py-0.5 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded">Portaria</span>
+                                        class="px-3 py-1 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-full">Portaria</span>
                                     <span
-                                        class="px-2 py-0.5 bg-surface dark:bg-white/10 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-widest">Nº
+                                        class="px-3 py-1 bg-surface dark:bg-white/10 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded-full tracking-widest">Nº
                                         12 / SEL-G / 2024</span>
                                     <span
-                                        class="flex items-center gap-1 px-2 py-0.5 bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase rounded tracking-widest">
+                                        class="flex items-center gap-1 px-3 py-1 bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase rounded-full tracking-widest">
                                         <span class="material-symbols-outlined text-[12px]">check_circle</span> Vigente
                                     </span>
                                 </div>
                                 <h3
-                                    class="font-bold text-lg leading-tight group-hover:text-accent-red transition-colors duration-200">
+                                    class="font-bold text-xl leading-tight group-hover:text-accent-red transition-colors duration-200">
                                     Estabelece cronograma de atendimento para análise de processos da Secretaria de
                                     Licenciamento.
                                 </h3>
-                                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                                <p
+                                    class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed max-w-2xl">
                                     Define as prioridades de análise para o primeiro semestre de 2024, considerando o
                                     volume
                                     de processos acumulados no exercício anterior...
                                 </p>
                             </div>
                             <a href="norma.html"
-                                class="shrink-0 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 rounded-lg px-5 py-2 text-sm font-bold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 ripple-container">
+                                class="shrink-0 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 rounded-full px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 ripple-container self-center shadow-sm">
                                 Acessar <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </a>
                         </div>
@@ -424,9 +536,48 @@
             </div>
             <p class="text-[10px] font-medium text-slate-400">© 2024 Governo do Estado de São Paulo</p>
         </div>
+        </div>
     </footer>
 
+    <!-- Bottom Navigation Bar (Mobile) -->
+    <div
+        class="fixed bottom-0 left-0 right-0 md:hidden bg-white/95 dark:bg-background-dark/95 border-t border-slate-200 dark:border-slate-800 px-6 pb-6 pt-3 backdrop-blur-md z-[80]">
+        <div class="flex justify-between items-center max-w-md mx-auto">
+            <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 ripple-container"
+                href="index.html">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Início</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 ripple-container"
+                href="sobre.html">
+                <span class="material-symbols-outlined">info</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Sobre</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 ripple-container"
+                href="index.html">
+                <span class="material-symbols-outlined">search</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Busca</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-accent-red" href="busca-avancada.html">
+                <span class="material-symbols-outlined">description</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Normas</span>
+            </a>
+        </div>
+    </div>
+    <div class="h-24 md:hidden"></div>
+
     <script>
+        // Lógica do filtro para visualização mobile
+        const filterToggleBtn = document.getElementById('mobile-filter-toggle');
+        const filterContainer = document.getElementById('filter-container');
+        const filterIcon = document.getElementById('mobile-filter-icon');
+
+        if (filterToggleBtn && filterContainer) {
+            filterToggleBtn.addEventListener('click', () => {
+                filterContainer.classList.toggle('hidden');
+                filterIcon.textContent = filterContainer.classList.contains('hidden') ? 'expand_more' : 'expand_less';
+            });
+        }
         // Aplicar Filtros: mostra skeleton e depois resultados
         const applyBtn = document.getElementById('apply-filters-btn');
         const skeletonList = document.getElementById('skeleton-list');

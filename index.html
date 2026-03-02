@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description"
-        content="Catálogo Inteligente de Normas do Estado de São Paulo. Pesquise, consulte e entenda a legislação estadual com facilidade." />
+        content="Portal Inteligente de Normas do Estado de São Paulo. Pesquise, consulte e entenda a legislação estadual com facilidade." />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
@@ -17,8 +17,9 @@
         rel="stylesheet" />
     <!-- Material Design 3 System -->
     <link rel="stylesheet" href="assets/css/md3.css">
+    <link rel="icon" type="image/svg+xml" href="assets/img/brasao-sp.svg" />
     <script src="assets/js/md3-tailwind-config.js"></script>
-    <title>Catálogo Inteligente de Normas - SP</title>
+    <title>Portal Inteligente de Normas - SP</title>
     <style>
         /* Ripple effect */
         .ripple-container {
@@ -149,6 +150,29 @@
             }
         }
 
+        .animated-glow::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: conic-gradient(from var(--search-stroke-angle),
+                    transparent 0deg,
+                    transparent 40deg,
+                    rgba(255, 120, 120, 0.6) 120deg,
+                    rgba(255, 180, 180, 0.3) 150deg,
+                    rgba(180, 180, 180, 0.5) 210deg,
+                    rgba(200, 200, 200, 0.2) 250deg,
+                    transparent 300deg,
+                    transparent 360deg);
+            filter: blur(12px);
+            z-index: -2;
+            pointer-events: none;
+            border-radius: inherit;
+            animation: search-stroke-rotate 6s linear infinite;
+            transform: translate3d(0, 0, 0);
+            /* Fix for Safari rendering bug */
+            backface-visibility: hidden;
+        }
+
         .animated-glow::after {
             content: '';
             position: absolute;
@@ -156,43 +180,40 @@
             background: conic-gradient(from var(--search-stroke-angle),
                     transparent 0deg,
                     transparent 60deg,
-                    rgba(227, 6, 19, 0.9) 120deg,
-                    rgba(255, 80, 80, 0.7) 150deg,
-                    rgba(10, 10, 10, 0.8) 210deg,
-                    rgba(10, 10, 10, 0.6) 250deg,
+                    rgba(227, 6, 19, 0.8) 120deg,
+                    rgba(255, 80, 80, 0.5) 150deg,
+                    rgba(150, 150, 150, 0.8) 210deg,
+                    rgba(100, 100, 100, 0.4) 250deg,
                     transparent 300deg,
                     transparent 360deg);
-            /* Mask composite isola somente o padding da borda preservando interior */
-            -webkit-mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            padding: 2px;
-            pointer-events: none;
             z-index: -1;
-            /* Blur muito discreto encostado na própria borda */
-            filter: blur(4px) drop-shadow(0 0 4px rgba(227, 6, 19, 0.2));
+            pointer-events: none;
+            border-radius: inherit;
+            filter: blur(2px);
             animation: search-stroke-rotate 6s linear infinite;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
         }
 
-        #search-glow-container::after {
-            border-radius: 34px;
-        }
 
-        #search-autocomplete-dropdown {
-            position: absolute;
-        }
 
-        #search-autocomplete-dropdown::after {
-            border-radius: 26px;
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
     </style>
     <script src="assets/js/header-scroll.js" defer></script>
     <script src="assets/js/count-up.js" defer></script>
+    <script src="assets/js/hero-graph.js" defer></script>
 </head>
 
 <body class="md3-bg font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen">
@@ -214,10 +235,10 @@
             </a>
             <nav class="hidden flex-wrap md:flex items-center gap-8">
                 <a id="header-nav-sobre"
-                    class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    class="text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 dark:after:bg-white after:transition-all after:duration-200 hover:after:w-full"
                     href="sobre.html">Sobre o LegiSP</a>
                 <a id="header-nav-busca"
-                    class="text-sm font-semibold hover:text-accent-red transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent-red after:transition-all after:duration-200 hover:after:w-full"
+                    class="text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 dark:after:bg-white after:transition-all after:duration-200 hover:after:w-full"
                     href="busca-avancada.html">Busca Avançada</a>
             </nav>
         </div>
@@ -226,13 +247,20 @@
     <main class="w-full">
         <!-- Hero Minimalist Section -->
         <section
-            class="relative pt-24 pb-12 px-6 bg-background-light dark:bg-background-dark flex flex-col items-center">
-            <div class="max-w-4xl w-full mx-auto text-center">
+            class="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32 px-6 bg-slate-100 dark:bg-background-dark flex flex-col items-center transition-colors duration-500">
+            <!-- Dual Knowledge Graph Canvas Layers -->
+            <canvas id="hero-graph-bg"
+                class="absolute inset-0 w-full h-full pointer-events-none z-0 blur-[12px] opacity-30"></canvas>
+            <canvas id="hero-graph-lens" class="absolute inset-0 w-full h-full pointer-events-none z-[1]"
+                style="-webkit-mask-image: radial-gradient(circle 350px at var(--mx, -1000px) var(--my, -1000px), black 5%, transparent 60%); mask-image: radial-gradient(circle 350px at var(--mx, -1000px) var(--my, -1000px), black 5%, transparent 60%);"></canvas>
+
+            <div class="max-w-4xl w-full mx-auto text-center relative z-10">
 
                 <h1
-                    class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
-                    Catálogo Inteligente de <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-red">Normas</span>
+                    class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-6 relative z-10">
+                    Portal Inteligente de <span
+                        style="animation: gradient-shift 8s ease-in-out infinite; background-size: 200% auto;"
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent-red to-primary dark:from-white dark:via-accent-red dark:to-white">Normas</span>
                     do Estado de São Paulo
                 </h1>
                 <p
@@ -243,17 +271,21 @@
 
                 <!-- Search Container Inspired by Image -->
                 <div id="search-glow-container"
-                    class="animated-glow relative z-50 w-full max-w-4xl mx-auto bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-[32px] border border-slate-200/50 dark:border-slate-700/50 shadow-md3 hover:border-slate-300 dark:hover:border-slate-600 focus-within:border-primary transition-all duration-300 flex flex-col mb-8 group overflow-visible">
+                    class="animated-glow relative z-50 w-full max-w-4xl mx-auto rounded-[32px] transition-all duration-300 flex flex-col mb-8 group overflow-visible">
+
+                    <!-- Solid background layer to block glow from bleeding inside -->
+                    <div
+                        class="absolute inset-0 bg-white dark:bg-slate-900 rounded-[32px] z-0 shadow-sm border border-slate-100 dark:border-slate-800 transition-all duration-300 group-hover:border-slate-300 outline-none group-focus-within:!border-primary">
+                    </div>
 
                     <!-- Top Row: Search Input -->
-                    <div class="flex items-center w-full px-6 pt-4 pb-2 relative z-10 transition-colors duration-200"
+                    <div class="flex items-center w-full px-5 md:px-6 py-2 md:pt-4 md:pb-2 relative z-10"
                         id="search-input-row">
-                        <input id="main-search-input"
-                            class="w-full h-12 bg-transparent border-none text-base md:text-lg font-medium focus:ring-0 px-0 text-slate-900 dark:text-white placeholder:text-slate-400"
-                            placeholder="Buscar termo, número da lei ou assunto" type="text" autocomplete="off" />
                         <span
-                            class="material-symbols-outlined text-slate-400 dark:text-slate-500 ml-2 select-none cursor-pointer hover:text-primary transition-all duration-300 hover:scale-110 active:scale-95"
-                            title="Busca com Inteligência Artificial">auto_awesome</span>
+                            class="material-symbols-outlined text-slate-400 dark:text-slate-500 mr-3 block">search</span>
+                        <input id="main-search-input"
+                            class="w-full h-12 md:h-12 bg-transparent border-none text-base md:text-lg font-medium focus:ring-0 px-0 text-slate-900 dark:text-white placeholder:text-slate-400"
+                            placeholder="Buscar termo, número da lei ou assunto" type="text" autocomplete="off" />
                     </div>
 
                     <!-- Autocomplete Dropdown (Google Style) -->
@@ -304,7 +336,8 @@
                     </div>
 
                     <!-- Bottom Row: Filters & Actions -->
-                    <div class="flex items-center justify-between px-6 pb-4 pt-2 relative z-20">
+                    <div id="search-filters-row"
+                        class="hidden md:flex items-center justify-between px-6 pb-4 pt-2 relative z-20 transition-all">
                         <!-- Left Actions: Feature Filters -->
                         <div class="flex flex-wrap items-center gap-3">
                             <!-- Tipo -->
@@ -412,10 +445,9 @@
 
                         <!-- Right Actions: Search Button MD3 -->
                         <button id="main-search-button"
-                            class="flex items-center gap-2 px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold hover:bg-slate-700 dark:hover:bg-slate-100 active:scale-95 transition-all duration-200 shadow-sm select-none"
+                            class="flex items-center justify-center w-12 h-12 shrink-0 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100 active:scale-95 transition-all duration-200 shadow-sm ml-auto select-none"
                             title="Buscar">
-                            <span class="material-symbols-outlined text-[18px]">search</span>
-                            Buscar
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
                         </button>
                     </div>
                 </div>
@@ -621,10 +653,17 @@
             </div>
         </section>
 
-        <!-- Big Numbers Divider -->
         <section class="max-w-6xl mx-auto px-6 py-12 md:py-16">
-            <div class="bg-black rounded-3xl p-8 md:p-12 shadow-sm border border-slate-900">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 items-center">
+            <div
+                class="relative overflow-hidden rounded-[32px] p-8 md:p-12 border border-slate-800 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),inset_0_0_20px_rgba(255,255,255,0.02),0_16px_40px_rgba(0,0,0,0.8)] bg-[#050505]/95 backdrop-blur-3xl">
+                <!-- Liquid Glass Inner Effects -->
+                <div class="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none">
+                </div>
+                <div
+                    class="absolute -top-1/4 -left-1/4 w-3/4 h-full bg-accent-red/10 blur-[90px] rounded-full pointer-events-none">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 items-center relative z-10">
                     <!-- Text Section -->
                     <div class="col-span-1 md:col-span-1 border-b md:border-b-0 border-slate-800 pb-8 md:pb-0">
                         <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-3">Nosso Impacto
@@ -705,30 +744,74 @@
                 <div class="relative w-full min-h-[400px]">
 
                     <!-- Tab Content: Tipos de Norma (Active) -->
-                    <div class="curation-tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 transition-opacity duration-500"
+                    <div class="curation-tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500"
                         id="tab-tipos">
-                        <!-- Card 1 -->
+                        <!-- Card 1: Constituição Estadual -->
                         <a href="busca-avancada.html"
                             class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
                                 class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
                                 <span
-                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">gavel</span>
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">account_balance</span>
                             </div>
                             <div class="flex-1">
                                 <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
-                                    Leis</h3>
-                                <p class="text-sm text-slate-500 font-medium leading-snug">Ordinárias e Complementares
+                                    Constituição Estadual</h3>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Lei Maior do Estado
                                 </p>
                             </div>
                         </a>
-                        <!-- Card 2 -->
+                        <!-- Card 2: Lei Complementar -->
                         <a href="busca-avancada.html"
                             class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
                                 class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-all duration-300">
                                 <span
-                                    class="material-symbols-outlined text-blue-600 text-2xl transition-colors">description</span>
+                                    class="material-symbols-outlined text-blue-600 text-2xl transition-colors">gavel</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
+                                    Lei Complementar</h3>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Regulamentações
+                                    constitucionais</p>
+                            </div>
+                        </a>
+                        <!-- Card 3: Lei Ordinária -->
+                        <a href="busca-avancada.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-green-50 dark:group-hover:bg-green-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-green-600 text-2xl transition-colors">balance</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
+                                    Lei Ordinária</h3>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Normas gerais do Legislativo
+                                </p>
+                            </div>
+                        </a>
+                        <!-- Card 4: Decretos-Lei -->
+                        <a href="busca-avancada.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-orange-50 dark:group-hover:bg-orange-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-orange-500 text-2xl transition-colors">history_edu</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
+                                    Decretos-Lei</h3>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Normas com força de lei</p>
+                            </div>
+                        </a>
+                        <!-- Card 5: Decretos -->
+                        <a href="busca-avancada.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-purple-50 dark:group-hover:bg-purple-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-purple-600 text-2xl transition-colors">description</span>
                             </div>
                             <div class="flex-1">
                                 <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
@@ -737,32 +820,18 @@
                                 </p>
                             </div>
                         </a>
-                        <!-- Card 3 -->
+                        <!-- Card 6: Leis Infradecreto -->
                         <a href="busca-avancada.html"
                             class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
                             <div
-                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-green-50 dark:group-hover:bg-green-900/20 transition-all duration-300">
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-teal-50 dark:group-hover:bg-teal-900/20 transition-all duration-300">
                                 <span
-                                    class="material-symbols-outlined text-green-600 text-2xl transition-colors">article</span>
+                                    class="material-symbols-outlined text-teal-600 text-2xl transition-colors">article</span>
                             </div>
                             <div class="flex-1">
                                 <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
-                                    Resoluções</h3>
-                                <p class="text-sm text-slate-500 font-medium leading-snug">Normativas de Secretarias</p>
-                            </div>
-                        </a>
-                        <!-- Card 4 -->
-                        <a href="busca-avancada.html"
-                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
-                            <div
-                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-orange-50 dark:group-hover:bg-orange-900/20 transition-all duration-300">
-                                <span
-                                    class="material-symbols-outlined text-orange-500 text-2xl transition-colors">assignment</span>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
-                                    Portarias</h3>
-                                <p class="text-sm text-slate-500 font-medium leading-snug">Atos administrativos internos
+                                    Leis Infradecreto</h3>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">Resoluções e Portarias
                                 </p>
                             </div>
                         </a>
@@ -826,7 +895,7 @@
                     </div>
 
                     <!-- Tab Content: Categorias Temáticas (Hidden) -->
-                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500"
+                    <div class="curation-tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 transition-opacity duration-500"
                         id="tab-categorias">
 
                         <a href="tema.html"
@@ -862,7 +931,7 @@
                             <div
                                 class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
                                 <span
-                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">security</span>
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">shield</span>
                             </div>
                             <div class="flex-1">
                                 <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
@@ -890,10 +959,10 @@
                             <div
                                 class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
                                 <span
-                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">business</span>
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">corporate_fare</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base leading-tight mb-1">
                                     Administração Pública</h3>
                                 <p class="text-sm text-slate-500 font-medium leading-snug">312 normas</p>
                             </div>
@@ -910,6 +979,34 @@
                                 <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">
                                     Justiça e Direitos</h3>
                                 <p class="text-sm text-slate-500 font-medium leading-snug">98 normas</p>
+                            </div>
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">group</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base leading-tight mb-1">
+                                    Desenvolvimento Social</h3>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">127 normas</p>
+                            </div>
+                        </a>
+
+                        <a href="tema.html"
+                            class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-[28px] p-6 flex flex-row items-center gap-5 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
+                                <span
+                                    class="material-symbols-outlined text-accent-red text-2xl transition-colors">work</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base leading-tight mb-1">
+                                    Economia e Finanças</h3>
+                                <p class="text-sm text-slate-500 font-medium leading-snug">201 normas</p>
                             </div>
                         </a>
                     </div>
@@ -1105,7 +1202,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-extrabold tracking-tight text-white">Catálogo de Normas SP
+                        <h2 class="text-2xl font-extrabold tracking-tight text-white">Portal de Normas SP
                         </h2>
                     </div>
                     <p class="max-w-sm mb-6 font-medium text-sm leading-relaxed">Plataforma inteligente de consulta à
@@ -1151,6 +1248,91 @@
         </div>
     </footer>
 
+    <!-- Mobile Filters Bottom Sheet -->
+    <div id="mobile-filters-sheet-overlay"
+        class="fixed inset-0 bg-slate-900/40 dark:bg-slate-900/80 backdrop-blur-sm z-[90] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+    </div>
+    <div id="mobile-filters-sheet"
+        class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 rounded-t-[32px] z-[100] transform translate-y-full transition-transform duration-300 shadow-2xl md:hidden border-t border-slate-200 dark:border-slate-800 flex flex-col max-h-[85vh]">
+        <!-- Handle -->
+        <div class="w-full flex justify-center pt-3 pb-2 cursor-pointer" id="mobile-filters-handle">
+            <div class="w-12 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+        </div>
+
+        <div class="px-6 pb-4">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Filtros de Busca</h3>
+
+            <div class="overflow-y-auto no-scrollbar pb-24 space-y-6">
+                <!-- Tipo Section -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Tipo de Norma</h4>
+                    <div class="flex overflow-x-auto no-scrollbar gap-2 pb-2 px-6 -mx-6 md:mx-0">
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-primary bg-primary/10 text-primary text-sm font-bold transition-colors">Todas</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Constituição</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Lei
+                            Complementar</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Lei
+                            Ordinária</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Decretos-Lei</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Decretos</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Leis
+                            Infradecreto</button>
+                    </div>
+                </div>
+
+                <!-- Autoridade Section -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Autoridade</h4>
+                    <div class="flex overflow-x-auto no-scrollbar gap-2 pb-2 px-6 -mx-6 md:mx-0">
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-primary bg-primary/10 text-primary text-sm font-bold transition-colors">Todas</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Governador</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">ALESP</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Secretarias</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">TJSP</button>
+                    </div>
+                </div>
+
+                <!-- Ano Section -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Ano</h4>
+                    <div class="flex overflow-x-auto no-scrollbar gap-2 pb-2 px-6 -mx-6 md:mx-0">
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-primary bg-primary/10 text-primary text-sm font-bold transition-colors">Todos</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">2024</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">2023</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">2022</button>
+                        <button
+                            class="chip-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">2021</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sticky Bottom Action -->
+            <div
+                class="absolute bottom-0 left-0 right-0 p-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+                <button onclick="document.getElementById('mobile-filters-sheet-overlay').click()"
+                    class="w-full flex items-center justify-center gap-2 py-3.5 rounded-[20px] bg-primary text-white font-bold text-base hover:bg-accent-red transition-all shadow-md active:scale-[0.98]">
+                    Aplicar Filtros
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Ripple effect micro-interaction (MD3)
         document.querySelectorAll('.ripple-container').forEach(el => {
@@ -1175,6 +1357,47 @@
         const searchFiltersRow = document.getElementById('search-filters-row');
         const searchButton = document.getElementById('main-search-button');
 
+        // Mobile Sheet Script
+        const mobileSheet = document.getElementById('mobile-filters-sheet');
+        const mobileOverlay = document.getElementById('mobile-filters-sheet-overlay');
+
+        function openMobileSheet() {
+            if (window.innerWidth < 768 && mobileSheet && mobileOverlay) {
+                mobileOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                mobileSheet.classList.remove('translate-y-full');
+            }
+        }
+        function closeMobileSheet() {
+            if (mobileSheet && mobileOverlay) {
+                mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
+                mobileSheet.classList.add('translate-y-full');
+            }
+        }
+
+        if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileSheet);
+        const sheetHandle = document.getElementById('mobile-filters-handle');
+        if (sheetHandle) {
+            sheetHandle.addEventListener('click', closeMobileSheet);
+            let startY;
+            sheetHandle.addEventListener('touchstart', e => startY = e.touches[0].clientY);
+            sheetHandle.addEventListener('touchmove', e => {
+                if (e.touches[0].clientY - startY > 50) closeMobileSheet();
+            });
+        }
+
+        // Pill toggles logic
+        document.querySelectorAll('.chip-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const parent = this.parentElement;
+                parent.querySelectorAll('.chip-btn').forEach(b => {
+                    b.classList.remove('border-primary', 'bg-primary/10', 'text-primary', 'font-bold');
+                    b.classList.add('border-slate-200', 'dark:border-slate-700', 'bg-white', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'font-medium');
+                });
+                this.classList.add('border-primary', 'bg-primary/10', 'text-primary', 'font-bold');
+                this.classList.remove('border-slate-200', 'dark:border-slate-700', 'bg-white', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'font-medium');
+            });
+        });
+
         const performSearch = (queryOverride) => {
             const query = queryOverride || searchInput.value.trim();
             if (query) {
@@ -1184,35 +1407,98 @@
             }
         };
 
-        if (searchInput && autocompleteDropdown && searchContainer && searchFiltersRow) {
+        if (searchInput && autocompleteDropdown && searchContainer) {
+            // Mock database for suggestions
+            const fullDataset = [
+                { icon: 'history', text: 'Licitação compras diretas', subtext: 'buscas recentes', highlight: true },
+                { icon: 'search', text: 'Constituição do Estado de São Paulo', subtext: '' },
+                { icon: 'search', text: 'Lei do IPVA', subtext: '13.296/2008' },
+                { icon: 'search', text: 'Código Sanitário Estadual', subtext: '' },
+                { icon: 'search', text: 'Estatuto dos Funcionários Públicos Civis', subtext: '10.261/1968' },
+                { icon: 'search', text: 'Lei de Proteção a Mananciais', subtext: '' },
+                { icon: 'search', text: 'Regulamento do ICMS', subtext: '' },
+                { icon: 'search', text: 'Licenciamento Ambiental Ambiental', subtext: 'Resolução' }
+            ];
+
+            const renderAutocompleteList = (items) => {
+                const list = document.getElementById('autocomplete-list');
+                if (!list) return;
+                list.innerHTML = '';
+
+                if (items.length === 0) {
+                    list.innerHTML = '<li class="px-6 py-4 text-slate-500 text-sm font-medium">Nenhum resultado encontrado.</li>';
+                    return;
+                }
+
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'px-6 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer flex items-center gap-3 transition-colors duration-150';
+
+                    const textColorClass = item.highlight ? 'text-primary dark:text-accent-red font-medium' : 'text-slate-700 dark:text-slate-300 font-medium';
+                    const iconClass = item.highlight ? 'text-primary dark:text-accent-red' : 'text-slate-400';
+                    const subtextHtml = item.subtext ? `<span class="text-slate-400 font-normal ml-1 text-sm">${item.subtext}</span>` : '';
+
+                    li.innerHTML = `
+                        <span class="material-symbols-outlined text-sm ${iconClass}">${item.icon}</span>
+                        <span class="${textColorClass}">${item.text} ${subtextHtml}</span>
+                    `;
+
+                    li.addEventListener('click', () => {
+                        performSearch(item.text);
+                    });
+
+                    list.appendChild(li);
+                });
+            };
+
             // Show dropdown on focus
             searchInput.addEventListener('focus', () => {
                 autocompleteDropdown.classList.remove('hidden');
                 autocompleteDropdown.classList.add('flex');
-                searchFiltersRow.classList.remove('flex');
-                searchFiltersRow.classList.add('hidden');
-                searchContainer.classList.add('shadow-2xl', 'ring-4', 'ring-primary/10', 'border-primary');
+                if (searchFiltersRow) searchFiltersRow.classList.add('!hidden');
+
+                // Render initial elements
+                const query = searchInput.value.toLowerCase().trim();
+                if (query.length === 0) {
+                    renderAutocompleteList(fullDataset.slice(0, 4));
+                } else {
+                    searchInput.dispatchEvent(new Event('input'));
+                }
+
+                // Add focused shadows to the inner element
+                const innerBg = searchContainer.querySelector('.inset-0');
+                if (innerBg) innerBg.classList.add('shadow-2xl', 'ring-4', 'ring-primary/10');
+
+                // Auto trigger mobile sheet
+                openMobileSheet();
             });
 
             // Hide dropdown when clicking outside
             document.addEventListener('click', (e) => {
-                if (!searchContainer.contains(e.target)) {
+                const isClickInsideContainer = searchContainer.contains(e.target);
+                const isClickInsideSheet = mobileSheet ? mobileSheet.contains(e.target) : false;
+                if (!isClickInsideContainer && !isClickInsideSheet) {
                     autocompleteDropdown.classList.remove('flex');
                     autocompleteDropdown.classList.add('hidden');
-                    searchFiltersRow.classList.remove('hidden');
-                    searchFiltersRow.classList.add('flex');
-                    searchContainer.classList.remove('shadow-2xl', 'ring-4', 'ring-primary/10', 'border-primary');
+                    if (searchFiltersRow) searchFiltersRow.classList.remove('!hidden');
+
+                    const innerBg = searchContainer.querySelector('.inset-0');
+                    if (innerBg) innerBg.classList.remove('shadow-2xl', 'ring-4', 'ring-primary/10');
                 }
             });
 
             // Handle typing (simulate filtering)
             searchInput.addEventListener('input', (e) => {
                 const query = e.target.value.toLowerCase().trim();
-                const listItems = autocompleteDropdown.querySelectorAll('li');
 
                 if (query.length > 0) {
-                    // Simulate filtering/fetching new results...
-                    // In a real app, you would fetch data here
+                    const filtered = fullDataset.filter(d =>
+                        d.text.toLowerCase().includes(query) ||
+                        d.subtext.toLowerCase().includes(query)
+                    ).slice(0, 5);
+                    renderAutocompleteList(filtered);
+                } else {
+                    renderAutocompleteList(fullDataset.slice(0, 4));
                 }
             });
 
