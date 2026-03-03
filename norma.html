@@ -721,9 +721,9 @@
                     hoverWidth: 1.5,
                     smooth: false,
                     color: {
-                        color: edgeColor,
-                        highlight: centralNodeBg,
-                        hover: centralNodeBg,
+                        color: cGray,
+                        highlight: cRed,
+                        hover: cRed,
                         inherit: false
                     }
                 },
@@ -883,7 +883,7 @@
 
                 // Restaura arestas
                 allEdges.forEach(edge => {
-                    edge.color = { color: edgeColor };
+                    edge.color = { color: cGray };
                     edge.width = 0.5;
                 });
                 edges.update(allEdges);
