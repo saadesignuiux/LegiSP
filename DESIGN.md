@@ -1,9 +1,9 @@
-# Design System: Catálogo Inteligente de Normas SP (LegiSP)
+# Design System: Catálogo Inteligente de Normas SP
 **Project ID:** 14598152960519276509
 
-## 1. Visual Theme & Atmosphere
+## 1. Visual Theme & Atm## Conceito Criativo
 
-O LegiSP adota uma estética **Editorial Governamental** — séria, legível e confiável, com toques de energia visual através do vermelho institucional. O layout é **airy** (generoso em espaço em branco) mas com hierarquia de informação densa e precisa. O tom visual evoca jornais de qualidade e portais institucionais modernos: tipografia bold em caixa alta, contraste extremo preto-e-branco, e o vermelho usado como acento de ação e urgência. O resultado é uma interface que comunica **autoridade sem burocracia**.
+O Normas SP adota uma estética **Editorial Governamental** — séria, legível e confiável, com toques de energia visual através do vermelho institucional. O layout é **airy** (generoso em espaço em branco) mas com hierarquia de informação densa e precisa. O tom visual evoca jornais de qualidade e portais institucionais modernos: tipografia bold em caixa alta, contraste extremo preto-e-branco, e o vermelho usado como acento de ação e urgência. O resultado é uma interface que comunica **autoridade sem burocracia**.
 
 ## 2. Color Palette & Roles
 
@@ -52,8 +52,9 @@ O LegiSP adota uma estética **Editorial Governamental** — séria, legível e 
 Use este bloco nos prompts do Stitch para garantir consistência visual:
 
 ```
-DESIGN SYSTEM LEGISP:
-- Visual theme: Editorial Governmental — authoritative, airy, high contrast black & white with red accent
+---
+DESIGN SYSTEM NORMAS SP:
+--- Visual theme: Editorial Governmental — authoritative, airy, high contrast black & white with red accent
 - Primary color: Pure Black (#000000) for CTAs, tags, logo
 - Accent color: Institutional Red (#E30613) for hover states, activity borders, highlights
 - Background: Pure White (#FFFFFF) main, Light Gray (#F4F4F4) for secondary sections

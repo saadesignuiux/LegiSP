@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="assets/img/brasao-sp.svg" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>LegiSP — Lei Nº 10.177/1998</title>
+    <title>Normas SP — Lei Nº 10.177/1998</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- Vis.js Network for Legal Graph -->
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
@@ -81,7 +81,7 @@
             </a>
             <nav class="hidden flex-wrap md:flex items-center gap-8">
                 <a class="header-nav-link text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 dark:after:bg-white after:transition-all after:duration-200 hover:after:w-full"
-                    href="sobre.html">Sobre o LegiSP</a>
+                    href="sobre.html">Sobre o Normas SP</a>
                 <a class="header-nav-link text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 dark:after:bg-white after:transition-all after:duration-200 hover:after:w-full"
                     href="busca-avancada.html">Busca Avançada</a>
             </nav>
@@ -530,10 +530,10 @@
                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 h-full flex-1 min-h-0">
                         <!-- Area do Grafo -->
                         <div
-                            class="lg:col-span-3 bg-slate-50 dark:bg-slate-900/50 rounded-[24px] border border-slate-200 dark:border-slate-800 overflow-hidden relative shadow-inner">
-                            <div id="legisp-graph" class="w-full h-full cursor-move"></div>
+                            class="lg:col-span-3 h-[600px] bg-slate-100 rounded-xl mb-8 relative border border-slate-200 overflow-hidden">
+                            <div id="normassp-graph" class="w-full h-full cursor-move"></div>
+                            <!-- Map Controls -->
                         </div>
-
                         <!-- Painel de Detalhes (Node selection) -->
                         <div id="node-panel"
                             class="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 flex flex-col shadow-sm transition-all h-full overflow-y-auto">
@@ -684,7 +684,7 @@
                 { from: 6, to: 1, color: { color: edgeColor, hover: "#94a3b8" } }
             ]);
 
-            var container = document.getElementById("legisp-graph");
+            var container = document.getElementById("normassp-graph");
             var data = { nodes: nodes, edges: edges };
             var options = {
                 nodes: {
