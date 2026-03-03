@@ -209,6 +209,25 @@
                             </div>
                         </nav>
                     </div>
+                    <!-- Side Graph Card -->
+                    <div class="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 px-2">Mapa Jurídico</h3>
+                        <div
+                            class="bg-white dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden group">
+                            <div id="side-graph"
+                                class="h-[250px] w-full bg-slate-50 dark:bg-slate-900/50 cursor-move relative">
+                                <!-- Overlay CTA -->
+                                <div
+                                    class="absolute inset-0 bg-slate-900/5 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none z-10">
+                                    <button id="open-graph-side-btn"
+                                        class="bg-primary text-white px-4 py-2 rounded-full font-bold text-xs shadow-md3 flex items-center gap-2 pointer-events-auto hover:bg-red-700 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">fullscreen</span>
+                                        Expandir Mapa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </aside>
             <!-- Center Column: Conteúdo (3/5) -->
             <section id="main-content"
@@ -237,12 +256,6 @@
                                 class="bg-surface dark:bg-white/10 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-600 shadow-sm ripple-container">ESTADUAL</span>
                         </div>
                         <div class="flex items-center gap-2 relative">
-                            <!-- Botão Grafo Above-the-fold -->
-                            <button id="open-graph-btn"
-                                class="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 rounded-full font-bold text-sm shadow-sm transition-all duration-200 ripple-container border border-primary/20 hover:border-primary/40">
-                                <span class="material-symbols-outlined text-lg">travel_explore</span>
-                                Mostrar Grafo
-                            </button>
 
                             <!-- Botão Expandir / Modo Foco -->
                             <button id="top-focus-toggle" onclick="toggleFocusMode()"
@@ -478,6 +491,25 @@
                             class="text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
                             Constituição da República Federativa do Brasil</p>
                     </a>
+                </div>
+                <!-- Side Graph Card -->
+                <div class="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 px-2">Mapa Jurídico</h3>
+                    <div
+                        class="bg-white dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden group">
+                        <div id="side-graph"
+                            class="h-[250px] w-full bg-slate-50 dark:bg-slate-900/50 cursor-move relative">
+                            <!-- Overlay CTA -->
+                            <div
+                                class="absolute inset-0 bg-slate-900/5 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none z-10">
+                                <button id="open-graph-side-btn"
+                                    class="bg-primary text-white px-4 py-2 rounded-full font-bold text-xs shadow-md3 flex items-center gap-2 pointer-events-auto hover:bg-red-700 transition-colors">
+                                    <span class="material-symbols-outlined text-sm">fullscreen</span>
+                                    Expandir Mapa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </aside>
         </div>
@@ -738,6 +770,26 @@
 
             var network = new vis.Network(container, data, options);
 
+            // Grafo na sidebar
+            var sideContainer = document.getElementById("side-graph");
+            var sideOptions = Object.assign({}, options);
+            sideOptions.interaction = Object.assign({}, options.interaction, { dragNodes: false, zoomView: true });
+            var sideNetwork = new vis.Network(sideContainer, data, sideOptions);
+
+            const openSideBtn = document.getElementById("open-graph-side-btn");
+            if (openSideBtn) {
+                openSideBtn.addEventListener("click", () => {
+                    document.getElementById("graph-modal").classList.remove("hidden", "flex", "items-center", "justify-center");
+                    document.getElementById("graph-modal").classList.add("flex");
+                    document.body.style.overflow = "hidden";
+                    setTimeout(() => {
+                        document.getElementById("graph-modal").classList.remove("opacity-0");
+                        document.getElementById("graph-modal-content").classList.remove("scale-95");
+                        network.fit();
+                    }, 10);
+                });
+            }
+
             // ====== Lógica do Modo Foco Ocultada dentro do DOMContentLoaded ====== //
             window.toggleFocusMode = function () {
                 const body = document.body;
@@ -886,26 +938,11 @@
             }, 1200);
 
             // Graph Modal Logic
-            const openGraphBtn = document.getElementById('open-graph-btn');
             const closeGraphBtn = document.getElementById('close-graph-btn');
             const graphModal = document.getElementById('graph-modal');
             const graphContent = document.getElementById('graph-modal-content');
 
-            if (openGraphBtn && closeGraphBtn && graphModal) {
-                openGraphBtn.addEventListener('click', () => {
-                    graphModal.classList.remove('hidden');
-                    graphModal.classList.add('flex');
-                    // Pequeno delay para a animação de opacidade funcionar
-                    setTimeout(() => {
-                        graphModal.classList.remove('opacity-0');
-                        graphContent.classList.remove('scale-95');
-                        graphContent.classList.add('scale-100');
-                        setTimeout(() => {
-                            if (typeof network !== 'undefined') network.fit();
-                        }, 50); // Ajusta o zoom apos renderizar visualmente
-                    }, 10);
-                });
-
+            if (closeGraphBtn && graphModal) {
                 closeGraphBtn.addEventListener('click', () => {
                     graphModal.classList.add('opacity-0');
                     graphContent.classList.remove('scale-100');
