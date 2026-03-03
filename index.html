@@ -17,7 +17,9 @@
         rel="stylesheet" />
     <!-- Material Design 3 System -->
     <link rel="stylesheet" href="assets/css/md3.css">
+    <link rel="stylesheet" href="assets/css/globals.css">
     <link rel="icon" type="image/svg+xml" href="assets/img/brasao-sp.svg" />
+
     <script src="assets/js/md3-tailwind-config.js"></script>
     <title>Portal Inteligente de Normas - SP</title>
     <style>
@@ -1192,6 +1194,172 @@
                         Ver histórico completo
                     </button>
                 </aside>
+            </div>
+        </section>
+
+        <!-- Partners Carousel Section -->
+        <section
+            class="py-16 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800/60 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 mb-10 text-center">
+                <p class="text-xs font-black uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500">Fontes e
+                    Parceiros Institucionais</p>
+            </div>
+            <!-- Marquee wrapper -->
+            <div class="relative">
+                <!-- Fade edges -->
+                <div
+                    class="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10">
+                </div>
+                <div
+                    class="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10">
+                </div>
+
+                <!-- Scrolling track -->
+                <div class="flex overflow-hidden">
+                    <div class="logos-marquee flex shrink-0 items-center gap-16 pr-16">
+                        <!-- Detran.SP -->
+                        <div
+                            class="shrink-0 flex items-center select-none h-12 opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100"
+                                class="h-10 w-auto fill-slate-700 dark:fill-slate-300">
+                                <!-- Play arrow icon -->
+                                <polygon points="10,10 10,75 55,42" fill="#888" />
+                                <!-- Detran text -->
+                                <text x="70" y="62" font-family="Arial, sans-serif" font-size="52" font-weight="bold"
+                                    fill="currentColor">Detran</text>
+                                <text x="237" y="62" font-family="Arial, sans-serif" font-size="52" font-weight="bold"
+                                    fill="#888">.</text>
+                                <text x="249" y="62" font-family="Arial, sans-serif" font-size="52" font-weight="bold"
+                                    fill="#888">SP</text>
+                            </svg>
+                        </div>
+                        <!-- Diário Oficial -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none h-12 opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center">
+                            <span
+                                class="text-[13px] font-black text-slate-600 dark:text-slate-300 tracking-tight leading-none uppercase">Diário
+                                Oficial</span>
+                            <span
+                                class="text-[9px] font-semibold text-slate-400 dark:text-slate-500 tracking-widest uppercase mt-0.5">Estado
+                                de São Paulo</span>
+                        </div>
+                        <!-- TCESP -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center h-12">
+                            <span
+                                class="text-[26px] font-black text-slate-600 dark:text-slate-300 tracking-tight leading-none">TCESP</span>
+                            <span
+                                class="text-[8px] font-semibold text-slate-400 dark:text-slate-500 tracking-wider uppercase">Tribunal
+                                de Contas do Estado de São Paulo</span>
+                        </div>
+                        <!-- Imprensa Oficial -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center h-12">
+                            <span
+                                class="text-[14px] font-black text-slate-600 dark:text-slate-300 tracking-[-0.02em] italic leading-none lowercase">imprensaoficial</span>
+                            <span
+                                class="text-[8px] font-semibold text-slate-400 dark:text-slate-500 tracking-widest uppercase mt-0.5">Governo
+                                do Estado de São Paulo</span>
+                        </div>
+                        <!-- ALESP -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center h-12">
+                            <span
+                                class="text-[22px] font-black text-slate-600 dark:text-slate-300 tracking-tight leading-none">ALESP</span>
+                            <span
+                                class="text-[8px] font-semibold text-slate-400 dark:text-slate-500 tracking-wider uppercase">Assembleia
+                                Legislativa do Estado de SP</span>
+                        </div>
+                        <!-- Governo SP -->
+                        <div
+                            class="shrink-0 flex items-center gap-2 select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer h-12">
+                            <span
+                                class="text-[14px] font-extrabold text-slate-600 dark:text-slate-300 tracking-tight leading-none uppercase">Governo</span>
+                            <span
+                                class="text-[23px] font-black text-slate-500 dark:text-slate-400 leading-none">SP</span>
+                        </div>
+                        <!-- PGE-SP -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center h-12">
+                            <span
+                                class="text-[22px] font-black text-slate-600 dark:text-slate-300 tracking-tight leading-none">PGE·SP</span>
+                            <span
+                                class="text-[8px] font-semibold text-slate-400 dark:text-slate-500 tracking-wider uppercase">Procuradoria
+                                Geral do Estado</span>
+                        </div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="logos-marquee flex shrink-0 items-center gap-16 pr-16" aria-hidden="true">
+                        <!-- Detran.SP -->
+                        <div
+                            class="shrink-0 flex items-center select-none h-12 opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100"
+                                class="h-10 w-auto fill-slate-700 dark:fill-slate-300">
+                                <polygon points="10,10 10,75 55,42" fill="#888" />
+                                <text x="70" y="62" font-family="Arial, sans-serif" font-size="52" font-weight="bold"
+                                    fill="currentColor">Detran</text>
+                                <text x="237" y="62" font-family="Arial, sans-serif" font-size="52" font-weight="bold"
+                                    fill="#888">.</text>
+                                <text x="249" y="62" font-family="Arial, sans-serif" font-size="52" font-weight="bold"
+                                    fill="#888">SP</text>
+                            </svg>
+                        </div>
+                        <!-- Diário Oficial -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none h-12 opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center">
+                            <span
+                                class="text-[13px] font-black text-slate-600 dark:text-slate-300 tracking-tight leading-none uppercase">Diário
+                                Oficial</span>
+                            <span
+                                class="text-[9px] font-semibold text-slate-400 dark:text-slate-500 tracking-widest uppercase mt-0.5">Estado
+                                de São Paulo</span>
+                        </div>
+                        <!-- TCESP -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center h-12">
+                            <span
+                                class="text-[26px] font-black text-slate-600 dark:text-slate-300 tracking-tight leading-none">TCESP</span>
+                            <span
+                                class="text-[8px] font-semibold text-slate-400 dark:text-slate-500 tracking-wider uppercase">Tribunal
+                                de Contas do Estado de São Paulo</span>
+                        </div>
+                        <!-- Imprensa Oficial -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center h-12">
+                            <span
+                                class="text-[14px] font-black text-slate-600 dark:text-slate-300 tracking-[-0.02em] italic leading-none lowercase">imprensaoficial</span>
+                            <span
+                                class="text-[8px] font-semibold text-slate-400 dark:text-slate-500 tracking-widest uppercase mt-0.5">Governo
+                                do Estado de São Paulo</span>
+                        </div>
+                        <!-- ALESP -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center h-12">
+                            <span
+                                class="text-[22px] font-black text-slate-600 dark:text-slate-300 tracking-tight leading-none">ALESP</span>
+                            <span
+                                class="text-[8px] font-semibold text-slate-400 dark:text-slate-500 tracking-wider uppercase">Assembleia
+                                Legislativa do Estado de SP</span>
+                        </div>
+                        <!-- Governo SP -->
+                        <div
+                            class="shrink-0 flex items-center gap-2 select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer h-12">
+                            <span
+                                class="text-[14px] font-extrabold text-slate-600 dark:text-slate-300 tracking-tight leading-none uppercase">Governo</span>
+                            <span
+                                class="text-[23px] font-black text-slate-500 dark:text-slate-400 leading-none">SP</span>
+                        </div>
+                        <!-- PGE-SP -->
+                        <div
+                            class="shrink-0 flex flex-col items-start select-none opacity-40 dark:opacity-30 grayscale hover:opacity-80 dark:hover:opacity-60 hover:grayscale-0 transition-all duration-300 cursor-pointer justify-center h-12">
+                            <span
+                                class="text-[22px] font-black text-slate-600 dark:text-slate-300 tracking-tight leading-none">PGE·SP</span>
+                            <span
+                                class="text-[8px] font-semibold text-slate-400 dark:text-slate-500 tracking-wider uppercase">Procuradoria
+                                Geral do Estado</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

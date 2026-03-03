@@ -1,0 +1,21 @@
+/* =============================
+   Logo Marquee / Carousel
+   ============================= */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.logos-marquee {
+    animation: marquee 28s linear infinite;
+}
+
+.logos-marquee:hover,
+.flex:hover>.logos-marquee {
+    animation-play-state: paused;
+}
