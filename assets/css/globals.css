@@ -7,12 +7,12 @@
     }
 
     100% {
-        transform: translateX(-50%);
+        transform: translateX(-100%);
     }
 }
 
 .logos-marquee {
-    animation: marquee 28s linear infinite;
+    animation: marquee 80s linear infinite;
 }
 
 .logos-marquee:hover,
