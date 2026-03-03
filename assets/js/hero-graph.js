@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         maxVelocity: 0.15, // Extremely slow baseline
         minRadius: 1.5,
         maxRadius: 3.5,
-        connectionDistance: 150,
-        mouseRadius: 400, // Large radius to pull from 360 degrees afar
+        connectionDistance: 180,
+        mouseRadius: 550, // Larger radius for more expansive effect
         baseColor: 'rgba(148, 163, 184, ', // Slate-400
     };
 
@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Pull gently towards mouse
                     const force = (config.mouseRadius - distance) / config.mouseRadius;
                     // Much gentler attraction (scale of 3-4 out of 10)
-                    this.vx += (dx / distance) * force * 0.04;
-                    this.vy += (dy / distance) * force * 0.04;
+                    this.vx += (dx / distance) * force * 0.055;
+                    this.vy += (dy / distance) * force * 0.055;
 
                     // Higher friction creates the "cloud" effect without erratic orbiting
                     this.vx *= 0.92;
@@ -124,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const glow = ctxBg.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, config.mouseRadius);
 
             // Soft white glow that illuminates the gray nodes
-            glow.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
-            glow.addColorStop(0.5, 'rgba(255, 255, 255, 0.15)');
+            glow.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
+            glow.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
             glow.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
             ctxBg.fillStyle = glow;
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             mouseConnections.sort((a, b) => a.distance - b.distance);
-            mouseConnections = mouseConnections.slice(0, 3); // Max 3 connections
+            mouseConnections = mouseConnections.slice(0, 5); // Max 5 connections
 
             for (let conn of mouseConnections) {
                 const opacity = 1 - (conn.distance / config.connectionDistance);
@@ -242,22 +242,37 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeCanvas);
 
     const heroSection = canvasBg.parentElement;
-    const searchInput = document.getElementById('main-search-input');
     let isSearchActive = false;
 
-    if (searchInput) {
-        searchInput.addEventListener('focus', () => {
-            isSearchActive = true;
-            // Instantly hide the mouse effect
-            mouse.x = -1000;
-            mouse.y = -1000;
-            canvasLens.style.setProperty('--mx', `-1000px`);
-            canvasLens.style.setProperty('--my', `-1000px`);
-        });
+    function hideGraphEffect() {
+        isSearchActive = true;
+        mouse.x = -1000;
+        mouse.y = -1000;
+        canvasLens.style.setProperty('--mx', `-1000px`);
+        canvasLens.style.setProperty('--my', `-1000px`);
+    }
 
-        searchInput.addEventListener('blur', () => {
-            isSearchActive = false;
-        });
+    function showGraphEffect() {
+        isSearchActive = false;
+    }
+
+    // Hide effect when hovering over interactive UI elements
+    const hideZones = [
+        document.getElementById('search-glow-container'),
+        document.getElementById('search-filters-row'),
+        document.getElementById('cidadao-category-pills')
+    ].filter(Boolean);
+
+    hideZones.forEach(zone => {
+        zone.addEventListener('mouseenter', hideGraphEffect);
+        zone.addEventListener('mouseleave', showGraphEffect);
+    });
+
+    // Also hide on search input focus (keyboard/touch users)
+    const searchInput = document.getElementById('main-search-input');
+    if (searchInput) {
+        searchInput.addEventListener('focus', hideGraphEffect);
+        searchInput.addEventListener('blur', showGraphEffect);
     }
 
     heroSection.addEventListener('mousemove', (e) => {

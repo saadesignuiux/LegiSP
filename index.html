@@ -240,7 +240,7 @@
             <canvas id="hero-graph-bg"
                 class="absolute inset-0 w-full h-full pointer-events-none z-0 blur-[12px] opacity-30"></canvas>
             <canvas id="hero-graph-lens" class="absolute inset-0 w-full h-full pointer-events-none z-[1]"
-                style="-webkit-mask-image: radial-gradient(circle 350px at var(--mx, -1000px) var(--my, -1000px), black 5%, transparent 60%); mask-image: radial-gradient(circle 350px at var(--mx, -1000px) var(--my, -1000px), black 5%, transparent 60%);"></canvas>
+                style="-webkit-mask-image: radial-gradient(circle 500px at var(--mx, -1000px) var(--my, -1000px), black 5%, transparent 60%); mask-image: radial-gradient(circle 500px at var(--mx, -1000px) var(--my, -1000px), black 5%, transparent 60%);"></canvas>
 
             <div class="max-w-4xl w-full mx-auto text-center relative z-10">
 
@@ -499,7 +499,9 @@
                 </div>
 
                 <!-- Partner Logos Carousel -->
-                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 text-center mt-12 mb-4 relative z-10">Fontes e Parceiros</p>
+                <p
+                    class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 text-center mt-12 mb-4 relative z-10">
+                    Fontes e Parceiros</p>
                 <div class="pb-6 mb-6" style="width: 100vw; margin-left: calc(-50vw + 50%);">
                     <!-- Scroll Track -->
                     <div
@@ -1312,73 +1314,118 @@
         <!-- FAQ Section -->
         <section class="py-20 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800/60">
             <div class="max-w-3xl mx-auto px-6">
-                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 text-center mb-3">Dúvidas Frequentes</p>
-                <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 dark:text-white tracking-tight text-center mb-12">Perguntas e Respostas</h2>
+                <p
+                    class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 text-center mb-3">
+                    Dúvidas Frequentes</p>
+                <h2
+                    class="text-3xl md:text-4xl font-semibold text-slate-900 dark:text-white tracking-tight text-center mb-12">
+                    Perguntas e Respostas</h2>
 
                 <div class="space-y-4" id="faq-accordion">
                     <!-- FAQ 1 -->
-                    <details class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden" open>
-                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
-                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">O que é o Normas SP?</span>
-                            <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
+                    <details
+                        class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden"
+                        open>
+                        <summary
+                            class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
+                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">O que é o Normas
+                                SP?</span>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
                         </summary>
                         <div class="px-6 pb-5 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            O Normas SP é o portal inteligente de legislação do Estado de São Paulo. Ele reúne leis, decretos, resoluções e demais atos normativos estaduais em um único lugar, permitindo busca avançada, visualização de relações entre normas e acompanhamento de alterações legislativas.
+                            O Normas SP é o portal inteligente de legislação do Estado de São Paulo. Ele reúne leis,
+                            decretos, resoluções e demais atos normativos estaduais em um único lugar, permitindo busca
+                            avançada, visualização de relações entre normas e acompanhamento de alterações legislativas.
                         </div>
                     </details>
 
                     <!-- FAQ 2 -->
-                    <details class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
-                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
-                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">Como faço para pesquisar uma norma?</span>
-                            <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
+                    <details
+                        class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
+                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">Como faço para
+                                pesquisar uma norma?</span>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
                         </summary>
                         <div class="px-6 pb-5 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Utilize a barra de busca na página inicial. No modo <strong>Cidadão</strong>, busque por assunto em linguagem simples (ex.: "licença médica", "aposentadoria"). No modo <strong>Jurídico</strong>, utilize filtros avançados como tipo de norma, autoridade emissora e ano de publicação para uma pesquisa técnica de alta precisão.
+                            Utilize a barra de busca na página inicial. No modo <strong>Cidadão</strong>, busque por
+                            assunto em linguagem simples (ex.: "licença médica", "aposentadoria"). No modo
+                            <strong>Jurídico</strong>, utilize filtros avançados como tipo de norma, autoridade emissora
+                            e ano de publicação para uma pesquisa técnica de alta precisão.
                         </div>
                     </details>
 
                     <!-- FAQ 3 -->
-                    <details class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
-                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
-                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">As normas estão sempre atualizadas?</span>
-                            <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
+                    <details
+                        class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
+                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">As normas estão
+                                sempre atualizadas?</span>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
                         </summary>
                         <div class="px-6 pb-5 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Sim. O portal é alimentado diretamente pelas fontes oficiais do Estado de São Paulo, incluindo o Diário Oficial, a Assembleia Legislativa e demais órgãos competentes. As atualizações são processadas continuamente para garantir que você tenha acesso à versão mais recente de cada norma.
+                            Sim. O portal é alimentado diretamente pelas fontes oficiais do Estado de São Paulo,
+                            incluindo o Diário Oficial, a Assembleia Legislativa e demais órgãos competentes. As
+                            atualizações são processadas continuamente para garantir que você tenha acesso à versão mais
+                            recente de cada norma.
                         </div>
                     </details>
 
                     <!-- FAQ 4 -->
-                    <details class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
-                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
-                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">O que é o Grafo de Relações?</span>
-                            <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
+                    <details
+                        class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
+                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">O que é o Grafo de
+                                Relações?</span>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
                         </summary>
                         <div class="px-6 pb-5 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            O Grafo de Relações é uma visualização interativa que mostra como uma norma se conecta com outras no ordenamento jurídico. Ele exibe relações de modificação, hierarquia, regulamentação e revogação, ajudando você a entender o impacto e o contexto de cada lei.
+                            O Grafo de Relações é uma visualização interativa que mostra como uma norma se conecta com
+                            outras no ordenamento jurídico. Ele exibe relações de modificação, hierarquia,
+                            regulamentação e revogação, ajudando você a entender o impacto e o contexto de cada lei.
                         </div>
                     </details>
 
                     <!-- FAQ 5 -->
-                    <details class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
-                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
-                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">Qual a diferença entre os modos Cidadão e Jurídico?</span>
-                            <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
+                    <details
+                        class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
+                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">Qual a diferença
+                                entre os modos Cidadão e Jurídico?</span>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
                         </summary>
                         <div class="px-6 pb-5 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            O modo <strong>Cidadão</strong> oferece uma experiência simplificada, com busca por assunto e categorias temáticas como Educação, Saúde e Meio Ambiente. Já o modo <strong>Jurídico</strong> é voltado para profissionais do direito, com filtros avançados por tipo de norma, autoridade emissora e período, permitindo uma pesquisa técnica mais detalhada.
+                            O modo <strong>Cidadão</strong> oferece uma experiência simplificada, com busca por assunto
+                            e categorias temáticas como Educação, Saúde e Meio Ambiente. Já o modo
+                            <strong>Jurídico</strong> é voltado para profissionais do direito, com filtros avançados por
+                            tipo de norma, autoridade emissora e período, permitindo uma pesquisa técnica mais
+                            detalhada.
                         </div>
                     </details>
 
                     <!-- FAQ 6 -->
-                    <details class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
-                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
-                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">O portal é gratuito?</span>
-                            <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
+                    <details
+                        class="group bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
+                            <span class="text-base font-semibold text-slate-900 dark:text-white pr-4">O portal é
+                                gratuito?</span>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0">expand_more</span>
                         </summary>
                         <div class="px-6 pb-5 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Sim, o Normas SP é um serviço público e totalmente gratuito. O acesso à legislação é um direito de todo cidadão e o portal foi desenvolvido para tornar esse acesso o mais fácil e eficiente possível.
+                            Sim, o Normas SP é um serviço público e totalmente gratuito. O acesso à legislação é um
+                            direito de todo cidadão e o portal foi desenvolvido para tornar esse acesso o mais fácil e
+                            eficiente possível.
                         </div>
                     </details>
                 </div>
