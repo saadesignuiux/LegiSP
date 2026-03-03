@@ -415,20 +415,28 @@
                     </button>
                 </div>
                 <!-- Side Graph Card -->
-                <div id="side-graph-card" class="bg-white dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden relative group transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-slate-300 dark:hover:border-slate-600 mb-8 cursor-pointer transform hover:-translate-y-1">
-                    <div class="px-5 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center transition-colors group-hover:bg-slate-100 dark:group-hover:bg-slate-800">
-                        <h3 class="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2"><span class="material-symbols-outlined text-sm">hub</span> GRAFO DE RELAÇÕES</h3>
+                <div id="side-graph-card"
+                    class="bg-white dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden relative group transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-slate-300 dark:hover:border-slate-600 mb-8 cursor-pointer transform hover:-translate-y-1">
+                    <div
+                        class="px-5 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center transition-colors group-hover:bg-slate-100 dark:group-hover:bg-slate-800">
+                        <h3
+                            class="text-[11px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">hub</span> GRAFO DE RELAÇÕES</h3>
                         <div class="flex items-center gap-2 opacity-80">
                             <span class="relative flex h-2 w-2 group-hover:scale-125 transition-transform">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-red"></span>
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-red"></span>
                             </span>
                         </div>
                     </div>
-                    <div id="side-graph" class="h-[280px] w-full bg-slate-50/50 dark:bg-slate-900/50 relative transition-colors group-hover:bg-white dark:group-hover:bg-slate-900">
+                    <div id="side-graph"
+                        class="h-[280px] w-full bg-slate-50/50 dark:bg-slate-900/50 relative transition-colors group-hover:bg-white dark:group-hover:bg-slate-900">
                         <!-- Subtle Hover Indicator -->
-                        <div class="absolute inset-0 bg-slate-900/0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none z-10">
-                             <div class="w-full h-full border-2 border-accent-red/20 absolute inset-0 rounded-b-xl"></div>
+                        <div
+                            class="absolute inset-0 bg-slate-900/0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none z-10">
+                            <div class="w-full h-full border-2 border-accent-red/20 absolute inset-0 rounded-b-xl">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -489,20 +497,50 @@
 
                 <div class="flex-1 p-6 flex flex-col relative h-full min-h-0">
                     <!-- Legenda Overlay -->
-                    <div class="mb-4 flex flex-col gap-2 text-[10px] font-bold absolute top-6 left-6 z-10 pointer-events-none max-w-[200px]">
-                        <span class="flex items-center gap-2 bg-white/90 dark:bg-slate-800/95 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow-sm backdrop-blur-md border border-slate-200 dark:border-slate-700 pointer-events-auto">
+                    <div
+                        class="mb-4 flex flex-col gap-2 text-[10px] font-bold absolute top-6 left-6 z-10 pointer-events-none max-w-[200px]">
+                        <span
+                            class="flex items-center gap-2 bg-white/90 dark:bg-slate-800/95 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow-sm backdrop-blur-md border border-slate-200 dark:border-slate-700 pointer-events-auto">
                             <div class="relative flex h-2 w-2">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-red"></span>
-                            </span>
-                            Norma Atual
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-red"></span>
                         </span>
-                        <div class="bg-white/90 dark:bg-slate-800/95 rounded-lg shadow-sm backdrop-blur-md border border-slate-200 dark:border-slate-700 p-4 pointer-events-auto space-y-3">
-                            <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2 border-b border-slate-200 dark:border-slate-700 pb-1">Taxonomia de Relações</div>
-                            <div class="flex items-center gap-2 text-slate-600 dark:text-slate-300 w-full justify-between"><div class="flex items-center gap-2"><div class="w-4 h-0.5 bg-[#E30613]"></div> <span class="font-bold">Modificação</span></div><span class="text-[8px] text-slate-400">Altera</span></div>
-                            <div class="flex items-center gap-2 text-slate-600 dark:text-slate-300 w-full justify-between"><div class="flex items-center gap-2"><div class="w-4 h-0.5 bg-[#1e293b] dark:bg-white"></div> <span class="font-bold">Hierarquia</span></div><span class="text-[8px] text-slate-400">Decorre</span></div>
-                            <div class="flex items-center gap-2 text-slate-600 dark:text-slate-300 w-full justify-between"><div class="flex items-center gap-2"><div class="w-4 h-0.5 border-t-2 border-dashed border-[#1e293b] dark:border-white"></div> <span class="font-bold">Regulamentação</span></div><span class="text-[8px] text-slate-400">Regula</span></div>
-                            <div class="flex items-center gap-2 text-slate-600 dark:text-slate-300 w-full justify-between"><div class="flex items-center gap-2"><div class="w-4 h-0.5 border-t-2 border-dotted border-[#94a3b8]"></div> <span class="font-bold">Revogação</span></div><span class="text-[8px] text-slate-400">Revoga</span></div>
+                        Norma Atual
+                        </span>
+                        <div
+                            class="bg-white/90 dark:bg-slate-800/95 rounded-lg shadow-sm backdrop-blur-md border border-slate-200 dark:border-slate-700 p-4 pointer-events-auto space-y-3">
+                            <div
+                                class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2 border-b border-slate-200 dark:border-slate-700 pb-1">
+                                Taxonomia de Relações</div>
+                            <div
+                                class="flex items-center gap-2 text-slate-600 dark:text-slate-300 w-full justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-4 h-0.5 bg-[#E30613]"></div> <span
+                                        class="font-bold">Modificação</span>
+                                </div><span class="text-[8px] text-slate-400">Altera</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 text-slate-600 dark:text-slate-300 w-full justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-4 h-0.5 bg-[#1e293b] dark:bg-white"></div> <span
+                                        class="font-bold">Hierarquia</span>
+                                </div><span class="text-[8px] text-slate-400">Decorre</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 text-slate-600 dark:text-slate-300 w-full justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-4 h-0.5 border-t-2 border-dashed border-[#1e293b] dark:border-white">
+                                    </div> <span class="font-bold">Regulamentação</span>
+                                </div><span class="text-[8px] text-slate-400">Regula</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 text-slate-600 dark:text-slate-300 w-full justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-4 h-0.5 border-t-2 border-dotted border-[#94a3b8]"></div> <span
+                                        class="font-bold">Revogação</span>
+                                </div><span class="text-[8px] text-slate-400">Revoga</span>
+                            </div>
                         </div>
                     </div>
 
@@ -659,13 +697,13 @@
                 // Hierarquia (fundamentado em) -> Main -> CF
                 { from: 1, to: 2, arrows: 'to', color: { color: cDark, hover: cDark }, width: 2 },
                 // Regulamentação (regulamenta) -> Decreto -> Main
-                { from: 3, to: 1, arrows: 'to', dashes: [8,6], color: { color: cDark, hover: cDark }, width: 2 },
+                { from: 3, to: 1, arrows: 'to', dashes: [8, 6], color: { color: cDark, hover: cDark }, width: 2 },
                 // Revogação / Suspensão -> Main substitui partes da 10.261
-                { from: 1, to: 4, arrows: 'to', dashes: [2,4], color: { color: cGray, hover: cDark }, width: 1.5 },
+                { from: 1, to: 4, arrows: 'to', dashes: [2, 4], color: { color: cGray, hover: cDark }, width: 1.5 },
                 // Modificação -> 12.234 altera Main
                 { from: 5, to: 1, arrows: 'to', color: { color: cRed, hover: cDark }, width: 3 },
                 // Regulamentação / Complementa -> Portaria complementa Main
-                { from: 6, to: 1, arrows: 'to', dashes: [8,6], color: { color: cGray, hover: cDark }, width: 1 }
+                { from: 6, to: 1, arrows: 'to', dashes: [8, 6], color: { color: cGray, hover: cDark }, width: 1 }
             ]);
 
             var container = document.getElementById("normassp-graph");
@@ -722,13 +760,35 @@
 
             var network = new vis.Network(container, data, options);
 
-            // Grafo na sidebar
+            // Grafo na sidebar - ISOLATED DATA so modal doesn't collapse it
             var sideContainer = document.getElementById("side-graph");
-            var sideOptions = Object.assign({}, options);
-            // Continuous micro-interaction: disable stabilization and interactions
-            sideOptions.interaction = Object.assign({}, options.interaction, { dragNodes: false, zoomView: false, dragView: false });
-            sideOptions.physics = Object.assign({}, options.physics, { stabilization: false });
-            var sideNetwork = new vis.Network(sideContainer, data, sideOptions);
+            var sideData = {
+                nodes: new vis.DataSet([
+                    { id: 1, label: "Lei Nº 10.177/1998", badge: "Lei Ordinária", desc: "Regula o processo administrativo.", shape: "dot", size: 24, x: 0, y: 0, fixed: true, color: { background: cRed, border: cRed, highlight: "#cc0000" }, font: { color: "#ffffff", size: 13, face: 'Inter', bold: true, strokeWidth: 0 }, labelHighlightBold: true, title: "Norma focal" },
+                    { id: 2, label: "CF/1988", shape: "dot", size: 12, color: { background: cDark, border: cDark, highlight: cGray }, font: { color: cDark, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' } },
+                    { id: 3, label: "Decreto Nº 44.567/1999", shape: "dot", size: 10, color: { background: cDark, border: cDark, highlight: cGray }, font: { color: cDark, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' } },
+                    { id: 4, label: "Lei Nº 10.261/1968", shape: "dot", size: 8, color: { background: cGray, border: cGray, highlight: cDark }, font: { color: cGray, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' } },
+                    { id: 5, label: "Lei Nº 12.234/2005", shape: "dot", size: 14, color: { background: cRed, border: cRed, highlight: cDark }, font: { color: cDark, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' } },
+                    { id: 6, label: "Portaria PGE 12/2020", shape: "dot", size: 8, color: { background: cGray, border: cGray, highlight: cDark }, font: { color: cGray, size: 11, face: 'Inter', strokeWidth: 3, strokeColor: '#ffffff' } }
+                ]),
+                edges: new vis.DataSet([
+                    { from: 1, to: 2, arrows: 'to', color: { color: cDark, hover: cDark }, width: 2 },
+                    { from: 3, to: 1, arrows: 'to', dashes: [8, 6], color: { color: cDark, hover: cDark }, width: 2 },
+                    { from: 1, to: 4, arrows: 'to', dashes: [2, 4], color: { color: cGray, hover: cDark }, width: 1.5 },
+                    { from: 5, to: 1, arrows: 'to', color: { color: cRed, hover: cDark }, width: 3 },
+                    { from: 6, to: 1, arrows: 'to', dashes: [8, 6], color: { color: cGray, hover: cDark }, width: 1 }
+                ])
+            };
+            var sideOptions = JSON.parse(JSON.stringify(options));
+            sideOptions.interaction.dragNodes = false;
+            sideOptions.interaction.zoomView = false;
+            sideOptions.interaction.dragView = false;
+            sideOptions.physics.stabilization = false; // Micro interation
+            var sideNetwork = new vis.Network(sideContainer, sideData, sideOptions);
+
+            // Adjust zoom a few times to ensure it fits well initially while physics calculate
+            setTimeout(() => { sideNetwork.fit({ animation: true }); }, 100);
+            setTimeout(() => { sideNetwork.fit({ animation: true }); }, 1000);
 
             const sideCard = document.getElementById("side-graph-card");
             if (sideCard) {
