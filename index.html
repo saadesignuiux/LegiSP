@@ -49,20 +49,6 @@
             }
         }
 
-        @keyframes logos-scroll {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        .logos-scroll-track:hover {
-            animation-play-state: paused;
-        }
-
         /* Search bar focus & transitions */
         #search-bar-wrapper:focus-within #search-icon {
             color: #E30613;
@@ -464,70 +450,202 @@
                 <div class="pt-16 pb-8" style="width: 100vw; margin-left: calc(-50vw + 50%);">
                     <!-- Scroll Track -->
                     <div
-                        class="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,4%,black_14%,black_86%,transparent_96%,transparent)]">
-                        <div class="flex items-center gap-16 logos-scroll-track"
-                            style="width: max-content; animation: logos-scroll 30s linear infinite;">
-                            <!-- Logo set -->
-                            <div class="flex items-center gap-16 shrink-0">
-                                <!-- Detran.SP -->
-                                <div
-                                    class="flex items-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default select-none h-12">
-                                    <img src="assets/img/partners/detran.svg" alt="Detran.SP"
-                                        class="h-10 w-auto object-contain">
-                                </div>
-
-                                <!-- Diário Oficial SP -->
-                                <div
-                                    class="flex items-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default select-none h-12">
-                                    <img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
-                                        class="h-8 w-auto object-contain">
-                                </div>
-
-                                <!-- TCESP -->
-                                <div
-                                    class="flex items-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default select-none h-12">
-                                    <img src="assets/img/partners/tcesp.svg" alt="TCESP"
-                                        class="h-10 w-auto object-contain">
-                                </div>
-
-                                <!-- Imprensa Oficial -->
-                                <div
-                                    class="flex items-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default select-none h-12">
-                                    <img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
-                                        class="h-8 w-auto object-contain">
-                                </div>
-                            </div>
-
-                            <!-- Duplicated set for seamless loop -->
-                            <div class="flex items-center gap-16 shrink-0" aria-hidden="true">
-                                <!-- Detran.SP -->
-                                <div
-                                    class="flex items-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default select-none h-12">
-                                    <img src="assets/img/partners/detran.svg" alt="Detran.SP"
-                                        class="h-10 w-auto object-contain">
-                                </div>
-
-                                <!-- Diário Oficial SP -->
-                                <div
-                                    class="flex items-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default select-none h-12">
-                                    <img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
-                                        class="h-8 w-auto object-contain">
-                                </div>
-
-                                <!-- TCESP -->
-                                <div
-                                    class="flex items-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default select-none h-12">
-                                    <img src="assets/img/partners/tcesp.svg" alt="TCESP"
-                                        class="h-10 w-auto object-contain">
-                                </div>
-
-                                <!-- Imprensa Oficial -->
-                                <div
-                                    class="flex items-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default select-none h-12">
-                                    <img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
-                                        class="h-8 w-auto object-contain">
-                                </div>
-                            </div>
+                        class="relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,4%,black_14%,black_86%,transparent_96%,transparent)] hover:[&>div]:[animation-play-state:paused]">
+                        <div class="logos-marquee flex shrink-0 items-center gap-16 pr-16 text-white/40 grayscale hover:grayscale-0 transition-all">
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+                        </div>
+                        <div class="logos-marquee flex shrink-0 items-center gap-16 pr-16 text-white/40 grayscale hover:grayscale-0 transition-all" aria-hidden="true">
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/detran.svg" alt="Detran.SP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/diario-oficial.svg" alt="Diário Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/tcesp.svg" alt="TCESP"
+        class="h-10 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
+<div class="shrink-0 flex items-center h-12"><img src="assets/img/partners/imprensa-oficial.svg" alt="Imprensa Oficial"
+        class="h-8 max-h-12 w-auto opacity-40 dark:opacity-30 grayscale hover:opacity-100 dark:hover:opacity-100 hover:grayscale-0 transition-all duration-300 select-none object-contain">
+</div>
                         </div>
                     </div>
                 </div>
